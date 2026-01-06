@@ -1,0 +1,26 @@
+     
+   <div data-sly-use.search="com.mysite.core.models.SearchModel">
+    
+       Search Title  - ${search.searchTitle} <br/>
+       Search Root - ${search.searchRoot}   <br/>
+       
+       result size - ${search.resultsSize} <br/>
+	   
+	   Page Title-  ${search.pageTitle}
+       
+    <form method="get">
+        <input name="q" placeholder="Search title or description"/>
+        <button>Search</button>
+    </form>
+    
+    results- ${search.results}
+
+    <ul>
+        <li data-sly-repeat.page="${search.results}">
+
+                ${page}
+            
+        </li>
+    </ul>
+
+</div>
