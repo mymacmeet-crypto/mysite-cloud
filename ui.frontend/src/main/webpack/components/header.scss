@@ -1,0 +1,118 @@
+/* =========================
+   HEADER BASE
+========================= */
+.xf-web-container {
+  background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+  font-family: "Inter", Arial, sans-serif;
+}
+
+/* =========================
+   HEADER LAYOUT
+========================= */
+.xf-web-container .cmp-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 72px;
+}
+
+/* =========================
+   NAVIGATION
+========================= */
+.cmp-navigation__group {
+  display: flex;
+  gap: 24px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.cmp-navigation__item-link {
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  color: #111827;
+  padding: 8px 0;
+  position: relative;
+}
+
+.cmp-navigation__item-link:hover {
+  color: #2563eb;
+}
+
+.cmp-navigation__item-link::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #2563eb;
+  transition: width 0.2s ease;
+}
+
+.cmp-navigation__item-link:hover::after {
+  width: 100%;
+}
+
+/* =========================
+   LANGUAGE SWITCHER
+========================= */
+.cmp-languagenavigation {
+  margin-left: 16px;
+}
+
+.cmp-languagenavigation__item-title,
+.cmp-languagenavigation__item-link {
+  font-size: 13px;
+  color: #374151;
+  text-transform: uppercase;
+}
+
+.cmp-languagenavigation__item-link:hover {
+  color: #2563eb;
+}
+
+/* =========================
+   SEARCH
+========================= */
+.cmp-search {
+  margin-left: 24px;
+  position: relative;
+}
+
+.cmp-search__input {
+  width: 200px;
+  padding: 8px 12px 8px 36px;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  font-size: 14px;
+}
+
+.cmp-search__input:focus {
+  outline: none;
+  border-color: #2563eb;
+}
+
+.cmp-search__icon {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 1024px) {
+  .cmp-search__input {
+    width: 160px;
+  }
+}
+
+@media (max-width: 768px) {
+  .cmp-search {
+    display: none; /* phase-1 simple */
+  }
+}
