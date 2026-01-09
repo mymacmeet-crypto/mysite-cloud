@@ -1,0 +1,25 @@
+<sly data-sly-use.clientlib="/libs/granite/sightly/templates/clientlib.html">
+  <sly data-sly-call="${clientlib.all @ categories='mysite.carbrowser'}"/>
+</sly>
+
+<div class="car-browser"
+     data-car-list="/graphql/execute.json/mysite/GetAllCars"
+     data-car-years="/graphql/execute.json/mysite/GetCarYearsByPath"
+     data-car-spec="/graphql/execute.json/mysite/GetCarSpecsByYear">
+
+  <div class="car-section">
+    <h3>Cars</h3>
+    <ul id="carList"></ul>
+  </div>
+
+  <div class="year-section">
+    <h3>Years</h3>
+    <ul id="yearList"></ul>
+  </div>
+
+  <div class="spec-section">
+    <h3>Specifications</h3>
+    <div id="specDetails"></div>
+  </div>
+
+</div>

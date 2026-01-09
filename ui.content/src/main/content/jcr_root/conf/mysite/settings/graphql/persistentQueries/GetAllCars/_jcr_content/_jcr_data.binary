@@ -1,0 +1,15 @@
+{
+  carList {
+    items {
+      title
+      _path
+      image {
+        ... on ImageRef {
+          _path
+        }
+      }
+      slug
+      
+    }
+  }
+}

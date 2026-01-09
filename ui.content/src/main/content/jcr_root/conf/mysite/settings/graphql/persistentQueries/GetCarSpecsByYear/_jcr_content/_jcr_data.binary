@@ -1,0 +1,30 @@
+query GetCarSpecsByCarYear($carYear: Int!) {
+  carspecificationList(
+    filter: {
+      carYear: {
+        year: {
+          _expressions: [
+            {
+              value: $carYear
+            }
+          ]
+        }
+      }
+    }
+  ) {
+    items {
+      _path
+      _id
+      _variation
+       engine
+      power
+      milage
+      torque
+      transmission
+      safetyRating
+      features {html}
+      
+      
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  contentFragmentModelList {
+    items {
+      firstName
+      lastName
+      age
+      query {
+        html
+      }
+    }
+  }
+}

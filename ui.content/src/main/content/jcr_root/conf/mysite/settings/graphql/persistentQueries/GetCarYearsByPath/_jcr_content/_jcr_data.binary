@@ -1,0 +1,28 @@
+query GetCarYearsByCarReference($carPath: ID!) {
+  caryearList(
+    filter: {
+      carReference: {
+        _path: {
+          _expressions: [
+            {
+              value: $carPath
+            }
+          ]
+        }
+      }
+    }
+  ) {
+    items {
+      _path
+      _id
+      _variation
+      year
+      price
+      fuelType
+
+      carReference {
+        _path
+      }
+    }
+  }
+}
