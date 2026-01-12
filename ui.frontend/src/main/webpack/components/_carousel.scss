@@ -1,14 +1,140 @@
-.cmp-carousel {}
-.cmp-carousel__content {}
-.cmp-carousel__item {}
-.cmp-carousel__actions {}
-.cmp-carousel__action {}
-.cmp-carousel__action--disabled {}
-.cmp-carousel__action--previous {}
-.cmp-carousel__action--next {}
-.cmp-carousel__action--pause {}
-.cmp-carousel__action--play {}
-.cmp-carousel__action-icon {}
-.cmp-carousel__action-text {}
-.cmp-carousel__indicators {}
-.cmp-carousel__indicator {}
+// Variables
+$action-size: 44px;
+$indicator-size: 10px;
+
+.cmp-carousel {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.cmp-carousel__content {
+  position: relative;
+  width: 100%;
+  min-height: 250px;
+  display: flex;
+}
+
+.cmp-carousel__item {
+  flex: 0 0 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.cmp-carousel__actions {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+  pointer-events: none;
+}
+
+.cmp-carousel__action {
+  pointer-events: auto;
+  width: $action-size;
+  height: $action-size;
+  border: none;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  &:hover {
+    background: rgba(0, 0, 0, 0.7);
+  }
+}
+
+.cmp-carousel__action--disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.cmp-carousel__action--previous {
+  margin-right: auto;
+}
+
+.cmp-carousel__action--next {
+  margin-left: auto;
+}
+
+.cmp-carousel__action--pause,
+.cmp-carousel__action--play {
+  position: absolute;
+  bottom: 70px;
+  right: 20px;
+}
+
+.cmp-carousel__action-icon {
+  width: 16px;
+  height: 16px;
+  
+  &::before {
+    content: '';
+    display: block;
+    width: 8px;
+    height: 8px;
+    border-top: 2px solid currentColor;
+    border-right: 2px solid currentColor;
+  }
+  
+  .cmp-carousel__action--previous & {
+    &::before {
+      transform: rotate(-135deg);
+      margin-left: 2px;
+    }
+  }
+  
+  .cmp-carousel__action--next & {
+    &::before {
+      transform: rotate(45deg);
+      margin-right: 2px;
+    }
+  }
+}
+
+.cmp-carousel__action-text {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
+.cmp-carousel__indicators {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+}
+
+.cmp-carousel__indicator {
+  width: $indicator-size;
+  height: $indicator-size;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  padding: 0;
+  
+  &.cmp-carousel__indicator--active {
+    background: #fff;
+  }
+}
