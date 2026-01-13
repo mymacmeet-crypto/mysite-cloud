@@ -1,0 +1,23 @@
+/* Default button tweak */
+.custom-button .cmp-button__text {
+  font-weight: 500;
+}
+
+/* Style: Primary */
+.cmp-button--primary .cmp-button {
+  background: #0052cc;
+  color: #fff;
+  border-radius: 6px;
+}
+
+/* Style: Outline */
+.cmp-button--outline .cmp-button {
+  background: transparent;
+  border: 2px solid #0052cc;
+  color: #0052cc;
+}
+
+/* Style: Rounded */
+.cmp-button--rounded .cmp-button {
+  border-radius: 30px;
+}
