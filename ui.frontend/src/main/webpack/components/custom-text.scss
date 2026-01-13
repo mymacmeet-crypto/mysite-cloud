@@ -1,0 +1,22 @@
+/* Default */
+.custom-text {
+  line-height: 1.6;
+}
+
+/* Style: Large Heading */
+.cmp-text--large {
+  font-size: 28px;
+  font-weight: 600;
+}
+
+/* Style: Muted */
+.cmp-text--muted {
+  color: #777;
+}
+
+/* Style: Highlight */
+.cmp-text--highlight {
+  background: #fff3cd;
+  padding: 8px;
+  border-left: 4px solid #ffc107;
+}

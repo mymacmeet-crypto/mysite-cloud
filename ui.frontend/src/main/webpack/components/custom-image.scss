@@ -1,0 +1,19 @@
+/* Default */
+.custom-image {
+  max-width: 100%;
+}
+
+/* Style: Rounded */
+.cmp-image--rounded img {
+  border-radius: 16px;
+}
+
+/* Style: Shadow */
+.cmp-image--shadow img {
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+/* Style: Circle */
+.cmp-image--circle img {
+  border-radius: 50%;
+}
