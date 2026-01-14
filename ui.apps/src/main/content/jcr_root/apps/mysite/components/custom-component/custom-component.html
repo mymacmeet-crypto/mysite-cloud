@@ -1,0 +1,22 @@
+<sly data-sly-use.templates="core/wcm/components/commons/v1/templates.html"/>
+<sly data-sly-call="${templates.placeholder @ isEmpty=!properties.text, classAppend='custom-component'}"/>
+
+<div class="custom-component">
+  
+  <div class="cta__image" data-sly-test="${properties.fileReference}">
+    <img src="${properties.fileReference @ context='uri'}" alt="Image"/>
+  </div>
+
+  <div class="cta__content">
+    <div class="cta__text" data-sly-test="${properties.text}">
+      ${properties.text @ context='html'}
+    </div>
+
+    <a class="cta__button"
+       data-sly-test="${properties.buttonText && properties.buttonLink}"
+       href="${model.buttonLink @ context='uri'}">
+       ${properties.buttonText}
+    </a>
+  </div>
+
+</div>
