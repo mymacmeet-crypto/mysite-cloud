@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <workspaceFilter version="1.0">
-    <filter root="/conf/mysite" mode="merge"/>
+    <filter root="/conf/mysite" mode="replace"/>
     <filter root="/content/mysite" mode="merge"/>
     <filter root="/content/dam/mysite" mode="merge">
         <exclude pattern="/content/dam/mysite(/.*)?"/>
