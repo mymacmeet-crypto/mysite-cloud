@@ -1,0 +1,54 @@
+.custom-card {
+  width: 320px;
+  background: #fff;
+  border-radius: 18px;
+  padding: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+/* Meta info */
+.cmp-card__meta {
+  font-size: 13px;
+  color: #666;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+
+/* Title */
+.cmp-card__title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+/* Image */
+.cmp-card__image-wrapper {
+  overflow: hidden;
+  border-radius: 14px;
+}
+
+.cmp-card__image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Modifier styles */
+
+/* Rounded */
+.cmp-card--rounded {
+  border-radius: 24px;
+}
+
+/* Shadow */
+.cmp-card--shadow {
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+/* Dark */
+.cmp-card--dark {
+  background: #111;
+  color: #fff;
+}

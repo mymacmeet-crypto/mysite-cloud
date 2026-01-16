@@ -1,0 +1,33 @@
+<div class="custom-card">
+  <div
+    data-sly-use.card="com.adobe.cq.wcm.core.components.models.Component"
+    data-sly-use.image="com.adobe.cq.wcm.core.components.models.Image"
+    data-sly-use.templates="core/wcm/components/commons/v1/templates.html"
+    id="${card.id}"
+    class="cmp-card"
+  >
+    <!-- Meta -->
+    <div class="cmp-card__meta">
+      <span class="cmp-card__label">${properties.label}</span>
+      <span class="cmp-card__count">${properties.count}</span>
+    </div>
+
+    <!-- Title -->
+    <h3 class="cmp-card__title">${properties.title}</h3>
+
+    <!-- Image -->
+    <div data-sly-test="${image.src}" class="cmp-card__image-wrapper">
+      <img
+        src="${image.src}"
+        srcset="${image.srcset}"
+        sizes="${image.sizes}"
+        class="cmp-card__image"
+        alt="${image.alt || true}"
+      />
+    </div>
+  </div>
+
+  <sly
+    data-sly-call="${templates.placeholder @ isEmpty = !image.src, classAppend='cmp-card'}"
+  ></sly>
+</div>
