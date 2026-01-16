@@ -6,6 +6,7 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
+import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.metatype.annotations.Designate;
 
@@ -18,6 +19,7 @@ public class BookApiService {
 	private String url;
 	private int limit;
 	
+	@Activate
 	protected void activate(MysiteAPIConfig apiConfig) {
 		url = apiConfig.baseUrl();
 		limit = apiConfig.limit();
@@ -26,7 +28,7 @@ public class BookApiService {
 
     public String getBooks() throws Exception {
         CloseableHttpClient client = HttpClients.createDefault();
-        HttpGet get = new HttpGet(url+"/products?limit"+limit);
+        HttpGet get = new HttpGet(url+"/products?limit="+limit);
         return EntityUtils.toString(client.execute(get).getEntity());
     }
     
