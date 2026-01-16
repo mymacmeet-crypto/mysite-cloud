@@ -10,13 +10,13 @@ import org.apache.sling.api.servlets.SlingAllMethodsServlet;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
-import com.mysite.core.services.BookPostService;
+import com.mysite.core.services.BookApiService;
 
 @Component(service = Servlet.class, property = { "sling.servlet.paths=/bin/post-book", "sling.servlet.methods=POST" })
 public class BookPostServlet extends SlingAllMethodsServlet {
 
 	@Reference
-	private BookPostService postService;
+	private BookApiService postService;
 
 	@Override
 	protected void doPost(SlingHttpServletRequest req, SlingHttpServletResponse resp) {
