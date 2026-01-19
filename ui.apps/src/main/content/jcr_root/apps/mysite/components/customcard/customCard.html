@@ -15,10 +15,13 @@
     <!-- Title -->
     <h3 class="cmp-card__title">${properties.title}</h3>
 
+    <!-- Source Path -->
+    <h3 class="cmp-card__title">${properties.sourcePath}</h3>
+
     <!-- Image -->
-    <div data-sly-test="${image.src}" class="cmp-card__image-wrapper">
+    <div data-sly-test="${properties.sourcePath}" class="cmp-card__image-wrapper">
       <img
-        src="${image.src}"
+        src="${properties.sourcePath}"
         srcset="${image.srcset}"
         sizes="${image.sizes}"
         class="cmp-card__image"
