@@ -1,0 +1,28 @@
+<sly data-sly-use.clientlib="/libs/granite/sightly/templates/clientlib.html">
+  <sly data-sly-call="${clientlib.all @ categories='mysite.booklist'}"/>
+</sly>
+
+
+
+<div data-sly-use.model="com.mysite.core.models.BookListModel">
+
+<h2>Book List</h2>
+
+  <ul data-sly-list.book="${model.books}">
+    <li>
+      <strong>${book.title}</strong>
+      <div class="price">₹${book.price}</div>
+      <div class="category">${book.category}</div>
+    </li>
+  </ul>
+
+  <div class="empty" data-sly-test="${model.books.size == 0}">
+    No books found.
+  </div>
+
+</div>
+
+<sly  data-sly-use.templates="core/wcm/components/commons/v1/templates.html" />
+
+<sly data-sly-call="${templates.placeholder @ isEmpty = !model.books}"></sly>
+</div>
