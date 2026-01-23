@@ -1,21 +1,20 @@
 .cmp-button {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 10px 16px;
-    background: #005fcc;
-    border-radius: 4px;
-    color: white;
-    text-decoration: none;
-    font-size: 14px;
-  }
-  
-  .cmp-button__text {
-    line-height: 1;
-  }
-  
-  .cmp-button__icon {
-    width: 16px;
-    height: 16px;
-  }
-  
+  padding: 10px 18px;
+  border-radius: 6px;
+  border: none;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.cmp-button:active {
+  transform: scale(0.97);
+}
+
+.cmp-button--primary { background-color: #0052cc; color: #fff; }
+.cmp-button--secondary { background-color: #f1f1f1; color: #333; }
+.cmp-button--danger { background-color: #d92d20; color: #fff; }
+
+.cmp-button:disabled { opacity: 0.5; cursor: not-allowed; }
+.cmp-button--active { box-shadow: 0 0 0 2px #000 inset; }
