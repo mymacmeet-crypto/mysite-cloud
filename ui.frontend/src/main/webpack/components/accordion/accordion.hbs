@@ -1,0 +1,22 @@
+<div class="accordion {{variant}}">
+  {{#each items}}
+    <div class="accordion-item {{#if this.isSelected}}active{{/if}} {{#if this.isDisabled}}disabled{{/if}}">
+      <button class="accordion-header" data-key="{{this.key}}" {{#if this.isDisabled}}disabled{{/if}}>
+        <span class="accordion-title">{{this.title}}</span>
+        <svg class="accordion-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <div class="accordion-content">
+        <div class="accordion-content-inner">
+          {{this.content}}
+        </div>
+      </div>
+      {{#if ../showDivider}}
+        {{#unless @last}}
+          <div class="accordion-divider"></div>
+        {{/unless}}
+      {{/if}}
+    </div>
+  {{/each}}
+</div>
