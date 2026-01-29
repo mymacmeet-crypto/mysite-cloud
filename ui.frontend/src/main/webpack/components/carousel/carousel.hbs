@@ -1,0 +1,23 @@
+<div class="carousel {{variant}}">
+  <div class="carousel-track-container">
+    <div class="carousel-track">
+      {{#each items}}
+        <div class="carousel-item" data-key="{{this.key}}">
+          <div class="carousel-item-content" style="height: {{../height}};">
+            {{{this.content}}}
+          </div>
+        </div>
+      {{/each}}
+    </div>
+  </div>
+  <button class="carousel-btn carousel-btn-prev" aria-label="Previous slide">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M10 12L6 8L10 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+  <button class="carousel-btn carousel-btn-next" aria-label="Next slide">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M6 4L10 8L6 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+</div>
