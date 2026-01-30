@@ -1,0 +1,11 @@
+<div class="image-wrapper radius-{{radius}} {{#if isZoomed}}zoomed{{/if}}">
+  {{#unless disableSkeleton}}
+  <div class="image-skeleton"></div>
+  {{/unless}}
+  <img 
+    src="{{src}}" 
+    alt="{{alt}}" 
+    class="image-element"
+    style="width: {{width}}; height: {{height}};"
+  />
+</div>

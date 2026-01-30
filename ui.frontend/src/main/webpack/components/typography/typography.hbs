@@ -1,0 +1,33 @@
+{{#if (eq variant "h1")}}
+  <h1 class="typography-h1">{{text}}</h1>
+{{else if (eq variant "h2")}}
+  <h2 class="typography-h2">{{text}}</h2>
+{{else if (eq variant "h3")}}
+  <h3 class="typography-h3">{{text}}</h3>
+{{else if (eq variant "h4")}}
+  <h4 class="typography-h4">{{text}}</h4>
+{{else if (eq variant "p")}}
+  <p class="typography-p">{{text}}</p>
+{{else if (eq variant "blockquote")}}
+  <blockquote class="typography-blockquote">{{text}}</blockquote>
+{{else if (eq variant "list")}}
+  <ul class="typography-list">
+    <li>First item in the list</li>
+    <li>Second item in the list</li>
+    <li>Third item in the list
+      <ul>
+        <li>Nested item 1</li>
+        <li>Nested item 2</li>
+      </ul>
+    </li>
+    <li>Fourth item in the list</li>
+  </ul>
+{{else if (eq variant "inline-code")}}
+  <p class="typography-p">This is a paragraph with
+    <code class="typography-code">{{text}}</code>
+    inline code.</p>
+{{else if (eq variant "lead")}}
+  <p class="typography-lead">{{text}}</p>
+{{else}}
+  <p class="typography-p">{{text}}</p>
+{{/if}}

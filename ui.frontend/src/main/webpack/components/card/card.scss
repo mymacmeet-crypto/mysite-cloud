@@ -1,0 +1,119 @@
+.card {
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 400px;
+
+  .card-image {
+    width: 100%;
+    overflow: hidden;
+
+    .image-wrapper {
+      width: 100%;
+      display: block;
+
+      .image-element {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+    }
+  }
+
+  .card-body {
+    padding: 20px;
+    flex: 1;
+
+    .typography-h3 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #111827;
+      margin-bottom: 12px;
+    }
+
+    .typography-p {
+      font-size: 1rem;
+      color: #6b7280;
+      line-height: 1.6;
+      margin: 0;
+    }
+  }
+
+  // Variant: Default (with border)
+  &.default {
+    border: 1px solid #e5e7eb;
+  }
+
+  // Variant: Shadow
+  &.shadow {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: none;
+  }
+
+  // Variant: Bordered (thicker border)
+  &.bordered {
+    border: 2px solid #d1d5db;
+  }
+
+  // Variant: Flat (no border, no shadow)
+  &.flat {
+    border: none;
+    background: #f9fafb;
+  }
+
+  // Hoverable effect
+  &.hoverable {
+    cursor: pointer;
+
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+    }
+  }
+
+  // Pressable effect
+  &.pressable {
+    cursor: pointer;
+    user-select: none;
+
+    &:active {
+      transform: scale(0.98);
+    }
+  }
+
+  // Combined hoverable and pressable
+  &.hoverable.pressable {
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+    }
+
+    &:active {
+      transform: translateY(-2px) scale(0.98);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+    }
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .card {
+    max-width: 100%;
+
+    .card-body {
+      padding: 16px;
+
+      .typography-h3 {
+        font-size: 1.25rem;
+      }
+
+      .typography-p {
+        font-size: 0.875rem;
+      }
+    }
+  }
+}
