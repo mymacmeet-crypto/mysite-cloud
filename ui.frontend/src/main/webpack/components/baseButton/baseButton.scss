@@ -1,0 +1,93 @@
+// ─── Base styles ───────────────────────────────────────-──
+.base-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  font-family: sans-serif;
+  font-weight: 500;
+  line-height: 1;
+  cursor: pointer;
+  white-space: nowrap;
+  transition:
+    background-color 150ms ease,
+    color 150ms ease,
+    border-color 150ms ease,
+    opacity 150ms ease;
+
+  // Focus ring — keyboard accessibility
+  &:focus-visible {
+    outline: 2px solid #a1a1aa;
+    outline-offset: 2px;
+  }
+
+  // ─── Sizes ──────────────────────────────────────────────
+  // Default (md) — applied when no size modifier is present
+  padding: 10px 18px;
+  font-size: 14px;
+
+  &--sm {
+    padding: 6px 12px;
+    font-size: 13px;
+    border-radius: 6px;
+  }
+
+  &--md {
+    padding: 10px 18px;
+    font-size: 14px;
+  }
+
+  &--lg {
+    padding: 14px 24px;
+    font-size: 16px;
+    border-radius: 16px;
+  }
+
+  // ─── Variants ───────────────────────────────────────────
+
+  &--primary {
+    background-color: #18181b;
+    color: #fafafa;
+
+    &:hover {
+      opacity: 0.85;
+    }
+  }
+
+  &--secondary {
+    background-color: #f4f4f5;
+    color: #18181b;
+
+    &:hover {
+      background-color: #f4f4f5;
+    }
+  }
+
+  &--outline {
+    background-color: transparent;
+    color: #09090b;
+    border-color: #e4e4e7;
+
+    &:hover {
+      background-color: #e4e4e7;
+    }
+  }
+
+  &--destructive {
+    background-color: #ef4444;
+    color: #fafafa;
+
+    &:hover {
+      opacity: 0.85;
+    }
+  }
+
+  // ─── Disabled state ─────────────────────────────────────
+  &[disabled],
+  &[aria-disabled="true"] {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+}

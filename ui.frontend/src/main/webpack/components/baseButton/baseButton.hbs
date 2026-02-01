@@ -1,0 +1,10 @@
+<button
+  class="base-btn base-btn--{{variant}}{{#if size}} base-btn--{{size}}{{/if}}"
+  type="{{type}}"
+  {{#if disabled}}
+    disabled
+    aria-disabled="true"
+  {{/if}}
+>
+  {{label}}
+</button>
