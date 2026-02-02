@@ -1,0 +1,76 @@
+<div class="compare-product">
+  <div class="compare-product__header">
+    <h1 class="compare-product__title">{{title}}</h1>
+  </div>
+
+  <div class="compare-product__container">
+    <div class="compare-product__table">
+      <!-- Header Row with Product Cards -->
+      <div class="compare-product__row compare-product__row--header">
+        <div class="compare-product__cell compare-product__cell--label">
+          <span class="compare-product__specs-label">SPECIFICATIONS</span>
+        </div>
+        {{#each products}}
+          <div class="compare-product__cell compare-product__cell--product">
+            <div class="product-card">
+              <div class="product-card__image">
+                <img src="{{image_url}}" alt="{{name}}" />
+              </div>
+              <div class="product-card__info">
+                <h3 class="product-card__name">{{name}}</h3>
+                <div class="product-card__pricing">
+                  <span
+                    class="product-card__current-price"
+                  >${{pricing.current_price}}</span>
+                  {{#if pricing.original_price}}
+                    <span
+                      class="product-card__original-price"
+                    >${{pricing.original_price}}</span>
+                  {{/if}}
+                </div>
+                <div class="product-card__rating">
+                  <span class="product-card__star">★</span>
+                  <span
+                    class="product-card__rating-value"
+                  >{{rating.average}}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        {{/each}}
+      </div>
+
+      <!-- Specification Rows -->
+      {{#each specifications}}
+        <div class="compare-product__row">
+          <div class="compare-product__cell compare-product__cell--label">
+            <span class="compare-product__spec-name">{{label}}</span>
+          </div>
+          {{#each productValues}}
+            <div class="compare-product__cell compare-product__cell--value">
+              {{#if this}}
+                {{#if ../isBoolean}}
+                  {{#if this.value}}
+                    <span
+                      class="compare-product__spec-value compare-product__spec-value--check"
+                    >{{{this.display}}}</span>
+                  {{else}}
+                    <span
+                      class="compare-product__spec-value compare-product__spec-value--cross"
+                    >{{{this.display}}}</span>
+                  {{/if}}
+                {{else}}
+                  <span
+                    class="compare-product__spec-value"
+                  >{{{this.display}}}</span>
+                {{/if}}
+              {{else}}
+                <span class="compare-product__spec-value">-</span>
+              {{/if}}
+            </div>
+          {{/each}}
+        </div>
+      {{/each}}
+    </div>
+  </div>
+</div>
