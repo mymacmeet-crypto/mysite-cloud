@@ -4,7 +4,6 @@
     <jcr:content
         cq:deviceGroups="[mobile/groups/responsive]"
         cq:template="/conf/mysite/settings/wcm/templates/page-content"
-        jcr:mixinTypes="[]"
         jcr:primaryType="cq:PageContent"
         sling:resourceType="mysite/components/page">
         <root
