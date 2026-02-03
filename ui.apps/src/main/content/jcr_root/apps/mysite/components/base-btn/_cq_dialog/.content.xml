@@ -75,13 +75,13 @@
                                                         sling:resourceType="granite/ui/components/coral/foundation/form/radio"
                                                         checked="{Boolean}true"
                                                         text="Enabled"
-                                                        value="\0"/>
+                                                        value="false"/>
                                                     <disabled
                                                         jcr:primaryType="nt:unstructured"
                                                         sling:resourceType="granite/ui/components/coral/foundation/form/radio"
                                                         checked="{Boolean}false"
                                                         text="Disabled"
-                                                        value="disabled aria-disabled='true'"/>
+                                                        value="true"/>
                                                 </items>
                                                 <granite:data
                                                     jcr:primaryType="nt:unstructured"

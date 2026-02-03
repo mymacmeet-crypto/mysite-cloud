@@ -1,4 +1,4 @@
-// ─── Base styles ───────────────────────────────────────-──
+// ─── Base button styles ───────────────────────────────────
 .base-btn {
   display: inline-flex;
   align-items: center;
@@ -16,37 +16,50 @@
     border-color 150ms ease,
     opacity 150ms ease;
 
-  // Focus ring — keyboard accessibility
   &:focus-visible {
     outline: 2px solid #a1a1aa;
     outline-offset: 2px;
   }
 
-  // ─── Sizes ──────────────────────────────────────────────
-  // Default (md) — applied when no size modifier is present
+  // default (md)
   padding: 10px 18px;
   font-size: 14px;
 
-  &--sm {
+  &[disabled],
+  &[aria-disabled="true"] {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+}
+
+// ─── Sizes via wrapper ────────────────────────────────────
+.button-wrapper--sm {
+  .base-btn {
     padding: 6px 12px;
     font-size: 13px;
     border-radius: 6px;
   }
+}
 
-  &--md {
+.button-wrapper--md {
+  .base-btn {
     padding: 10px 18px;
     font-size: 14px;
   }
+}
 
-  &--lg {
+.button-wrapper--lg {
+  .base-btn {
     padding: 14px 24px;
     font-size: 16px;
     border-radius: 16px;
   }
+}
 
-  // ─── Variants ───────────────────────────────────────────
-
-  &--primary {
+// ─── Variants via wrapper ─────────────────────────────────
+.button-wrapper--primary {
+  .base-btn {
     background-color: #18181b;
     color: #fafafa;
 
@@ -54,8 +67,10 @@
       opacity: 0.85;
     }
   }
+}
 
-  &--secondary {
+.button-wrapper--secondary {
+  .base-btn {
     background-color: #f4f4f5;
     color: #18181b;
 
@@ -63,8 +78,10 @@
       background-color: #f4f4f5;
     }
   }
+}
 
-  &--outline {
+.button-wrapper--outline {
+  .base-btn {
     background-color: transparent;
     color: #09090b;
     border-color: #e4e4e7;
@@ -73,21 +90,15 @@
       background-color: #e4e4e7;
     }
   }
+}
 
-  &--destructive {
+.button-wrapper--destructive {
+  .base-btn {
     background-color: #ef4444;
     color: #fafafa;
 
     &:hover {
       opacity: 0.85;
     }
-  }
-
-  // ─── Disabled state ─────────────────────────────────────
-  &[disabled],
-  &[aria-disabled="true"] {
-    opacity: 0.5;
-    cursor: not-allowed;
-    pointer-events: none;
   }
 }

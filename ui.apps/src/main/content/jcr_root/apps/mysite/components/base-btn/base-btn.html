@@ -1,4 +1,7 @@
-<div class="base-btn base-btn--destructive base-btn--lg">
-  <button class="base-btn" type="button" disabled aria-disabled="true">
-  Clieck Me
-</button></div>
+<button
+  class="base-btn"
+  type="${properties.type}"
+  disabled="${properties.visibleRadio == 'true'}"
+  aria-disabled="${properties.visibleRadio == 'true'}">
+  ${properties.jcr:title}
+</button>

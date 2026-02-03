@@ -656,8 +656,8 @@
             </button>
             <base-btn jcr:primaryType="nt:unstructured">
                 <policy_1770029579386
-                    cq:styleDefaultClasses="base-btn--primary base-btn--sm"
-                    jcr:lastModified="{Date}2026-02-02T21:55:30.218+11:00"
+                    cq:styleDefaultClasses="button-wrapper--primary button-wrapper--sm"
+                    jcr:lastModified="{Date}2026-02-03T21:53:28.718+11:00"
                     jcr:lastModifiedBy="admin"
                     jcr:primaryType="nt:unstructured"
                     jcr:title="BaseBtn"
@@ -669,22 +669,22 @@
                             jcr:primaryType="nt:unstructured">
                             <cq:styles jcr:primaryType="nt:unstructured">
                                 <item0
-                                    cq:styleClasses="base-btn--primary"
+                                    cq:styleClasses="button-wrapper--primary"
                                     cq:styleId="1770029604471"
                                     cq:styleLabel="Primary"
                                     jcr:primaryType="nt:unstructured"/>
                                 <item1
-                                    cq:styleClasses="base-btn--secondary"
+                                    cq:styleClasses="button-wrapper--secondary"
                                     cq:styleId="1770029606184"
                                     cq:styleLabel="Secondary"
                                     jcr:primaryType="nt:unstructured"/>
                                 <item2
-                                    cq:styleClasses="base-btn--outline"
+                                    cq:styleClasses="button-wrapper--outline"
                                     cq:styleId="1770029607533"
                                     cq:styleLabel="Outline"
                                     jcr:primaryType="nt:unstructured"/>
                                 <item3
-                                    cq:styleClasses="base-btn--destructive"
+                                    cq:styleClasses="button-wrapper--destructive"
                                     cq:styleId="1770029608919"
                                     cq:styleLabel="Destructive"
                                     jcr:primaryType="nt:unstructured"/>
@@ -695,17 +695,17 @@
                             jcr:primaryType="nt:unstructured">
                             <cq:styles jcr:primaryType="nt:unstructured">
                                 <item0
-                                    cq:styleClasses="base-btn--sm"
+                                    cq:styleClasses="button-wrapper--sm"
                                     cq:styleId="1770029620154"
                                     cq:styleLabel="Small"
                                     jcr:primaryType="nt:unstructured"/>
                                 <item1
-                                    cq:styleClasses="base-btn--md"
+                                    cq:styleClasses="button-wrapper--md"
                                     cq:styleId="1770029621860"
                                     cq:styleLabel="Medium"
                                     jcr:primaryType="nt:unstructured"/>
                                 <item2
-                                    cq:styleClasses="base-btn--lg"
+                                    cq:styleClasses="button-wrapper--lg"
                                     cq:styleId="1770029623705"
                                     cq:styleLabel="Large"
                                     jcr:primaryType="nt:unstructured"/>
