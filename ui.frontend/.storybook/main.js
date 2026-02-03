@@ -1,6 +1,6 @@
 module.exports = {
   stories: ["../src/**/*.stories.@(js|ts)"],
-  addons: ["@storybook/addon-essentials"],
+  addons: ["@storybook/addon-essentials", "@whitespace/storybook-addon-html"],
   framework: "@storybook/html-webpack5",
 
   webpackFinal: async (config) => {

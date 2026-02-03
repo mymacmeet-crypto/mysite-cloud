@@ -13,9 +13,7 @@
                         jcr:title="Content Form"
                         sling:resourceType="wcm/core/components/policy/policy"
                         components="[/apps/mysite/components/form/button,/apps/mysite/components/form/hidden,/apps/mysite/components/form/options,/apps/mysite/components/form/text]">
-                        <jcr:content
-                            jcr:mixinTypes="[]"
-                            jcr:primaryType="nt:unstructured"/>
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
                     </form-container>
                 </container>
             </form>
@@ -45,9 +43,7 @@
                     jpegQuality="{Long}85"
                     titleValueFromDAM="true"
                     uuidDisabled="true">
-                    <jcr:content
-                        jcr:mixinTypes="[]"
-                        jcr:primaryType="nt:unstructured"/>
+                    <jcr:content jcr:primaryType="nt:unstructured"/>
                     <plugins jcr:primaryType="nt:unstructured">
                         <crop
                             jcr:primaryType="nt:unstructured"
@@ -85,9 +81,7 @@
                     jcr:primaryType="nt:unstructured"
                     jcr:title="Content Text"
                     sling:resourceType="wcm/core/components/policy/policy">
-                    <jcr:content
-                        jcr:mixinTypes="[]"
-                        jcr:primaryType="nt:unstructured"/>
+                    <jcr:content jcr:primaryType="nt:unstructured"/>
                     <rtePlugins jcr:primaryType="nt:unstructured">
                         <paraformat
                             jcr:primaryType="nt:unstructured"
@@ -180,9 +174,7 @@
                     allowedTypes="h1"
                     linkDisabled="true"
                     type="h1">
-                    <jcr:content
-                        jcr:mixinTypes="[]"
-                        jcr:primaryType="nt:unstructured"/>
+                    <jcr:content jcr:primaryType="nt:unstructured"/>
                 </policy_641475696923109>
                 <policy_641528232375303
                     jcr:description="Allows all sizes, but not H1, which is reserved for the main page title."
@@ -192,9 +184,7 @@
                     allowedTypes="[h2,h3,h4,h5,h6]"
                     linkDisabled="false"
                     type="h2">
-                    <jcr:content
-                        jcr:mixinTypes="[]"
-                        jcr:primaryType="nt:unstructured"/>
+                    <jcr:content jcr:primaryType="nt:unstructured"/>
                 </policy_641528232375303>
             </title>
             <experiencefragment jcr:primaryType="nt:unstructured">
@@ -204,9 +194,7 @@
                     jcr:primaryType="nt:unstructured"
                     jcr:title="Page Header"
                     sling:resourceType="wcm/core/components/policy/policy">
-                    <jcr:content
-                        jcr:mixinTypes="[]"
-                        jcr:primaryType="nt:unstructured"/>
+                    <jcr:content jcr:primaryType="nt:unstructured"/>
                 </policy_header>
                 <policy_footer
                     cq:styleDefaultElement="footer"
@@ -214,9 +202,7 @@
                     jcr:primaryType="nt:unstructured"
                     jcr:title="Page Footer"
                     sling:resourceType="wcm/core/components/policy/policy">
-                    <jcr:content
-                        jcr:mixinTypes="[]"
-                        jcr:primaryType="nt:unstructured"/>
+                    <jcr:content jcr:primaryType="nt:unstructured"/>
                 </policy_footer>
             </experiencefragment>
             <container jcr:primaryType="nt:unstructured">
@@ -226,9 +212,7 @@
                     jcr:title="Page Root"
                     sling:resourceType="wcm/core/components/policy/policy"
                     components="[group:My Site - Content,/apps/mysite/components/form/container,group:My Site - Structure]">
-                    <jcr:content
-                        jcr:mixinTypes="[]"
-                        jcr:primaryType="nt:unstructured"/>
+                    <jcr:content jcr:primaryType="nt:unstructured"/>
                     <cq:authoring jcr:primaryType="nt:unstructured">
                         <assetToComponentMapping jcr:primaryType="nt:unstructured">
                             <mapping_1575024218483
@@ -258,9 +242,7 @@
                     jcr:title="Page Content"
                     sling:resourceType="wcm/core/components/policy/policy"
                     components="[group:My Site - Content,/apps/mysite/components/form/container]">
-                    <jcr:content
-                        jcr:mixinTypes="[]"
-                        jcr:primaryType="nt:unstructured"/>
+                    <jcr:content jcr:primaryType="nt:unstructured"/>
                     <cq:authoring jcr:primaryType="nt:unstructured">
                         <assetToComponentMapping jcr:primaryType="nt:unstructured">
                             <mapping_1575030255082
@@ -290,9 +272,7 @@
                     jcr:primaryType="nt:unstructured"
                     jcr:title="Page Main"
                     sling:resourceType="wcm/core/components/policy/policy">
-                    <jcr:content
-                        jcr:mixinTypes="[]"
-                        jcr:primaryType="nt:unstructured"/>
+                    <jcr:content jcr:primaryType="nt:unstructured"/>
                 </policy_649128221558427>
                 <policy_1575040440977
                     jcr:description="Allows the template components and defines the component mapping (this configures what components should be automatically created when authors drop assets from the content finder to the page editor)."
@@ -300,9 +280,7 @@
                     jcr:title="XF Root"
                     sling:resourceType="wcm/core/components/policy/policy"
                     components="[group:My Site - Content,/apps/mysite/components/form/container]">
-                    <jcr:content
-                        jcr:mixinTypes="[]"
-                        jcr:primaryType="nt:unstructured"/>
+                    <jcr:content jcr:primaryType="nt:unstructured"/>
                     <cq:authoring jcr:primaryType="nt:unstructured">
                         <assetToComponentMapping jcr:primaryType="nt:unstructured">
                             <mapping_1575024218483
@@ -334,9 +312,7 @@
                     jcr:title="Content Teaser"
                     sling:resourceType="wcm/core/components/policy/policy"
                     titleType="h3">
-                    <jcr:content
-                        jcr:mixinTypes="[]"
-                        jcr:primaryType="nt:unstructured"/>
+                    <jcr:content jcr:primaryType="nt:unstructured"/>
                 </policy_1575031387650>
             </teaser>
             <download jcr:primaryType="nt:unstructured">
@@ -350,9 +326,7 @@
                     displayFormat="true"
                     displaySize="true"
                     titleType="h3">
-                    <jcr:content
-                        jcr:mixinTypes="[]"
-                        jcr:primaryType="nt:unstructured"/>
+                    <jcr:content jcr:primaryType="nt:unstructured"/>
                 </policy_1575032193319>
             </download>
             <page jcr:primaryType="nt:unstructured">
@@ -363,9 +337,7 @@
                     sling:resourceType="wcm/core/components/policy/policy"
                     clientlibs="[mysite.dependencies,mysite.site]"
                     clientlibsJsHead="mysite.dependencies">
-                    <jcr:content
-                        jcr:mixinTypes="[]"
-                        jcr:primaryType="nt:unstructured"/>
+                    <jcr:content jcr:primaryType="nt:unstructured"/>
                 </policy>
             </page>
             <customimage jcr:primaryType="nt:unstructured">
@@ -380,9 +352,7 @@
                     displayPopupTitle="true"
                     isDecorative="false"
                     titleValueFromDAM="true">
-                    <jcr:content
-                        jcr:mixinTypes="[]"
-                        jcr:primaryType="nt:unstructured"/>
+                    <jcr:content jcr:primaryType="nt:unstructured"/>
                     <cq:styleGroups jcr:primaryType="nt:unstructured">
                         <item0
                             cq:styleGroupLabel="Styles"
@@ -415,9 +385,7 @@
                     jcr:primaryType="nt:unstructured"
                     jcr:title="custom-text"
                     sling:resourceType="wcm/core/components/policy/policy">
-                    <jcr:content
-                        jcr:mixinTypes="[]"
-                        jcr:primaryType="nt:unstructured"/>
+                    <jcr:content jcr:primaryType="nt:unstructured"/>
                     <rtePlugins jcr:primaryType="nt:unstructured">
                         <paraformat
                             jcr:primaryType="nt:unstructured"
@@ -559,9 +527,7 @@
                     jcr:primaryType="nt:unstructured"
                     jcr:title="custom-button"
                     sling:resourceType="wcm/core/components/policy/policy">
-                    <jcr:content
-                        jcr:mixinTypes="[]"
-                        jcr:primaryType="nt:unstructured"/>
+                    <jcr:content jcr:primaryType="nt:unstructured"/>
                     <cq:styleGroups jcr:primaryType="nt:unstructured">
                         <item0
                             cq:styleGroupLabel="Styles"
@@ -628,6 +594,126 @@
                     </cq:styleGroups>
                 </policy_1769511966723>
             </accordion>
+            <button jcr:primaryType="nt:unstructured">
+                <policy_1770028854672
+                    cq:styleDefaultClasses="base-btn--primary base-btn--sm"
+                    jcr:lastModified="{Date}2026-02-02T21:48:29.265+11:00"
+                    jcr:lastModifiedBy="admin"
+                    jcr:primaryType="nt:unstructured"
+                    jcr:title="BaseBtn"
+                    sling:resourceType="wcm/core/components/policy/policy">
+                    <jcr:content jcr:primaryType="nt:unstructured"/>
+                    <cq:styleGroups jcr:primaryType="nt:unstructured">
+                        <item0
+                            cq:styleGroupLabel="Varient"
+                            jcr:primaryType="nt:unstructured">
+                            <cq:styles jcr:primaryType="nt:unstructured">
+                                <item0
+                                    cq:styleClasses="base-btn--primary"
+                                    cq:styleId="1770028917112"
+                                    cq:styleLabel="Primary"
+                                    jcr:primaryType="nt:unstructured"/>
+                                <item1
+                                    cq:styleClasses="base-btn--secondary"
+                                    cq:styleId="1770028918873"
+                                    cq:styleLabel="Secondary"
+                                    jcr:primaryType="nt:unstructured"/>
+                                <item2
+                                    cq:styleClasses="base-btn--outline"
+                                    cq:styleId="1770028920764"
+                                    cq:styleLabel="Outline"
+                                    jcr:primaryType="nt:unstructured"/>
+                                <item3
+                                    cq:styleClasses="base-btn--destructive"
+                                    cq:styleId="1770028922911"
+                                    cq:styleLabel="Destructive"
+                                    jcr:primaryType="nt:unstructured"/>
+                            </cq:styles>
+                        </item0>
+                        <item1
+                            cq:styleGroupLabel="Size"
+                            jcr:primaryType="nt:unstructured">
+                            <cq:styles jcr:primaryType="nt:unstructured">
+                                <item0
+                                    cq:styleClasses="base-btn--sm"
+                                    cq:styleId="1770029160664"
+                                    cq:styleLabel="Small"
+                                    jcr:primaryType="nt:unstructured"/>
+                                <item1
+                                    cq:styleClasses="base-btn--md"
+                                    cq:styleId="1770029162550"
+                                    cq:styleLabel="Medium"
+                                    jcr:primaryType="nt:unstructured"/>
+                                <item2
+                                    cq:styleClasses="base-btn--lg"
+                                    cq:styleId="1770029165265"
+                                    cq:styleLabel="Large"
+                                    jcr:primaryType="nt:unstructured"/>
+                            </cq:styles>
+                        </item1>
+                    </cq:styleGroups>
+                </policy_1770028854672>
+            </button>
+            <base-btn jcr:primaryType="nt:unstructured">
+                <policy_1770029579386
+                    cq:styleDefaultClasses="button-wrapper--primary button-wrapper--sm"
+                    jcr:lastModified="{Date}2026-02-03T21:53:28.718+11:00"
+                    jcr:lastModifiedBy="admin"
+                    jcr:primaryType="nt:unstructured"
+                    jcr:title="BaseBtn"
+                    sling:resourceType="wcm/core/components/policy/policy">
+                    <jcr:content jcr:primaryType="nt:unstructured"/>
+                    <cq:styleGroups jcr:primaryType="nt:unstructured">
+                        <item0
+                            cq:styleGroupLabel="Varient"
+                            jcr:primaryType="nt:unstructured">
+                            <cq:styles jcr:primaryType="nt:unstructured">
+                                <item0
+                                    cq:styleClasses="button-wrapper--primary"
+                                    cq:styleId="1770029604471"
+                                    cq:styleLabel="Primary"
+                                    jcr:primaryType="nt:unstructured"/>
+                                <item1
+                                    cq:styleClasses="button-wrapper--secondary"
+                                    cq:styleId="1770029606184"
+                                    cq:styleLabel="Secondary"
+                                    jcr:primaryType="nt:unstructured"/>
+                                <item2
+                                    cq:styleClasses="button-wrapper--outline"
+                                    cq:styleId="1770029607533"
+                                    cq:styleLabel="Outline"
+                                    jcr:primaryType="nt:unstructured"/>
+                                <item3
+                                    cq:styleClasses="button-wrapper--destructive"
+                                    cq:styleId="1770029608919"
+                                    cq:styleLabel="Destructive"
+                                    jcr:primaryType="nt:unstructured"/>
+                            </cq:styles>
+                        </item0>
+                        <item1
+                            cq:styleGroupLabel="Size"
+                            jcr:primaryType="nt:unstructured">
+                            <cq:styles jcr:primaryType="nt:unstructured">
+                                <item0
+                                    cq:styleClasses="button-wrapper--sm"
+                                    cq:styleId="1770029620154"
+                                    cq:styleLabel="Small"
+                                    jcr:primaryType="nt:unstructured"/>
+                                <item1
+                                    cq:styleClasses="button-wrapper--md"
+                                    cq:styleId="1770029621860"
+                                    cq:styleLabel="Medium"
+                                    jcr:primaryType="nt:unstructured"/>
+                                <item2
+                                    cq:styleClasses="button-wrapper--lg"
+                                    cq:styleId="1770029623705"
+                                    cq:styleLabel="Large"
+                                    jcr:primaryType="nt:unstructured"/>
+                            </cq:styles>
+                        </item1>
+                    </cq:styleGroups>
+                </policy_1770029579386>
+            </base-btn>
         </components>
     </mysite>
     <wcm jcr:primaryType="nt:unstructured">

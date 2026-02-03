@@ -1,0 +1,273 @@
+// Theme Colors
+$background: #ffffff;
+$foreground: #252525;
+$primary: #343434;
+$primary-foreground: #fbfbfb;
+$secondary: #f7f7f7;
+$secondary-foreground: #343434;
+$muted: #f7f7f7;
+$muted-foreground: #8e8e8e;
+$border: #ebebeb;
+$destructive: #dc2626;
+
+// Border Radius
+$radius-sm: 6px;
+$radius-md: 10px;
+$radius-lg: 16px;
+
+.compare-product {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  background: $background;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+
+  &__header {
+    text-align: center;
+    margin-bottom: 32px;
+  }
+
+  &__title {
+    font-size: 32px;
+    font-weight: 600;
+    color: $foreground;
+    margin: 0;
+  }
+
+  &__container {
+    overflow-x: auto;
+    overflow-y: visible;
+    -webkit-overflow-scrolling: touch;
+    background: $primary-foreground;
+    border-radius: $radius-lg;
+    border: 1px solid $border;
+
+    &::-webkit-scrollbar {
+      height: 8px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: $secondary;
+      border-radius: $radius-sm;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: $muted-foreground;
+      border-radius: $radius-sm;
+
+      &:hover {
+        background: darken($muted-foreground, 10%);
+      }
+    }
+  }
+
+  &__table {
+    min-width: 800px;
+    display: table;
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+  }
+
+  &__row {
+    display: table-row;
+
+    &--header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    &:not(&--header) {
+      &:hover {
+        .compare-product__cell {
+          background: lighten($secondary, 2%);
+        }
+      }
+    }
+  }
+
+  &__cell {
+    display: table-cell;
+    vertical-align: middle;
+    padding: 20px 24px;
+    border-bottom: 1px solid $border;
+
+    &--label {
+      width: 250px;
+      min-width: 250px;
+      background: $background;
+      position: sticky;
+      left: 0;
+      z-index: 5;
+      font-weight: 500;
+      color: $foreground;
+      border-right: 1px solid $border;
+
+      .compare-product__row--header & {
+        vertical-align: middle;
+        padding-top: 24px;
+      }
+    }
+
+    &--product {
+      min-width: 350px;
+      background: $background;
+      padding: 16px;
+    }
+
+    &--value {
+      text-align: center;
+      min-width: 280px;
+      background: $background;
+    }
+  }
+
+  &__specs-label {
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: $foreground;
+    text-transform: uppercase;
+  }
+
+  &__spec-name {
+    font-size: 14px;
+    color: $foreground;
+  }
+
+  &__spec-value {
+    font-size: 14px;
+    color: $foreground;
+    display: inline-block;
+
+    // Green tick icons
+    &--check {
+      color: #22c55e;
+      font-weight: 600;
+    }
+
+    // Red cross icons
+    &--cross {
+      color: $destructive;
+      font-weight: 600;
+    }
+  }
+}
+
+.product-card {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  background: $background;
+
+  &__image {
+    width: 100px;
+    height: 100px;
+    aspect-ratio: 1;
+    border-radius: $radius-lg;
+    overflow: hidden;
+    background: $secondary;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  &__name {
+    font-size: 18px;
+    font-weight: 600;
+    color: $foreground;
+    margin: 0;
+    line-height: 1.3;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    line-clamp: 1;
+  }
+
+  &__pricing {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  &__current-price {
+    font-size: 24px;
+    font-weight: 700;
+    color: $foreground;
+  }
+
+  &__original-price {
+    font-size: 14px;
+    color: $muted-foreground;
+    text-decoration: line-through;
+  }
+
+  &__rating {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  &__star {
+    color: #ffa500;
+    font-size: 16px;
+  }
+
+  &__rating-value {
+    font-size: 14px;
+    color: $foreground;
+    font-weight: 500;
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .compare-product {
+    padding: 20px 10px;
+
+    &__title {
+      font-size: 24px;
+    }
+
+    &__cell {
+      padding: 16px 12px;
+
+      &--label {
+        width: 180px;
+        min-width: 180px;
+      }
+
+      &--product,
+      &--value {
+        min-width: 240px;
+      }
+    }
+  }
+
+  .product-card {
+    &__name {
+      font-size: 16px;
+    }
+
+    &__current-price {
+      font-size: 20px;
+    }
+  }
+}

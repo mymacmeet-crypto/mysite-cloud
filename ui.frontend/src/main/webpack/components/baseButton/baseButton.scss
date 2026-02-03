@@ -1,0 +1,104 @@
+// ─── Base button styles ───────────────────────────────────
+.base-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  font-family: sans-serif;
+  font-weight: 500;
+  line-height: 1;
+  cursor: pointer;
+  white-space: nowrap;
+  transition:
+    background-color 150ms ease,
+    color 150ms ease,
+    border-color 150ms ease,
+    opacity 150ms ease;
+
+  &:focus-visible {
+    outline: 2px solid #a1a1aa;
+    outline-offset: 2px;
+  }
+
+  // default (md)
+  padding: 10px 18px;
+  font-size: 14px;
+
+  &[disabled],
+  &[aria-disabled="true"] {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+}
+
+// ─── Sizes via wrapper ────────────────────────────────────
+.button-wrapper--sm {
+  .base-btn {
+    padding: 6px 12px;
+    font-size: 13px;
+    border-radius: 6px;
+  }
+}
+
+.button-wrapper--md {
+  .base-btn {
+    padding: 10px 18px;
+    font-size: 14px;
+  }
+}
+
+.button-wrapper--lg {
+  .base-btn {
+    padding: 14px 24px;
+    font-size: 16px;
+    border-radius: 16px;
+  }
+}
+
+// ─── Variants via wrapper ─────────────────────────────────
+.button-wrapper--primary {
+  .base-btn {
+    background-color: #18181b;
+    color: #fafafa;
+
+    &:hover {
+      opacity: 0.85;
+    }
+  }
+}
+
+.button-wrapper--secondary {
+  .base-btn {
+    background-color: #f4f4f5;
+    color: #18181b;
+
+    &:hover {
+      background-color: #f4f4f5;
+    }
+  }
+}
+
+.button-wrapper--outline {
+  .base-btn {
+    background-color: transparent;
+    color: #09090b;
+    border-color: #e4e4e7;
+
+    &:hover {
+      background-color: #e4e4e7;
+    }
+  }
+}
+
+.button-wrapper--destructive {
+  .base-btn {
+    background-color: #ef4444;
+    color: #fafafa;
+
+    &:hover {
+      opacity: 0.85;
+    }
+  }
+}

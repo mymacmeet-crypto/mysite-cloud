@@ -1,0 +1,11 @@
+<div class="button-wrapper button-wrapper--{{variant}}{{#if size}} button-wrapper--{{size}}{{/if}}">
+  <button
+    class="base-btn"
+    type="{{type}}"
+    {{#if disabled}}
+      disabled
+      aria-disabled="true"
+    {{/if}}>
+    {{label}}
+  </button>
+</div>
