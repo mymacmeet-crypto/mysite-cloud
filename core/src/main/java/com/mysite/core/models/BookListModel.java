@@ -5,13 +5,19 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 
+
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ValueMap;
+import org.apache.sling.caconfig.annotation.Configuration;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
+import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
+
+import com.mysite.core.caconfig.MySiteConfig;
+import com.mysite.core.utils.AEMContextUtil;
 
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class BookListModel {
@@ -23,9 +29,25 @@ public class BookListModel {
     private String nodePath;
 
     private List<Book> books = new ArrayList<>();
+    
+    @Self
+    Resource resource;
+    
+    MySiteConfig mySiteConfig;
+
+    public String getApiEndpoint() {
+        return mySiteConfig.apiEndpoint();
+    }
+
+    public boolean isFeatureEnabled() {
+        return mySiteConfig.enableFeature();
+    }
+    
+    
 
     @PostConstruct
     protected void init() {
+    	mySiteConfig = AEMContextUtil.getConfig(resource, MySiteConfig.class);
     	if(null == nodePath) {
     		return;
     	}

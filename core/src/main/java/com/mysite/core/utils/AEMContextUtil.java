@@ -5,6 +5,7 @@ import javax.jcr.Session;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
+import org.apache.sling.caconfig.ConfigurationBuilder;
 
 import com.adobe.cq.wcm.core.components.models.Page;
 import com.day.cq.search.QueryBuilder;
@@ -51,5 +52,10 @@ public final class AEMContextUtil {
 
 	public static TagManager getTagManager(ResourceResolver resolver) {
 		return resolver != null ? resolver.adaptTo(TagManager.class) : null;
+	}
+
+	public static <T> T getConfig(Resource resource, Class<T> clazz) {
+		ConfigurationBuilder builder = resource.adaptTo(ConfigurationBuilder.class);
+		return builder != null ? builder.as(clazz) : null;
 	}
 }
