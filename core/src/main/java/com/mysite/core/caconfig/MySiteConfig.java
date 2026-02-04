@@ -4,7 +4,6 @@ import org.apache.sling.caconfig.annotation.Configuration;
 import org.apache.sling.caconfig.annotation.Property;
 
 @Configuration(label = "MySite Configuration", description = "COntext aware configuration for mysite")
-
 public @interface MySiteConfig {
 
 	@Property(label = "API Endpoint")
@@ -12,8 +11,5 @@ public @interface MySiteConfig {
 
 	@Property(label = "Enable Feature")
 	boolean enableFeature() default false;
-
-	@Property(label = "Timeout (ms)")
-	int timeout() default 3000;
 
 }

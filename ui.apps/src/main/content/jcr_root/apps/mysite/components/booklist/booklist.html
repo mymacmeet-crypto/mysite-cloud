@@ -2,10 +2,8 @@
   <sly data-sly-call="${clientlib.all @ categories='mysite.booklist'}"/>
 </sly>
 
-
-
 <div data-sly-use.model="com.mysite.core.models.BookListModel">
-
+CA-config API URL-- ${model.apiEndpoint}
 <h2>Book List</h2>
 
   <ul data-sly-list.book="${model.books}">

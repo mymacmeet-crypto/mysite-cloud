@@ -5,6 +5,7 @@
         pageTitle="My Site"
         jcr:primaryType="cq:PageContent"
         jcr:title="en"
+		sling:configRef="/conf/mysite/us"
         cq:contextHubPath="/etc/cloudsettings/default/contexthub"
         cq:contextHubSegmentsPath="/etc/segmentation/contexthub"
         cq:template="/conf/mysite/settings/wcm/templates/page-content"

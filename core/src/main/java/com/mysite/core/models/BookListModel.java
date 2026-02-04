@@ -5,21 +5,23 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 
-
+import org.apache.commons.lang3.StringUtils;
+import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ValueMap;
-import org.apache.sling.caconfig.annotation.Configuration;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
+import org.apache.sling.models.annotations.injectorspecific.ScriptVariable;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
+import com.day.cq.wcm.api.Page;
 import com.mysite.core.caconfig.MySiteConfig;
 import com.mysite.core.utils.AEMContextUtil;
 
-@Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
+@Model(adaptables = {Resource.class, SlingHttpServletRequest.class}, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class BookListModel {
 
     @SlingObject
@@ -31,9 +33,12 @@ public class BookListModel {
     private List<Book> books = new ArrayList<>();
     
     @Self
-    Resource resource;
+    SlingHttpServletRequest request;
     
     MySiteConfig mySiteConfig;
+    
+    @ScriptVariable
+    Page currentPage;
 
     public String getApiEndpoint() {
         return mySiteConfig.apiEndpoint();
@@ -47,7 +52,9 @@ public class BookListModel {
 
     @PostConstruct
     protected void init() {
-    	mySiteConfig = AEMContextUtil.getConfig(resource, MySiteConfig.class);
+    	String currentPath = currentPage != null ? currentPage.getPath() : StringUtils.EMPTY;
+        Resource contentResource = resourceResolver.getResource(currentPath);
+    	mySiteConfig = AEMContextUtil.getConfig(contentResource, MySiteConfig.class);
     	if(null == nodePath) {
     		return;
     	}
