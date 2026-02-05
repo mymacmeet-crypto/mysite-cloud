@@ -5,15 +5,23 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 
+import org.apache.commons.lang3.StringUtils;
+import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
+import org.apache.sling.models.annotations.injectorspecific.ScriptVariable;
+import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
-@Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
+import com.day.cq.wcm.api.Page;
+import com.mysite.core.caconfig.MySiteConfig;
+import com.mysite.core.utils.AEMContextUtil;
+
+@Model(adaptables = {Resource.class, SlingHttpServletRequest.class}, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class BookListModel {
 
     @SlingObject
@@ -23,9 +31,30 @@ public class BookListModel {
     private String nodePath;
 
     private List<Book> books = new ArrayList<>();
+    
+    @Self
+    SlingHttpServletRequest request;
+    
+    MySiteConfig mySiteConfig;
+    
+    @ScriptVariable
+    Page currentPage;
+
+    public String getApiEndpoint() {
+        return mySiteConfig.apiEndpoint();
+    }
+
+    public boolean isFeatureEnabled() {
+        return mySiteConfig.enableFeature();
+    }
+    
+    
 
     @PostConstruct
     protected void init() {
+    	String currentPath = currentPage != null ? currentPage.getPath() : StringUtils.EMPTY;
+        Resource contentResource = resourceResolver.getResource(currentPath);
+    	mySiteConfig = AEMContextUtil.getConfig(contentResource, MySiteConfig.class);
     	if(null == nodePath) {
     		return;
     	}
