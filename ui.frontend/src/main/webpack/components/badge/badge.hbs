@@ -1,0 +1,11 @@
+<div class="badge-wrapper">
+  {{#if isLink}}
+    <a href="{{path}}" class="badge {{variant}}">
+      {{label}}
+    </a>
+  {{else}}
+    <span class="badge {{variant}}">
+      {{label}}
+    </span>
+  {{/if}}
+</div>
