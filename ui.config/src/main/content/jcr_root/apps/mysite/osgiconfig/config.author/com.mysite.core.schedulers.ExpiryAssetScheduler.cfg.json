@@ -1,0 +1,4 @@
+{
+  "scheduler_enabled": true,	
+  "scheduler_expression": "0 */1 * * * ?"
+}
