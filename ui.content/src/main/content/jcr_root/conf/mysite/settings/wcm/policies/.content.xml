@@ -768,6 +768,45 @@
                     </cq:styleGroups>
                 </policy_1770284665500>
             </customcard>
+            <badge jcr:primaryType="nt:unstructured">
+                <policy_1770452028943
+                    cq:styleDefaultClasses="badge-wrapper--primary"
+                    jcr:lastModified="{Date}2026-02-07T19:18:27.729+11:00"
+                    jcr:lastModifiedBy="admin"
+                    jcr:primaryType="nt:unstructured"
+                    jcr:title="Badge"
+                    sling:resourceType="wcm/core/components/policy/policy">
+                    <jcr:content jcr:primaryType="nt:unstructured"/>
+                    <cq:styleGroups jcr:primaryType="nt:unstructured">
+                        <item0
+                            cq:styleGroupLabel="Varient"
+                            jcr:primaryType="nt:unstructured">
+                            <cq:styles jcr:primaryType="nt:unstructured">
+                                <item0
+                                    cq:styleClasses="badge-wrapper--primary"
+                                    cq:styleId="1770452098266"
+                                    cq:styleLabel="Primary"
+                                    jcr:primaryType="nt:unstructured"/>
+                                <item1
+                                    cq:styleClasses="badge-wrapper--secondary"
+                                    cq:styleId="1770452125821"
+                                    cq:styleLabel="Secondary"
+                                    jcr:primaryType="nt:unstructured"/>
+                                <item2
+                                    cq:styleClasses="badge-wrapper--outline"
+                                    cq:styleId="1770452157781"
+                                    cq:styleLabel="Outline"
+                                    jcr:primaryType="nt:unstructured"/>
+                                <item3
+                                    cq:styleClasses="badge-wrapper--destructive"
+                                    cq:styleId="1770452186116"
+                                    cq:styleLabel="Destructive"
+                                    jcr:primaryType="nt:unstructured"/>
+                            </cq:styles>
+                        </item0>
+                    </cq:styleGroups>
+                </policy_1770452028943>
+            </badge>
         </components>
     </mysite>
     <wcm jcr:primaryType="nt:unstructured">
