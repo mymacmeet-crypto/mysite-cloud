@@ -6,4 +6,7 @@
     <car/>
     <caryear/>
     <carspecification/>
+	 <product-cf-model/>
+    <product-specification/>
+    <product-compare/>
 </jcr:root>

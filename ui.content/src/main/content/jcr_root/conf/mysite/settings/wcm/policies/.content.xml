@@ -714,6 +714,60 @@
                     </cq:styleGroups>
                 </policy_1770029579386>
             </base-btn>
+            <customcard jcr:primaryType="nt:unstructured">
+                <policy_1770284665500
+                    jcr:lastModified="{Date}2026-02-05T20:51:16.729+11:00"
+                    jcr:lastModifiedBy="admin"
+                    jcr:primaryType="nt:unstructured"
+                    jcr:title="card-policy"
+                    sling:resourceType="wcm/core/components/policy/policy">
+                    <jcr:content jcr:primaryType="nt:unstructured"/>
+                    <cq:styleGroups jcr:primaryType="nt:unstructured">
+                        <item0
+                            cq:styleGroupLabel="Varient"
+                            jcr:primaryType="nt:unstructured">
+                            <cq:styles jcr:primaryType="nt:unstructured">
+                                <item0
+                                    cq:styleClasses="shadow"
+                                    cq:styleId="1770284696339"
+                                    cq:styleLabel="Shadow"
+                                    jcr:primaryType="nt:unstructured"/>
+                                <item1
+                                    cq:styleClasses="bordered"
+                                    cq:styleId="1770284697620"
+                                    cq:styleLabel="Bordered"
+                                    jcr:primaryType="nt:unstructured"/>
+                                <item2
+                                    cq:styleClasses="flat"
+                                    cq:styleId="1770284699235"
+                                    cq:styleLabel="Flat"
+                                    jcr:primaryType="nt:unstructured"/>
+                            </cq:styles>
+                        </item0>
+                        <item1
+                            cq:styleGroupLabel="Image Radius"
+                            jcr:primaryType="nt:unstructured">
+                            <cq:styles jcr:primaryType="nt:unstructured">
+                                <item0
+                                    cq:styleClasses="sm"
+                                    cq:styleId="1770284944629"
+                                    cq:styleLabel="Small"
+                                    jcr:primaryType="nt:unstructured"/>
+                                <item1
+                                    cq:styleClasses="md"
+                                    cq:styleId="1770284948019"
+                                    cq:styleLabel="Medium"
+                                    jcr:primaryType="nt:unstructured"/>
+                                <item2
+                                    cq:styleClasses="lg"
+                                    cq:styleId="1770284949360"
+                                    cq:styleLabel="Large"
+                                    jcr:primaryType="nt:unstructured"/>
+                            </cq:styles>
+                        </item1>
+                    </cq:styleGroups>
+                </policy_1770284665500>
+            </customcard>
         </components>
     </mysite>
     <wcm jcr:primaryType="nt:unstructured">

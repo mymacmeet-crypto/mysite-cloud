@@ -2,7 +2,7 @@
 <jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
     jcr:primaryType="cq:Page">
     <jcr:content
-        cq:lastModified="{Date}2026-02-03T21:53:28.725+11:00"
+        cq:lastModified="{Date}2026-02-05T20:51:16.735+11:00"
         cq:lastModifiedBy="admin"
         cq:policy="mysite/components/page/policy"
         jcr:primaryType="nt:unstructured"
@@ -77,6 +77,10 @@
                                 sling:resourceType="wcm/core/components/policies/mapping"/>
                             <base-btn
                                 cq:policy="mysite/components/base-btn/policy_1770029579386"
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="wcm/core/components/policies/mapping"/>
+                            <customcard
+                                cq:policy="mysite/components/customcard/policy_1770284665500"
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="wcm/core/components/policies/mapping"/>
                         </components>
