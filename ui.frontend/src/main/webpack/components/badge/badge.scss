@@ -1,41 +1,49 @@
 .badge-wrapper {
   display: inline-block;
-}
 
-.badge {
-  display: inline-flex;
-  align-items: center;
-  padding: 6px 12px;
-  font-size: 14px;
-  font-weight: 500;
-  border-radius: var(--radius-md, 10px);
-  text-decoration: none;
-  transition: opacity 0.2s ease;
-  font-family: sans-serif;
-
-  &.primary {
-    background: var(--primary, #343434);
-    color: var(--primary-foreground, #fbfbfb);
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 12px;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 16px;
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+    font-family: sans-serif;
   }
 
-  &.secondary {
-    background: var(--secondary, #f7f7f7);
-    color: var(--secondary-foreground, #343434);
-  }
-
-  &.destructive {
-    background: var(--destructive, #dc2626);
-    color: var(--destructive-foreground, #fbfbfb);
-  }
-
-  &.outline {
-    background: transparent;
-    color: var(--foreground, #252525);
-    border: 1px solid var(--border, #ebebeb);
-  }
-
-  &:hover {
+  &:hover .badge {
     opacity: 0.9;
+  }
+
+  &--primary {
+    .badge {
+      background: #343434;
+      color: #fbfbfb;
+    }
+  }
+
+  &--secondary {
+    .badge {
+      background: #f7f7f7;
+      color: #343434;
+    }
+  }
+
+  &--destructive {
+    .badge {
+      background: #dc2626;
+      color: #fbfbfb;
+    }
+  }
+
+  &--outline {
+    .badge {
+      background: transparent;
+      color: #252525;
+      border: 1px solid #ebebeb;
+    }
   }
 }
 
