@@ -24,54 +24,5 @@ export const Card = (args) => {
     isPressable,
   });
 
-  // Create a temporary container to parse the HTML
-  const temp = document.createElement("div");
-  temp.innerHTML = htmlString;
-  const cardElement = temp.firstElementChild;
-
-  // Create Image component if needed
-  if (showImage) {
-    const imageElement = Image({
-      src: imageSrc,
-      alt: imageAlt,
-      width: "100%",
-      height: "auto",
-      radius: imageRadius,
-      isZoomed: false,
-      disableSkeleton: false,
-    });
-
-    const imagePlaceholder = cardElement.querySelector(
-      ".card-image-placeholder",
-    );
-    if (imagePlaceholder) {
-      imagePlaceholder.replaceWith(imageElement);
-    }
-  }
-
-  // Create Typography components for title
-  const titleElement = Typography({
-    variant: "h3",
-    text: title,
-  });
-
-  const titlePlaceholder = cardElement.querySelector(".card-title-placeholder");
-  if (titlePlaceholder) {
-    titlePlaceholder.replaceWith(titleElement);
-  }
-
-  // Create Typography components for description
-  const descriptionElement = Typography({
-    variant: "p",
-    text: description,
-  });
-
-  const descriptionPlaceholder = cardElement.querySelector(
-    ".card-description-placeholder",
-  );
-  if (descriptionPlaceholder) {
-    descriptionPlaceholder.replaceWith(descriptionElement);
-  }
-
-  return cardElement;
+  
 };
