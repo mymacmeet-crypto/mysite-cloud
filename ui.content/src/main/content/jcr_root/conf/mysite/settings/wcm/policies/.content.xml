@@ -807,6 +807,87 @@
                     </cq:styleGroups>
                 </policy_1770452028943>
             </badge>
+            <avatar jcr:primaryType="nt:unstructured">
+                <policy_1770625502294
+                    cq:styleDefaultClasses="avatar-wrapper--default"
+                    jcr:lastModified="{Date}2026-02-09T19:33:49.935+11:00"
+                    jcr:lastModifiedBy="admin"
+                    jcr:primaryType="nt:unstructured"
+                    jcr:title="Avatar"
+                    sling:resourceType="wcm/core/components/policy/policy">
+                    <jcr:content jcr:primaryType="nt:unstructured"/>
+                    <cq:styleGroups jcr:primaryType="nt:unstructured">
+                        <item0
+                            cq:styleGroupLabel="color"
+                            jcr:primaryType="nt:unstructured">
+                            <cq:styles jcr:primaryType="nt:unstructured">
+                                <item0
+                                    cq:styleClasses="avatar-wrapper--default"
+                                    cq:styleId="1770625713777"
+                                    cq:styleLabel="default"
+                                    jcr:primaryType="nt:unstructured"/>
+                                <item1
+                                    cq:styleClasses="avatar-wrapper--primary"
+                                    cq:styleId="1770625730425"
+                                    cq:styleLabel="primary"
+                                    jcr:primaryType="nt:unstructured"/>
+                                <item2
+                                    cq:styleClasses="avatar-wrapper--secondary"
+                                    cq:styleId="1770625743926"
+                                    cq:styleLabel="secondary"
+                                    jcr:primaryType="nt:unstructured"/>
+                                <item3
+                                    cq:styleClasses="avatar-wrapper--success"
+                                    cq:styleId="1770625761308"
+                                    cq:styleLabel="success"
+                                    jcr:primaryType="nt:unstructured"/>
+                                <item4
+                                    cq:styleClasses="avatar-wrapper--warning"
+                                    cq:styleId="1770625783481"
+                                    cq:styleLabel="warning"
+                                    jcr:primaryType="nt:unstructured"/>
+                                <item5
+                                    cq:styleClasses="avatar-wrapper--danger"
+                                    cq:styleId="1770625798027"
+                                    cq:styleLabel="danger"
+                                    jcr:primaryType="nt:unstructured"/>
+                            </cq:styles>
+                        </item0>
+                        <item1
+                            cq:styleGroupLabel="radius"
+                            jcr:primaryType="nt:unstructured">
+                            <cq:styles jcr:primaryType="nt:unstructured">
+                                <item0
+                                    cq:styleClasses="avatar-wrapper--radius-none"
+                                    cq:styleId="1770625858426"
+                                    cq:styleLabel="radDefault"
+                                    jcr:primaryType="nt:unstructured"/>
+                                <item1
+                                    cq:styleClasses="avatar-wrapper--radius-sm"
+                                    cq:styleId="1770625890393"
+                                    cq:styleLabel="sm"
+                                    jcr:primaryType="nt:unstructured"/>
+                            </cq:styles>
+                        </item1>
+                        <item2
+                            cq:styleGroupLabel="size"
+                            jcr:primaryType="nt:unstructured">
+                            <cq:styles jcr:primaryType="nt:unstructured">
+                                <item0
+                                    cq:styleClasses="avatar-wrapper--sm"
+                                    cq:styleId="1770625955043"
+                                    cq:styleLabel="sizesm"
+                                    jcr:primaryType="nt:unstructured"/>
+                                <item1
+                                    cq:styleClasses="avatar-wrapper--md"
+                                    cq:styleId="1770626003829"
+                                    cq:styleLabel="sizemd"
+                                    jcr:primaryType="nt:unstructured"/>
+                            </cq:styles>
+                        </item2>
+                    </cq:styleGroups>
+                </policy_1770625502294>
+            </avatar>
         </components>
     </mysite>
     <wcm jcr:primaryType="nt:unstructured">

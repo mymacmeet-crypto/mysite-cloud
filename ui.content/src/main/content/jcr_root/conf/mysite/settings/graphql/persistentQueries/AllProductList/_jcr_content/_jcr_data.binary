@@ -1,0 +1,32 @@
+{
+  productCompareList{
+    items{
+      productModel{
+        id
+         image_url{
+          ... on ImageRef {
+          _path
+           }
+        }
+        
+        name
+        orignal_price
+        current_price
+        currency
+        discount_percentage
+        rating_average
+        rating_scale
+        
+      }
+      productSpecification{
+        key
+        label
+        type
+        unit
+        value
+        minValue
+        maxValue
+      }
+    }
+  }
+}
