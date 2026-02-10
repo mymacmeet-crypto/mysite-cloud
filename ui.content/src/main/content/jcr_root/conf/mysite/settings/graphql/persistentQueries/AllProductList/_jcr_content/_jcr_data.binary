@@ -1,8 +1,7 @@
 {
-  productCompareList{
-    items{
-      productModel{
-        id
+      productCfModelList{
+        items{
+            id
          image_url{
           ... on ImageRef {
           _path
@@ -16,17 +15,21 @@
         discount_percentage
         rating_average
         rating_scale
+          specifications{
+            
+            key
+            label
+            type
+            unit
+            value
+            minValue
+            maxValue
+          
+          }
+        }
+      
         
       }
-      productSpecification{
-        key
-        label
-        type
-        unit
-        value
-        minValue
-        maxValue
-      }
-    }
-  }
+    
+      
 }
