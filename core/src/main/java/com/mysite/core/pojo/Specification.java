@@ -1,0 +1,42 @@
+package com.mysite.core.pojo;
+
+import java.util.Map;
+
+
+public class Specification {
+    public String getKey() {
+		return key;
+	}
+	public void setKey(String key) {
+		this.key = key;
+	}
+	public String getLabel() {
+		return label;
+	}
+	public void setLabel(String label) {
+		this.label = label;
+	}
+	public String getUnit() {
+		return unit;
+	}
+	public void setUnit(String unit) {
+		this.unit = unit;
+	}
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
+	public Map<String, SpecValue> getValues() {
+		return values;
+	}
+	public void setValues(Map<String, SpecValue> values) {
+		this.values = values;
+	}
+	private String key;
+    private String label;
+    private String unit;
+    private String type;
+    private Map<String, SpecValue> values;
+}

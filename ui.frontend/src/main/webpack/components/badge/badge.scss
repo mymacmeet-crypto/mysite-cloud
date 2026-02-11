@@ -1,0 +1,56 @@
+.badge-wrapper {
+  display: inline-block;
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 12px;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 16px;
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+    font-family: sans-serif;
+  }
+
+  &:hover .badge {
+    opacity: 0.9;
+  }
+
+  &--primary {
+    .badge {
+      background: #343434;
+      color: #fbfbfb;
+    }
+  }
+
+  &--secondary {
+    .badge {
+      background: #f7f7f7;
+      color: #343434;
+    }
+  }
+
+  &--destructive {
+    .badge {
+      background: #dc2626;
+      color: #fbfbfb;
+    }
+  }
+
+  &--outline {
+    .badge {
+      background: transparent;
+      color: #252525;
+      border: 1px solid #ebebeb;
+    }
+  }
+}
+
+a.badge {
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}

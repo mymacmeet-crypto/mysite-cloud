@@ -4,7 +4,7 @@
     allowedPaths="[/content/entities(/.*)?]"
     ranking="{Long}100">
     <jcr:content
-        cq:lastModified="{Date}2026-02-06T16:08:25.918+05:30"
+        cq:lastModified="{Date}2026-02-09T22:37:32.696+05:30"
         cq:lastModifiedBy="admin"
         cq:scaffolding="/conf/mysite/settings/dam/cfm/models/product-specification/jcr:content/model"
         cq:templateType="/libs/settings/dam/cfm/model-types/fragment"
@@ -24,18 +24,18 @@
                 jcr:primaryType="nt:unstructured"
                 sling:resourceType="cq/gui/components/authoring/dialog">
                 <content
-                    jcr:lastModified="{Date}2026-02-06T16:08:25.918+05:30"
+                    jcr:lastModified="{Date}2026-02-09T22:37:32.696+05:30"
                     jcr:lastModifiedBy="admin"
                     jcr:primaryType="nt:unstructured"
                     sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
                     <items
                         jcr:primaryType="nt:unstructured"
-                        maxGeneratedOrder="24">
+                        maxGeneratedOrder="20">
                         <_x0031_770373979623
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                             fieldLabel="Key"
-                            listOrder="21"
+                            listOrder="1"
                             maxlength="255"
                             metaType="text-single"
                             name="key"
@@ -48,7 +48,7 @@
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                             fieldLabel="Label"
-                            listOrder="22"
+                            listOrder="1"
                             maxlength="255"
                             metaType="text-single"
                             name="label"
@@ -62,7 +62,7 @@
                             sling:resourceType="granite/ui/components/coral/foundation/form/select"
                             emptyOption="{Boolean}true"
                             fieldLabel="Type"
-                            listOrder="23"
+                            listOrder="6"
                             metaType="enumeration"
                             name="type"
                             renderReadOnly="false"
@@ -97,7 +97,7 @@
                             sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                             emptyText="mm, hours. g"
                             fieldLabel="Unit"
-                            listOrder="24"
+                            listOrder="1"
                             maxlength="255"
                             metaType="text-single"
                             name="unit"
@@ -106,6 +106,62 @@
                             valueType="string">
                             <granite:data jcr:primaryType="nt:unstructured"/>
                         </_x0031_770374195187>
+                        <_x0031_770635681405
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                            fieldLabel="Value"
+                            listOrder="1"
+                            maxlength="255"
+                            metaType="text-single"
+                            name="value"
+                            renderReadOnly="false"
+                            showEmptyInReadOnly="true"
+                            valueType="string">
+                            <granite:data jcr:primaryType="nt:unstructured"/>
+                        </_x0031_770635681405>
+                        <_x0031_770635793644
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                            fieldLabel="Min Value"
+                            listOrder="1"
+                            maxlength="255"
+                            metaType="text-single"
+                            name="minValue"
+                            renderReadOnly="false"
+                            showEmptyInReadOnly="true"
+                            valueType="string">
+                            <granite:data jcr:primaryType="nt:unstructured"/>
+                        </_x0031_770635793644>
+                        <_x0031_770635751826
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                            fieldLabel="Max Value"
+                            listOrder="1"
+                            maxlength="255"
+                            metaType="text-single"
+                            name="maxValue"
+                            renderReadOnly="false"
+                            showEmptyInReadOnly="true"
+                            valueType="string">
+                            <granite:data jcr:primaryType="nt:unstructured"/>
+                        </_x0031_770635751826>
+                        <_x0031_770654870526
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="dam/cfm/models/editor/components/fragmentreference"
+                            allowNew="{Boolean}true"
+                            fieldLabel="Product"
+                            filter="hierarchy"
+                            fragmentmodelreference="/conf/mysite/settings/dam/cfm/models/product-cf-model"
+                            listOrder="8"
+                            metaType="fragment-reference"
+                            name="product"
+                            nameSuffix="contentReference"
+                            renderReadOnly="false"
+                            rootPath="/content/dam/mysite"
+                            showEmptyInReadOnly="true"
+                            valueType="string/content-fragment">
+                            <granite:data jcr:primaryType="nt:unstructured"/>
+                        </_x0031_770654870526>
                     </items>
                 </content>
             </cq:dialog>

@@ -4,7 +4,7 @@
     allowedPaths="[/content/entities(/.*)?]"
     ranking="{Long}100">
     <jcr:content
-        cq:lastModified="{Date}2026-02-06T16:00:54.083+05:30"
+        cq:lastModified="{Date}2026-02-09T22:38:52.135+05:30"
         cq:lastModifiedBy="admin"
         cq:scaffolding="/conf/mysite/settings/dam/cfm/models/product-cf-model/jcr:content/model"
         cq:templateType="/libs/settings/dam/cfm/model-types/fragment"
@@ -24,18 +24,18 @@
                 jcr:primaryType="nt:unstructured"
                 sling:resourceType="cq/gui/components/authoring/dialog">
                 <content
-                    jcr:lastModified="{Date}2026-02-06T16:00:54.083+05:30"
+                    jcr:lastModified="{Date}2026-02-09T22:38:52.135+05:30"
                     jcr:lastModifiedBy="admin"
                     jcr:primaryType="nt:unstructured"
                     sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
                     <items
                         jcr:primaryType="nt:unstructured"
-                        maxGeneratedOrder="25">
+                        maxGeneratedOrder="21">
                         <_x0031_770373536235
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                             fieldLabel="Product Id"
-                            listOrder="21"
+                            listOrder="1"
                             maxlength="255"
                             metaType="text-single"
                             name="id"
@@ -112,7 +112,7 @@
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                             fieldLabel="Currency"
-                            listOrder="22"
+                            listOrder="1"
                             maxlength="255"
                             metaType="text-single"
                             name="currency"
@@ -125,7 +125,7 @@
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="granite/ui/components/coral/foundation/form/numberfield"
                             fieldLabel="Discount Percentage"
-                            listOrder="23"
+                            listOrder="3"
                             metaType="number"
                             name="discount_percentage"
                             renderReadOnly="false"
@@ -139,7 +139,7 @@
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="granite/ui/components/coral/foundation/form/numberfield"
                             fieldLabel="Rating Average"
-                            listOrder="24"
+                            listOrder="3"
                             metaType="number"
                             name="rating_average"
                             renderReadOnly="false"
@@ -153,7 +153,7 @@
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="granite/ui/components/coral/foundation/form/numberfield"
                             fieldLabel="Rating Scale"
-                            listOrder="25"
+                            listOrder="3"
                             metaType="number"
                             name="rating_scale"
                             renderReadOnly="false"
@@ -163,6 +163,32 @@
                             valueType="long">
                             <granite:data jcr:primaryType="nt:unstructured"/>
                         </_x0031_770373829596>
+                        <_x0031_770656889438
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="dam/cfm/models/editor/components/fragmentreference/multifield"
+                            allowNew="{Boolean}true"
+                            fieldLabel="Specifications"
+                            filter="hierarchy"
+                            fragmentmodelreference="/conf/mysite/settings/dam/cfm/models/product-specification"
+                            listOrder="21"
+                            metaType="fragment-reference"
+                            name="specifications"
+                            nameSuffix="contentReference"
+                            renderReadOnly="false"
+                            rootPath="/content/dam/mysite"
+                            showEmptyInReadOnly="true"
+                            valueType="string/content-fragment[]">
+                            <granite:data jcr:primaryType="nt:unstructured"/>
+                            <field
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="dam/cfm/models/editor/components/fragmentreference"
+                                fragmentmodelreference="/conf/mysite/settings/dam/cfm/models/product-specification"
+                                name="specifications"
+                                renderReadOnly="false"
+                                rootPath="/content/dam/mysite">
+                                <granite:data jcr:primaryType="nt:unstructured"/>
+                            </field>
+                        </_x0031_770656889438>
                     </items>
                 </content>
             </cq:dialog>
