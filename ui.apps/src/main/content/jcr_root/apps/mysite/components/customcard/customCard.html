@@ -1,19 +1,19 @@
-<div class="card-image">
-  <div class="image-wrapper radius-none">
-    
-   <sly data-sly-test="${properties.fileReference}"> 
-   <img
-      src="${properties.fileReference}"
-      alt="Urban cityscape"
-      class="image-element"
-      style="width: 100%; height: auto;"
-    />
-    </sly>
+  <div class="card-image">
+    <div class="image-wrapper radius-none">
+      <div class="image-skeleton"></div>
+     <sly data-sly-test="${properties.fileReference}"> 
+     <img
+        src="${properties.fileReference}"
+        alt="Urban cityscape"
+        class="image-element"
+        style="width: 100%; height: auto;"
+      />
+      </sly>
+    </div>
   </div>
-</div>
-<div class="card-body">
-  <h3 class="typography-h3">${properties.title}</h3>
-  <div class="typography-p">
-     ${properties.text @ context='html'}
+  <div class="card-body">
+    <h3 class="typography-h3">${properties.title}</h3>
+    <div class="typography-p">
+       ${properties.text @ context='html'}
+    </div>
   </div>
-</div>
