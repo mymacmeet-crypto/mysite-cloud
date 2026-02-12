@@ -1,0 +1,11 @@
+<sly data-sly-use.templates="core/wcm/components/commons/v1/templates.html" />
+
+<sly data-sly-test.hasTitle="${properties.title}">
+  <div class="new-custom-text">
+    <h2 class="new-custom-text__title">${properties.title}</h2>
+  </div>
+</sly>
+
+<sly data-sly-call="${templates.placeholder @
+      isEmpty = !hasTitle,
+      classAppend='new-custom-text'}"/>
