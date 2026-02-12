@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+<jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
     jcr:primaryType="nt:unstructured"
-    jcr:title="Dialog Showcase Component"
-    sling:resourceType="cq/gui/components/authoring/dialog"
-    extraClientlibs="[core.wcm.components.commons.editor.dialog.childreneditor.v1]">
+    sling:resourceType="cq/gui/components/authoring/dialog">
     <content
         jcr:primaryType="nt:unstructured"
         sling:resourceType="granite/ui/components/coral/foundation/container">
@@ -13,15 +11,12 @@
                 sling:resourceType="granite/ui/components/coral/foundation/tabs"
                 maximized="{Boolean}true">
                 <items jcr:primaryType="nt:unstructured">
-                    
-                    <!-- TAB 1: TEXT FIELDS -->
-                    <text_fields
+                    <propertiesTab
                         jcr:primaryType="nt:unstructured"
-                        jcr:title="Text Fields"
-                        sling:resourceType="granite/ui/components/coral/foundation/container"
-                        margin="{Boolean}true">
+                        jcr:title="Properties"
+                        sling:resourceType="granite/ui/components/coral/foundation/container">
                         <items jcr:primaryType="nt:unstructured">
-                            
+
                             <!-- TEXTFIELD -->
                             <textfield
                                 jcr:primaryType="nt:unstructured"
@@ -78,205 +73,9 @@
                                         sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser/picker/filter"
                                         mode="folder"/>
                                 </picker>
-                            </pathbrowser>
-                            
+                            </pathbrowser> 
                         </items>
-                    </text_fields>
-                    
-                    <!-- TAB 2: SELECTION FIELDS -->
-                    <selection_fields
-                        jcr:primaryType="nt:unstructured"
-                        jcr:title="Selection Fields"
-                        sling:resourceType="granite/ui/components/coral/foundation/container"
-                        margin="{Boolean}true">
-                        <items jcr:primaryType="nt:unstructured">
-                            
-                            <!-- CHECKBOX -->
-                            <checkbox
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
-                                fieldDescription="Enable or disable this feature"
-                                name="./checkbox"
-                                text="Enable Feature"
-                                value="{Boolean}true"
-                                uncheckedValue="{Boolean}false"/>
-                            
-                            <!-- SELECT (DROPDOWN) -->
-                            <select
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/select"
-                                fieldLabel="Select (Dropdown)"
-                                fieldDescription="Choose one option from dropdown"
-                                name="./select">
-                                <items jcr:primaryType="nt:unstructured">
-                                    <option1
-                                        jcr:primaryType="nt:unstructured"
-                                        text="Option 1"
-                                        value="option1"/>
-                                    <option2
-                                        jcr:primaryType="nt:unstructured"
-                                        text="Option 2"
-                                        value="option2"/>
-                                    <option3
-                                        jcr:primaryType="nt:unstructured"
-                                        text="Option 3"
-                                        value="option3"/>
-                                </items>
-                            </select>
-                            
-                            <!-- RADIOGROUP -->
-                            <radiogroup
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/radiogroup"
-                                fieldLabel="Radio Group"
-                                fieldDescription="Choose one option from radio buttons"
-                                name="./radiogroup">
-                                <items jcr:primaryType="nt:unstructured">
-                                    <radio1
-                                        jcr:primaryType="nt:unstructured"
-                                        text="Radio Option 1"
-                                        value="radio1"/>
-                                    <radio2
-                                        jcr:primaryType="nt:unstructured"
-                                        text="Radio Option 2"
-                                        value="radio2"/>
-                                    <radio3
-                                        jcr:primaryType="nt:unstructured"
-                                        text="Radio Option 3"
-                                        value="radio3"/>
-                                </items>
-                            </radiogroup>
-                            
-                        </items>
-                    </selection_fields>
-                    
-                    <!-- TAB 3: DATE & FILE FIELDS -->
-                    <date_file_fields
-                        jcr:primaryType="nt:unstructured"
-                        jcr:title="Date & File"
-                        sling:resourceType="granite/ui/components/coral/foundation/container"
-                        margin="{Boolean}true">
-                        <items jcr:primaryType="nt:unstructured">
-                            
-                            <!-- DATEPICKER -->
-                            <datepicker
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/datepicker"
-                                fieldLabel="Date Picker"
-                                fieldDescription="Select a date"
-                                name="./datepicker"
-                                displayedFormat="YYYY-MM-DD"
-                                valueFormat="YYYY-MM-DD"
-                                type="date"/>
-                            
-                            <!-- FILEUPLOAD -->
-                            <fileupload
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="cq/gui/components/authoring/dialog/fileupload"
-                                fieldLabel="File Upload"
-                                fieldDescription="Upload an image or file"
-                                name="./file"
-                                class="cq-droptarget"
-                                fileNameParameter="./fileName"
-                                fileReferenceParameter="./fileReference"
-                                mimeTypes="[image/gif,image/jpeg,image/png,image/webp,image/svg+xml]"
-                                multiple="{Boolean}false"
-                                uploadUrl="${suffix.path}"
-                                useHTML5="{Boolean}true"/>
-                            
-                        </items>
-                    </date_file_fields>
-                    
-                    <!-- TAB 4: RICH TEXT & MULTIFIELD -->
-                    <advanced_fields
-                        jcr:primaryType="nt:unstructured"
-                        jcr:title="Advanced Fields"
-                        sling:resourceType="granite/ui/components/coral/foundation/container"
-                        margin="{Boolean}true">
-                        <items jcr:primaryType="nt:unstructured">
-                            
-                            <!-- RICHTEXT -->
-                            <richtext
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="cq/gui/components/authoring/dialog/richtext"
-                                fieldLabel="Rich Text Editor"
-                                fieldDescription="Formatted text with HTML capabilities"
-                                name="./richtext"
-                                useFixedInlineToolbar="{Boolean}true">
-                                <rtePlugins jcr:primaryType="nt:unstructured">
-                                    <format
-                                        jcr:primaryType="nt:unstructured"
-                                        features="[bold,italic,underline]"/>
-                                    <justify
-                                        jcr:primaryType="nt:unstructured"
-                                        features="[justifyleft,justifycenter,justifyright]"/>
-                                    <links
-                                        jcr:primaryType="nt:unstructured"
-                                        features="[modifylink,unlink]"/>
-                                    <lists
-                                        jcr:primaryType="nt:unstructured"
-                                        features="[ordered,unordered]"/>
-                                    <paraformat
-                                        jcr:primaryType="nt:unstructured"
-                                        features="*">
-                                        <formats jcr:primaryType="nt:unstructured">
-                                            <p
-                                                jcr:primaryType="nt:unstructured"
-                                                description="Paragraph"
-                                                tag="p"/>
-                                            <h1
-                                                jcr:primaryType="nt:unstructured"
-                                                description="Heading 1"
-                                                tag="h1"/>
-                                            <h2
-                                                jcr:primaryType="nt:unstructured"
-                                                description="Heading 2"
-                                                tag="h2"/>
-                                            <h3
-                                                jcr:primaryType="nt:unstructured"
-                                                description="Heading 3"
-                                                tag="h3"/>
-                                        </formats>
-                                    </paraformat>
-                                </rtePlugins>
-                                <uiSettings jcr:primaryType="nt:unstructured">
-                                    <cui jcr:primaryType="nt:unstructured">
-                                        <inline
-                                            jcr:primaryType="nt:unstructured"
-                                            toolbar="[format#bold,format#italic,format#underline,#justify,#lists,links#modifylink,links#unlink]"/>
-                                    </cui>
-                                </uiSettings>
-                            </richtext>
-                            
-                            <!-- MULTIFIELD -->
-                            <multifield
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
-                                fieldLabel="Multi Field"
-                                fieldDescription="Add multiple items (composite field example)">
-                                <field
-                                    jcr:primaryType="nt:unstructured"
-                                    sling:resourceType="granite/ui/components/coral/foundation/container"
-                                    name="./multifield">
-                                    <items jcr:primaryType="nt:unstructured">
-                                        <title
-                                            jcr:primaryType="nt:unstructured"
-                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                            fieldLabel="Item Title"
-                                            name="title"/>
-                                        <description
-                                            jcr:primaryType="nt:unstructured"
-                                            sling:resourceType="granite/ui/components/coral/foundation/form/textarea"
-                                            fieldLabel="Item Description"
-                                            name="description"
-                                            rows="{Long}3"/>
-                                    </items>
-                                </field>
-                            </multifield>
-                            
-                        </items>
-                    </advanced_fields>
-                    
+                    </propertiesTab>
                 </items>
             </tabs>
         </items>
