@@ -1,0 +1,131 @@
+<div
+  class="dialog-showcase"
+  data-sly-use.component="com.adobe.cq.wcm.core.components.models.Component"
+>
+  <!-- Component Title -->
+  <div class="showcase-header">
+    <h2>Dialog Showcase Component</h2>
+    <p class="showcase-description">
+      This component demonstrates all AEM dialog field types and their values.
+    </p>
+  </div>
+
+  <!-- TEXT FIELDS SECTION -->
+  <section class="showcase-section">
+    <h3 class="section-title">Text Fields</h3>
+
+    <div class="field-display">
+      <label>Text Field:</label>
+      <div class="field-value">${properties.textfield || 'Not set'}</div>
+    </div>
+
+    <div class="field-display">
+      <label>Text Area:</label>
+      <div class="field-value field-value--textarea">
+        ${properties.textarea || 'Not set'}
+      </div>
+    </div>
+
+    <div class="field-display">
+      <label>Number Field:</label>
+      <div class="field-value">${properties.numberfield || 'Not set'}</div>
+    </div>
+
+    <div class="field-display">
+      <label>Path Field:</label>
+      <div class="field-value">${properties.pathfield || 'Not set'}</div>
+    </div>
+
+    <div class="field-display">
+      <label>Path Browser:</label>
+      <div class="field-value">${properties.pathbrowser || 'Not set'}</div>
+    </div>
+  </section>
+
+  <!-- SELECTION FIELDS SECTION -->
+  <section class="showcase-section">
+    <h3 class="section-title">Selection Fields</h3>
+
+    <div class="field-display">
+      <label>Checkbox:</label>
+      <div class="field-value">
+        <span
+          class="badge ${properties.checkbox ? 'badge--success' : 'badge--default'}"
+        >
+          ${properties.checkbox ? 'Enabled' : 'Disabled'}
+        </span>
+      </div>
+    </div>
+
+    <div class="field-display">
+      <label>Select (Dropdown):</label>
+      <div class="field-value">${properties.select || 'Not selected'}</div>
+    </div>
+
+    <div class="field-display">
+      <label>Radio Group:</label>
+      <div class="field-value">${properties.radiogroup || 'Not selected'}</div>
+    </div>
+  </section>
+
+  <!-- DATE & FILE FIELDS SECTION -->
+  <section class="showcase-section">
+    <h3 class="section-title">Date & File Fields</h3>
+
+    <div class="field-display">
+      <label>Date Picker:</label>
+      <div class="field-value">${properties.datepicker || 'Not set'}</div>
+    </div>
+
+    <div class="field-display">
+      <label>File Upload:</label>
+      <div class="field-value">
+        <sly data-sly-test="${properties.fileReference}">
+          <img
+            src="${properties.fileReference}"
+            alt="Uploaded file"
+            class="uploaded-image"
+          />
+          <div class="file-info">
+            <span>File Name: ${properties.fileName || 'N/A'}</span><br />
+            <span>File Path: ${properties.fileReference}</span>
+          </div>
+        </sly>
+        <span data-sly-test="${!properties.fileReference}"
+          >No file uploaded</span
+        >
+      </div>
+    </div>
+  </section>
+
+  <!-- ADVANCED FIELDS SECTION -->
+  <section class="showcase-section">
+    <h3 class="section-title">Advanced Fields</h3>
+
+    <div class="field-display">
+      <label>Rich Text Editor:</label>
+      <div
+        class="field-value field-value--richtext"
+        data-sly-test="${properties.richtext}"
+      >
+        ${properties.richtext @ context='html'}
+      </div>
+      <div class="field-value" data-sly-test="${!properties.richtext}">
+        Not set
+      </div>
+    </div>
+
+    <div class="field-display">
+      <label>Multi Field:</label>
+      <div class="field-value">
+        <sly data-sly-list.item="${properties.multifield}">
+          <div class="multifield-item">
+            <strong>${item.title || 'No title'}</strong>
+            <p>${item.description || 'No description'}</p>
+          </div>
+        </sly>
+        <span data-sly-test="${!properties.multifield}">No items added</span>
+      </div>
+    </div>
+  </section>
+</div>
