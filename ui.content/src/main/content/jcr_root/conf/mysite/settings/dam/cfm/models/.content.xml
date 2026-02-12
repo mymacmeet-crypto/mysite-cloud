@@ -2,11 +2,11 @@
 <jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0"
     jcr:primaryType="cq:Page">
     <jcr:content jcr:primaryType="nt:unstructured"/>
-    <content-fragment-model/>
     <car/>
-    <caryear/>
     <carspecification/>
-	 <product-cf-model/>
-    <product-specification/>
+    <caryear/>
+    <content-fragment-model/>
+    <product-cf-model/>
     <product-compare/>
+    <product-specification/>
 </jcr:root>

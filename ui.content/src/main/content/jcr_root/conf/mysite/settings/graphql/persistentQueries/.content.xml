@@ -14,7 +14,6 @@
             cq:lastReplicatedBy_publish="admin"
             cq:lastReplicationAction="Activate"
             cq:lastReplicationAction_publish="Activate"
-            jcr:data="{Binary}\0"
             jcr:mimeType="text/html"
             jcr:mixinTypes="[cq:ReplicationStatus,cq:ReplicationStatus2]"
             jcr:primaryType="nt:unstructured"
@@ -63,4 +62,15 @@
             jcr:primaryType="nt:unstructured"
             sling:resourceType="graphql/persistent/query/content"/>
     </GetAllCars>
+    <AllProductList
+        jcr:created="{Date}2026-01-09T21:24:48.795+11:00"
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="graphql/persistent/query">
+        <jcr:content
+            jcr:data="{Binary}\0"
+            jcr:lastModified="{Date}2026-02-09T23:15:36.348+05:30"
+            jcr:mimeType="text/html"
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="graphql/persistent/query/content"/>
+    </AllProductList>
 </jcr:root>

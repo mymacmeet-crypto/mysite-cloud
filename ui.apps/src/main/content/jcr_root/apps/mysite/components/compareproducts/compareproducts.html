@@ -1,0 +1,108 @@
+<div class="compare-product"
+     data-sly-use.model="com.mysite.core.models.ProductComparisonModel">
+
+  <div class="compare-product__header">
+    <h1 class="compare-product__title">
+      ${model.response.title}
+    </h1>
+  </div>
+
+  <div class="compare-product__container">
+    <div class="compare-product__table">
+
+      <!-- Header Row with Product Cards -->
+      <div class="compare-product__row compare-product__row--header">
+
+        <div class="compare-product__cell compare-product__cell--label">
+          <span class="compare-product__specs-label">SPECIFICATIONS</span>
+        </div>
+
+        <sly data-sly-list.product="${model.response.products}">
+          <div class="compare-product__cell compare-product__cell--product">
+            <div class="product-card">
+
+              <div class="product-card__image">
+                <img src="${product.imageUrl @ context='uri'}"
+                     alt="${product.name}" />
+              </div>
+
+              <div class="product-card__info">
+                <h3 class="product-card__name">
+                  ${product.name}
+                </h3>
+
+                <div class="product-card__pricing">
+                  <span class="product-card__current-price">
+                    $${product.pricing.currentPrice}
+                  </span>
+
+                  <sly data-sly-test="${product.pricing.original_price}">
+                    <span class="product-card__original-price">
+                      $${product.pricing.originalPrice}
+                    </span>
+                  </sly>
+                </div>
+
+                <div class="product-card__rating">
+                  <span class="product-card__star">★</span>
+                  <span class="product-card__rating-value">
+                    ${product.rating.average}
+                  </span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </sly>
+
+      </div>
+
+      <!-- Specification Rows -->
+      <sly data-sly-list.spec="${model.response.specifications}">
+        <div class="compare-product__row">
+
+          <div class="compare-product__cell compare-product__cell--label">
+            <span class="compare-product__spec-name">
+              ${spec.label}
+            </span>
+          </div>
+
+          <!-- Loop products again to keep column order -->
+          <sly data-sly-list.product="${model.response.products}">
+            <div class="compare-product__cell compare-product__cell--value">
+
+              <sly data-sly-set.specValue="${spec.values[product.id]}"/>
+
+              <sly data-sly-test="${specValue}">
+                <!-- Boolean -->
+                <sly data-sly-test="${spec.type == 'boolean'}">
+                  <span class="compare-product__spec-value
+                               ${specValue.value ? 'compare-product__spec-value--check'
+                                                 : 'compare-product__spec-value--cross'}">
+                    ${specValue.display @ context='html'}
+                  </span>
+                </sly>
+
+                <!-- Non-boolean -->
+                <sly data-sly-test="${spec.type != 'boolean'}">
+                  <span class="compare-product__spec-value">
+                    ${specValue.display @ context='html'}
+                  </span>
+                </sly>
+              </sly>
+
+              <!-- Missing value -->
+              <sly data-sly-test="${!specValue}">
+                <span class="compare-product__spec-value">-</span>
+              </sly>
+
+            </div>
+          </sly>
+
+        </div>
+      </sly>
+
+    </div>
+  </div>
+</div>
+
