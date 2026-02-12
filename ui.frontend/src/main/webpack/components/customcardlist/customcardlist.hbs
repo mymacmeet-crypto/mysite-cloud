@@ -1,0 +1,27 @@
+{{#if items.length}}
+<div class="customcardlist">
+  {{#each items}}
+  <div class="card">
+    <div class="card-image">
+      <div class="image-wrapper radius-none">
+        {{#if this.fileReference}}
+        <img
+          src="{{this.fileReference}}"
+          alt="{{this.title}}"
+          style="width: 100%; height: auto;"
+        />
+        {{/if}}
+      </div>
+    </div>
+    <div class="card-body">
+      <h3 class="typography-h3">{{this.title}}</h3>
+      <div class="typography-p">
+        {{{this.text}}}
+      </div>
+    </div>
+  </div>
+  {{/each}}
+  </div>
+{{else}}
+  <div class="customcardlist-empty">No cards to display.</div>
+{{/if}}

@@ -1,0 +1,21 @@
+<div class="card">
+  <div class="card-image">
+    <div class="image-wrapper radius-none">
+      <div class="image-skeleton"></div>
+      {{#if fileReference}}
+      <img
+        src="{{fileReference}}"
+        alt="{{title}}"
+        class="image-element"
+        style="width: 100%; height: auto;"
+      />
+      {{/if}}
+    </div>
+  </div>
+  <div class="card-body">
+    <h3 class="typography-h3">{{title}}</h3>
+    <div class="typography-p">
+      {{{text}}}
+    </div>
+  </div>
+</div>
