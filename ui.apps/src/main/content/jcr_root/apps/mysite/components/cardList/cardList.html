@@ -1,0 +1,33 @@
+<sly data-sly-use.templates="core/wcm/components/commons/v1/templates.html" />
+
+<sly data-sly-use.model="com.mysite.core.models.CustomCardListModel"
+ data-sly-test.hasItems="${model.customCardList && model.customCardList.size > 0}"></sly>
+
+<div class="card-list">
+<sly data-sly-list.item="${model.customCardList}">
+  <div class="card">
+    <div class="card-image">
+      <div class="image-wrapper radius-none">
+        <sly data-sly-test="${item.fileReference}">
+          <img
+            src="${item.fileReference}"
+            alt="${item.title}"
+            class="image-element"
+            style="width: 100%; height: auto;"
+          />
+        </sly>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3 class="typography-h3">${item.title}</h3>
+      <div class="typography-p">
+        ${item.text @ context='html'}
+      </div>
+    </div>
+  </div>
+</sly>
+</div>
+
+<sly data-sly-call="${templates.placeholder @
+      isEmpty = !hasItems,
+      classAppend='card-list'}"/>
