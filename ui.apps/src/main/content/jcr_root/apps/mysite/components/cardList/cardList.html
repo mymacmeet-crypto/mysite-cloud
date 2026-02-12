@@ -1,10 +1,10 @@
 <sly data-sly-use.templates="core/wcm/components/commons/v1/templates.html" />
 
-<sly data-sly-use.model="com.mysite.core.models.CustomCardListModel"
- data-sly-test.hasItems="${model.customCardList && model.customCardList.size > 0}"></sly>
+<sly data-sly-use.model="com.mysite.core.models.CardListModel"
+ data-sly-test.hasItems="${model.cardList && model.cardList.size > 0}"></sly>
 
 <div class="card-list">
-<sly data-sly-list.item="${model.customCardList}">
+<sly data-sly-list.item="${model.cardList}">
   <div class="card">
     <div class="card-image">
       <div class="image-wrapper radius-none">
