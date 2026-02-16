@@ -77,6 +77,13 @@
                             <type>zip</type>
                             <target>/apps/mysite-packages/application/install</target>
                         </embedded>
+                        <embedded>
+                            <!-- the artifact with the given id from the project dependencies is embedded -->
+                            <artifactId>acs-aem-commons-all</artifactId>
+                            <target>/apps/mysite-vendor-packages/container/install</target>
+                            <filter>true</filter>
+                            <isAllVersionsFilter>true</isAllVersionsFilter>
+                          </embedded>
                     </embeddeds>
                 </configuration>
             </plugin>
@@ -196,6 +203,12 @@
             <version>${project.version}</version>
             <type>zip</type>
         </dependency>
-
+        <dependency>
+            <groupId>com.adobe.acs</groupId>
+            <artifactId>acs-aem-commons-all</artifactId>
+            <classifier>cloud</classifier>
+            <version>6.16.0</version>
+            <type>zip</type>
+          </dependency>
     </dependencies>
 </project>
