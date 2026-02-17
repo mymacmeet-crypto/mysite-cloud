@@ -18,9 +18,33 @@
                             <sectionTitle
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldLabel="Section Title"
                                 fieldDescription="Heading displayed above the carousel (e.g. 'Most Watch')."
+                                fieldLabel="Section Title"
                                 name="./sectionTitle"/>
+                            <slidertype
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                fieldDescription="Choose one option from dropdown"
+                                fieldLabel="Slider Type"
+                                name="./sliderType">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <multifield
+                                        jcr:primaryType="nt:unstructured"
+                                        text="Multifield"
+                                        value="multifield"/>
+                                    <childpages
+                                        jcr:primaryType="nt:unstructured"
+                                        text="Child Pages"
+                                        value="childPages"/>
+                                </items>
+                            </slidertype>
+                            <parentpage
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                fieldDescription="Parent Page path to show list of pages as teaser card "
+                                fieldLabel="Parent Page Path"
+                                name="./parentPagePath"
+                                rootPath="/content/mysite"/>
                             <multifield
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
