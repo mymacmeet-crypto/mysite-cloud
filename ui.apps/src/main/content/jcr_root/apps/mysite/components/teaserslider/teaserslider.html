@@ -1,5 +1,6 @@
 <sly data-sly-use.templates="core/wcm/components/commons/v1/templates.html" />
 
+
 <div
   class="ts-customcardlist"
   data-component="teaserslider"
@@ -10,6 +11,8 @@
     data-sly-use.model="com.mysite.core.models.TeaserSliderModel"
     data-sly-test.hasItems="${model.customCardList && model.customCardList.size > 0}"
   ></sly>
+
+<sly data-sly-set.fromList="${model.sliderType == 'multifield' ? model.customCardList : model.teaserItems }"/>
 
   <div class="ts-header">
     <h2 class="ts-section-title">${properties.sectionTitle}</h2>
@@ -41,7 +44,7 @@
 
   <div class="ts-track-wrapper">
     <div class="ts-track">
-      <sly data-sly-list.item="${model.customCardList}">
+      <sly data-sly-list.item="${fromList}">
         <div class="ts-card">
           <div class="ts-card-image">
             <div class="ts-image-wrapper">
