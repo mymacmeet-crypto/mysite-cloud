@@ -15,6 +15,12 @@
                         jcr:title="Teaser Slider"
                         sling:resourceType="granite/ui/components/coral/foundation/container">
                         <items jcr:primaryType="nt:unstructured">
+                            <sectionTitle
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Section Title"
+                                fieldDescription="Heading displayed above the carousel (e.g. 'Most Watch')."
+                                name="./sectionTitle"/>
                             <multifield
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/multifield"

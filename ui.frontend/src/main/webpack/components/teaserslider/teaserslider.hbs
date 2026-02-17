@@ -1,0 +1,50 @@
+<div
+  class="ts-customcardlist"
+  data-component="teaserslider"
+  data-autoplay="{{autoplay}}"
+  data-delay="{{delay}}"
+>
+  <div class="ts-header">
+    <h2 class="ts-section-title">{{sectionTitle}}</h2>
+    <div class="ts-controls">
+      <button class="ts-control-btn ts-prev" aria-label="Previous">
+        <svg width="10" height="16" viewBox="0 0 10 16" fill="none"><path
+            d="M9 1L1 8L9 15"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          /></svg>
+      </button>
+      <button class="ts-control-btn ts-next" aria-label="Next">
+        <svg width="10" height="16" viewBox="0 0 10 16" fill="none"><path
+            d="M1 1L9 8L1 15"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          /></svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="ts-track-wrapper">
+    <div class="ts-track">
+      {{#each customCardList}}
+        <div class="ts-card">
+          <div class="ts-card-image">
+            <div class="ts-image-wrapper">
+              {{#if fileReference}}
+                <img src="{{fileReference}}" alt="{{title}}" />
+              {{/if}}
+            </div>
+          </div>
+          <div class="ts-card-body">
+            <h3 class="ts-typography-h3">{{title}}</h3>
+            <div class="ts-typography-p">{{{text}}}</div>
+          </div>
+        </div>
+      {{/each}}
+    </div>
+  </div>
+</div>
