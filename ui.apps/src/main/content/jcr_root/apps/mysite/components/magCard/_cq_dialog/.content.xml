@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
+    jcr:primaryType="nt:unstructured"
+    sling:resourceType="cq/gui/components/authoring/dialog">
+    <content
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/container">
+        <items jcr:primaryType="nt:unstructured">
+            <tabs
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/tabs">
+                <items jcr:primaryType="nt:unstructured">
+                    <propertiesTab
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Mag Card"
+                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                        <items jcr:primaryType="nt:unstructured">
+
+                            <!-- ── Thumbnail Image ───────────────────────── -->
+                            <image
+                                granite:class="cmp-image__editor-file-upload"
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="cq/gui/components/authoring/dialog/fileupload"
+                                fieldLabel="Card Image"
+                                fieldDescription="Full-width thumbnail image displayed at the top of the card."
+                                fileNameParameter="./fileName"
+                                fileReferenceParameter="./fileReference"
+                                mimeTypes="[image/gif,image/jpeg,image/png,image/tiff,image/svg+xml]"
+                                name="./file"
+                                rootPath="/content/dam/mysite"/>
+
+                            <!-- ── Title ─────────────────────────────────── -->
+                            <title
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Title"
+                                fieldDescription="Headline of the article displayed in large serif text."
+                                name="./title"/>
+
+                            <!-- ── Excerpt / Text (RTE) ──────────────────── -->
+                            <description
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="cq/gui/components/authoring/dialog/richtext"
+                                fieldLabel="Excerpt"
+                                fieldDescription="Short summary paragraph shown below the title."
+                                name="./text"
+                                useFixedInlineToolbar="{Boolean}true">
+                                <rtePlugins jcr:primaryType="nt:unstructured">
+                                    <format
+                                        jcr:primaryType="nt:unstructured"
+                                        features="bold,italic"/>
+                                    <justify
+                                        jcr:primaryType="nt:unstructured"
+                                        features="-"/>
+                                    <links
+                                        jcr:primaryType="nt:unstructured"
+                                        features="modifylink,unlink"/>
+                                    <lists
+                                        jcr:primaryType="nt:unstructured"
+                                        features="*"/>
+                                    <misctools jcr:primaryType="nt:unstructured">
+                                        <specialCharsConfig jcr:primaryType="nt:unstructured">
+                                            <chars jcr:primaryType="nt:unstructured">
+                                                <default_copyright
+                                                    jcr:primaryType="nt:unstructured"
+                                                    entity="&amp;copy;"
+                                                    name="copyright"/>
+                                                <default_euro
+                                                    jcr:primaryType="nt:unstructured"
+                                                    entity="&amp;euro;"
+                                                    name="euro"/>
+                                                <default_registered
+                                                    jcr:primaryType="nt:unstructured"
+                                                    entity="&amp;reg;"
+                                                    name="registered"/>
+                                                <default_trademark
+                                                    jcr:primaryType="nt:unstructured"
+                                                    entity="&amp;trade;"
+                                                    name="trademark"/>
+                                            </chars>
+                                        </specialCharsConfig>
+                                    </misctools>
+                                    <paraformat
+                                        jcr:primaryType="nt:unstructured"
+                                        features="*">
+                                        <formats jcr:primaryType="nt:unstructured">
+                                            <default_p
+                                                jcr:primaryType="nt:unstructured"
+                                                description="Paragraph"
+                                                tag="p"/>
+                                            <default_h2
+                                                jcr:primaryType="nt:unstructured"
+                                                description="Heading 2"
+                                                tag="h2"/>
+                                            <default_h3
+                                                jcr:primaryType="nt:unstructured"
+                                                description="Heading 3"
+                                                tag="h3"/>
+                                        </formats>
+                                    </paraformat>
+                                    <table
+                                        jcr:primaryType="nt:unstructured"
+                                        features="-">
+                                        <hiddenHeaderConfig
+                                            jcr:primaryType="nt:unstructured"
+                                            hiddenHeaderClassName="cq-wcm-foundation-aria-visuallyhidden"
+                                            hiddenHeaderEditingCSS="cq-RichText-hiddenHeader--editing"/>
+                                    </table>
+                                    <tracklinks
+                                        jcr:primaryType="nt:unstructured"
+                                        features="*"/>
+                                </rtePlugins>
+                                <uiSettings jcr:primaryType="nt:unstructured">
+                                    <cui jcr:primaryType="nt:unstructured">
+                                        <inline
+                                            jcr:primaryType="nt:unstructured"
+                                            toolbar="[format#bold,format#italic,#lists,links#modifylink,links#unlink,#paraformat]">
+                                            <popovers jcr:primaryType="nt:unstructured">
+                                                <lists
+                                                    jcr:primaryType="nt:unstructured"
+                                                    items="[lists#unordered,lists#ordered,lists#outdent,lists#indent]"
+                                                    ref="lists"/>
+                                                <paraformat
+                                                    jcr:primaryType="nt:unstructured"
+                                                    items="paraformat:getFormats:paraformat-pulldown"
+                                                    ref="paraformat"/>
+                                            </popovers>
+                                        </inline>
+                                    </cui>
+                                </uiSettings>
+                            </description>
+
+                            <!-- ── Category Badge ────────────────────────── -->
+                            <category
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Category"
+                                fieldDescription="Category label shown as a pill badge below the excerpt (e.g. 'Business', 'Technology')."
+                                name="./category"/>
+
+                            <!-- ── Comments count ────────────────────────── -->
+                            <comments
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/numberfield"
+                                fieldLabel="Comments Count"
+                                fieldDescription="Number displayed next to the comment icon in the meta row."
+                                min="0"
+                                name="./comments"
+                                value="0"/>
+
+                            <!-- ── Views count ───────────────────────────── -->
+                            <views
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/numberfield"
+                                fieldLabel="Views Count"
+                                fieldDescription="Number displayed next to the eye icon in the meta row."
+                                min="0"
+                                name="./views"
+                                value="0"/>
+
+                            <!-- ── Article Link ──────────────────────────── -->
+                            <link
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                fieldLabel="Article Link"
+                                fieldDescription="URL or page path this card navigates to when clicked."
+                                name="./link"
+                                rootPath="/content"/>
+
+                        </items>
+                    </propertiesTab>
+                </items>
+            </tabs>
+        </items>
+    </content>
+</jcr:root>

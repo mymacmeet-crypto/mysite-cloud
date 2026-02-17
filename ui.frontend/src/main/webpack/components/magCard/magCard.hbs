@@ -1,0 +1,66 @@
+<div class="mag-card" data-component="magcard">
+
+  {{#if fileReference}}
+    <div class="mag-card-image">
+      <div class="mag-image-wrapper">
+        <img src="{{fileReference}}" alt="{{title}}" />
+      </div>
+    </div>
+  {{/if}}
+
+  <div class="mag-card-body">
+    {{#if title}}
+      <h3 class="mag-card-title">{{title}}</h3>
+    {{/if}}
+
+    {{#if text}}
+      <div class="mag-card-text">{{{text}}}</div>
+    {{/if}}
+
+    <div class="mag-card-meta">
+      {{#if category}}
+        <span class="mag-badge">{{category}}</span>
+      {{/if}}
+      {{#if comments}}
+        <span class="mag-meta-stat">
+          <svg
+            width="15"
+            height="15"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path
+              d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+            />
+          </svg>
+          {{comments}}
+        </span>
+      {{/if}}
+      {{#if views}}
+        <span class="mag-meta-stat">
+          <svg
+            width="15"
+            height="15"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+            <circle cx="12" cy="12" r="3" />
+          </svg>
+          {{views}}
+        </span>
+      {{/if}}
+    </div>
+  </div>
+
+</div>
