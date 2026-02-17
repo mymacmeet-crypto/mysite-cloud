@@ -126,3 +126,19 @@ export const TeaserSlider = (args) => {
   // Return the live element — Storybook will re-attach it to the canvas.
   return root;
 };
+
+
+function initAllSliders() {
+  document.querySelectorAll(".ts-customcardlist").forEach((slider) => {
+    if (!slider.dataset.initialized) {
+      initTeaserSlider(slider);
+      slider.dataset.initialized = "true";
+    }
+  });
+}
+
+document.addEventListener("DOMContentLoaded", initAllSliders);
+
+// Important for AEM Author mode (dynamic re-render)
+const observer = new MutationObserver(initAllSliders);
+observer.observe(document.body, { childList: true, subtree: true });
