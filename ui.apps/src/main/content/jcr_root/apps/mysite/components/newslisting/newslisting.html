@@ -1,0 +1,70 @@
+<sly data-sly-use.templates="core/wcm/components/commons/v1/templates.html" />
+<div class="customcardlist">
+<sly data-sly-use.model="com.mysite.core.models.NewsListingModel" 
+ data-sly-test.hasItems="${model.teaserItems && model.teaserItems.size > 0}"></sly>
+
+<sly data-sly-list.item="${model.teaserItems}">
+<div class = "card">
+<div class="card-image">
+    <div class="image-wrapper radius-none">
+     
+     <sly data-sly-test="${item.fileReference}"> 
+     <img
+        src="${item.fileReference}"
+        alt="Urban cityscape"
+        style="width: 100%; height: auto;"
+      />
+      </sly>
+    </div>
+  </div>
+  <div class="card-body">
+    <h3 class="typography-h3">${item.title}</h3>
+    <div class="typography-p">
+       ${item.text @ context='html'}
+    </div>
+  </div>
+  </div>
+  </sly>
+  <br/>
+      <div class="pagination"  data-sly-list.page="${model.pageNumbers}">
+        <a href="${model.currentPagePath}.html?page=${page}"
+           class="${page == model.currentPage ? 'active' : ''}">
+            ${page}
+        </a>
+    </div>
+
+
+  
+  <sly data-sly-call="${templates.placeholder @ 
+        isEmpty = !hasItems, 
+        classAppend='cta-list'}"/>
+        </div>
+        
+ <style>
+ .pagination {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.pagination a {
+  display: inline-block;
+  margin: 0 5px;
+  padding: 6px 12px;
+  text-decoration: none;
+  border: 1px solid #ccc;
+  color: #333;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.pagination a:hover {
+  background-color: #f2f2f2;
+}
+
+.pagination a.active {
+  background-color: #333;
+  color: #fff;
+  border-color: #333;
+}
+
+ </style>
