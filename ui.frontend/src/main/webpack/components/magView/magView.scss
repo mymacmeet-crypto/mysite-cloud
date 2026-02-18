@@ -1,0 +1,306 @@
+// ─── Theme Variables ─────────────────────────────────────────────────────────
+$mag-bg: #ffffff;
+$mag-border: #e8e8e8;
+$mag-text-primary: #1a1a1a;
+$mag-text-secondary: #3d3d3d;
+$mag-text-meta: #8e8e8e;
+$mag-badge-border: #252525;
+$mag-transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+
+// ─── Component Root ───────────────────────────────────────────────────────────
+.mag-view {
+  background: $mag-bg;
+  padding: 40px 48px;
+  font-family: "Georgia", "Times New Roman", serif;
+  color: $mag-text-primary;
+}
+
+// ─── Header ──────────────────────────────────────────────────────────────────
+.mag-view-header {
+  margin-bottom: 32px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid $mag-text-primary;
+}
+
+.mag-view-title {
+  font-family: "Georgia", serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: $mag-text-primary;
+  margin: 0;
+}
+
+// ═════════════════════════════════════════════════════════════════════════════
+//  CARD GRID VIEW
+// ═════════════════════════════════════════════════════════════════════════════
+
+.mag-view-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px 32px;
+}
+
+// ─── Card Item ────────────────────────────────────────────────────────────────
+.mag-view-card {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+
+  &:hover {
+    .mag-view-image-wrapper img {
+      transform: scale(1.04);
+    }
+
+    .mag-view-card-title {
+      opacity: 0.8;
+    }
+  }
+}
+
+// ─── Card Image ───────────────────────────────────────────────────────────────
+.mag-view-card-image {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.mag-view-card .mag-view-image-wrapper {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: #e0e0e0;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+// ─── Card Body ────────────────────────────────────────────────────────────────
+.mag-view-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.mag-view-card-title {
+  font-family: "Georgia", serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 1.3;
+  color: $mag-text-primary;
+  margin: 0;
+  transition: opacity $mag-transition;
+}
+
+.mag-view-card-text {
+  font-family: "Georgia", serif;
+  font-size: 0.9rem;
+  line-height: 1.65;
+  color: $mag-text-secondary;
+  margin: 0;
+
+  p {
+    margin: 0;
+  }
+}
+
+.mag-view-card-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  font-family: "Arial", "Helvetica", sans-serif;
+  font-size: 0.78rem;
+  color: $mag-text-meta;
+}
+
+// ═════════════════════════════════════════════════════════════════════════════
+//  LIST VIEW
+// ═════════════════════════════════════════════════════════════════════════════
+
+.mag-view-list {
+  display: flex;
+  flex-direction: column;
+}
+
+// ─── List Item ────────────────────────────────────────────────────────────────
+.mag-view-list-item {
+  display: flex;
+  gap: 28px;
+  align-items: flex-start;
+  padding: 24px 0;
+  border-bottom: 1px solid $mag-border;
+  cursor: pointer;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  &:hover {
+    .mag-view-image-wrapper img {
+      transform: scale(1.04);
+    }
+
+    .mag-view-list-title {
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+  }
+}
+
+// ─── List Image ───────────────────────────────────────────────────────────────
+.mag-view-list-image {
+  flex: 0 0 240px;
+}
+
+.mag-view-list-item .mag-view-image-wrapper {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: #f0f0f0;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+// ─── List Body ────────────────────────────────────────────────────────────────
+.mag-view-list-body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  justify-content: center;
+}
+
+.mag-view-list-title {
+  font-family: "Georgia", serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.3;
+  color: $mag-text-primary;
+  margin: 0;
+  transition: color $mag-transition;
+}
+
+.mag-view-list-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-family: "Arial", "Helvetica", sans-serif;
+  font-size: 0.75rem;
+  color: $mag-text-meta;
+}
+
+.mag-view-meta-date {
+  color: $mag-text-meta;
+}
+
+.mag-view-list-text {
+  font-family: "Georgia", serif;
+  font-size: 0.9rem;
+  line-height: 1.65;
+  color: $mag-text-secondary;
+  margin: 0;
+
+  display: -webkit-box;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+
+  p {
+    margin: 0;
+  }
+}
+
+// ═════════════════════════════════════════════════════════════════════════════
+//  SHARED ELEMENTS
+// ═════════════════════════════════════════════════════════════════════════════
+
+.mag-view-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  border: 1px solid $mag-badge-border;
+  border-radius: 999px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: $mag-text-primary;
+  line-height: 1.6;
+  white-space: nowrap;
+}
+
+.mag-view-meta-stat {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: $mag-text-meta;
+
+  svg {
+    flex-shrink: 0;
+    opacity: 0.65;
+  }
+}
+
+// ═════════════════════════════════════════════════════════════════════════════
+//  RESPONSIVE
+// ═════════════════════════════════════════════════════════════════════════════
+
+@media (max-width: 1200px) {
+  .mag-view-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .mag-view {
+    padding: 32px 24px;
+  }
+
+  .mag-view-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .mag-view-list-image {
+    flex: 0 0 180px;
+  }
+
+  .mag-view-list-title {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .mag-view {
+    padding: 24px 16px;
+  }
+
+  .mag-view-list-item {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .mag-view-list-image {
+    flex: none;
+    width: 100%;
+  }
+
+  .mag-view-list-title {
+    font-size: 1.05rem;
+  }
+}
