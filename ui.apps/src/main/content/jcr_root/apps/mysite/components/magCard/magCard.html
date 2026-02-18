@@ -1,14 +1,14 @@
 <sly data-sly-use.templates="core/wcm/components/commons/v1/templates.html" />
 
 <div class="mag-card" data-component="magcard">
-  <!-- <sly data-sly-use.properties="com.mysite.core.propertiess.MagCardproperties"></sly> -->
+  <sly data-sly-use.model="com.mysite.core.models.MagCardModel"></sly>
 
-  <sly data-sly-test="${properties.fileReference}">
+  <sly data-sly-test="${model.fileReference}">
     <div class="mag-card-image">
       <div class="mag-image-wrapper">
         <img
-          src="${properties.fileReference}"
-          alt="${properties.title}"
+          src="${model.fileReference}"
+          alt="${model.title}"
           style="width: 100%; height: auto"
         />
       </div>
@@ -16,19 +16,19 @@
   </sly>
 
   <div class="mag-card-body">
-    <sly data-sly-test="${properties.title}">
-      <h3 class="mag-card-title">${properties.title}</h3>
+    <sly data-sly-test="${model.title}">
+      <h3 class="mag-card-title">${model.title}</h3>
     </sly>
 
-    <sly data-sly-test="${properties.text}">
-      <div class="mag-card-text">${properties.text @ context='html'}</div>
+    <sly data-sly-test="${model.text}">
+      <div class="mag-card-text">${model.text @ context='html'}</div>
     </sly>
 
     <div class="mag-card-meta">
-      <sly data-sly-test="${properties.category}">
-        <span class="mag-badge">${properties.category}</span>
+      <sly data-sly-test="${model.category}">
+        <span class="mag-badge">${model.category}</span>
       </sly>
-      <sly data-sly-test="${properties.comments}">
+      <sly data-sly-test="${model.comments}">
         <span class="mag-meta-stat">
           <svg
             width="15"
@@ -45,10 +45,10 @@
               d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
             />
           </svg>
-          ${properties.comments}
+          ${model.comments}
         </span>
       </sly>
-      <sly data-sly-test="${properties.views}">
+      <sly data-sly-test="${model.views}">
         <span class="mag-meta-stat">
           <svg
             width="15"
@@ -64,7 +64,7 @@
             <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
             <circle cx="12" cy="12" r="3" />
           </svg>
-          ${properties.views}
+          ${model.views}
         </span>
       </sly>
     </div>
@@ -72,7 +72,7 @@
 
   <sly
     data-sly-call="${templates.placeholder @
-        isEmpty = !properties.title,
+        isEmpty = !model.title,
         cq:emptyText = 'Mag Card',
         classAppend='mag-card'}"
   />
