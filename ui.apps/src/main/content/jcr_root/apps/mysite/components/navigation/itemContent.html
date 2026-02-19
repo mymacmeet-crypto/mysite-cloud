@@ -1,0 +1,14 @@
+<template data-sly-template.itemContent="${@ item}">
+
+    <a
+        data-sly-attribute="${item.link.htmlAttributes}"
+        aria-current="${item.current && 'page'}"
+        data-sly-unwrap="${!item.link.valid}"
+        data-cmp-clickable="${item.data ? true : false}"
+        class="mag-nav-link cmp-navigation__item-link">
+
+        ${item.title}
+
+    </a>
+
+</template>

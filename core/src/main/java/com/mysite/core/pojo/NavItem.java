@@ -4,10 +4,14 @@ import java.util.Collections;
 import java.util.List;
 
 import org.apache.sling.api.resource.Resource;
+import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.ChildResource;
+import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
+
+import com.mysite.core.utils.LinkUtils;
 
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class NavItem {
@@ -20,6 +24,9 @@ public class NavItem {
 
     @ChildResource(name = "submenuItem")
     private List<SubMenuItem> submenu;
+    
+    @SlingObject
+    private ResourceResolver resourceResolver;
 
     // Getters
 
@@ -28,7 +35,7 @@ public class NavItem {
     }
 
     public String getLink() {
-        return link;
+    	 return LinkUtils.getFormattedLink(link, resourceResolver);
     }
 
     public List<SubMenuItem> getSubmenu() {
@@ -43,6 +50,10 @@ public class NavItem {
 
     @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
     public static class SubMenuItem {
+    	
+    	 @SlingObject
+    	  private ResourceResolver resourceResolver;
+
 
         @ValueMapValue
         private String label;
@@ -57,7 +68,7 @@ public class NavItem {
         }
 
         public String getLink() {
-            return link;
+            return LinkUtils.getFormattedLink(link, resourceResolver);
         }
     }
 }
