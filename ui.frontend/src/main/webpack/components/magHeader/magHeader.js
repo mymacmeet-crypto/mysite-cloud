@@ -125,3 +125,18 @@ export const MagHeader = (args) => {
   // Return the live element — Storybook will re-attach it to the canvas.
   return root;
 };
+
+function initAllHeaders() {
+  document.querySelectorAll(".mag-header").forEach((header) => {
+    if (!header.dataset.initialized) {
+      initMagHeader(header);
+      header.dataset.initialized = "true";
+    }
+  });
+}
+
+document.addEventListener("DOMContentLoaded", initAllHeaders);
+
+// Important for AEM Author mode (dynamic re-render)
+const observer = new MutationObserver(initAllHeaders);
+observer.observe(document.body, { childList: true, subtree: true });
