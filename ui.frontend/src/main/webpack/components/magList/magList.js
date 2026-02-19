@@ -43,3 +43,17 @@ export const MagList = (args) => {
 
   return root;
 };
+
+function initAllLists() {
+  document.querySelectorAll(".mag-list").forEach((list) => {
+    if (!list.dataset.initialized) {
+      initMagList(list);
+      list.dataset.initialized = "true";
+    }
+  });
+}
+
+document.addEventListener("DOMContentLoaded", initAllLists);
+
+const observer = new MutationObserver(initAllLists);
+observer.observe(document.body, { childList: true, subtree: true });

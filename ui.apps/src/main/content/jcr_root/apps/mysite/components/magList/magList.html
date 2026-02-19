@@ -1,9 +1,9 @@
 <sly data-sly-use.templates="core/wcm/components/commons/v1/templates.html" />
 
-<div class="mag-card" data-component="maglist">
+<div class="mag-list" data-component="maglist">
   <sly data-sly-use.model="com.mysite.core.models.MagListModel"></sly>
 
-  <div class="mag-card-image">
+  <div class="mag-list-image">
     <div class="mag-image-wrapper">
       <sly data-sly-test="${model.fileReference}">
         <img
@@ -15,10 +15,10 @@
     </div>
   </div>
 
-  <div class="mag-card-body">
-    <h3 class="mag-card-title">${model.title}</h3>
+  <div class="mag-list-body">
+    <h3 class="mag-list-title">${model.title}</h3>
 
-    <div class="mag-card-meta">
+    <div class="mag-list-meta">
       <sly data-sly-test="${model.category}">
         <span class="mag-badge">${model.category}</span>
       </sly>
@@ -64,13 +64,13 @@
       </sly>
     </div>
 
-    <div class="mag-card-text">${model.text @ context='html'}</div>
+    <div class="mag-list-text">${model.text @ context='html'}</div>
   </div>
 
   <sly
     data-sly-call="${templates.placeholder @
         isEmpty = !model.title,
-        cq:emptyText = 'Mag List Card',
-        classAppend='mag-card'}"
+        cq:emptyText = 'Mag List list',
+        classAppend='mag-list'}"
   />
 </div>

@@ -82,3 +82,17 @@ export const MagView = (args) => {
   // Return the live element — Storybook will re-attach it to the canvas.
   return root;
 };
+
+function initAllViews() {
+  document.querySelectorAll(".mag-view").forEach((view) => {
+    if (!view.dataset.initialized) {
+      initMagView(view);
+      view.dataset.initialized = "true";
+    }
+  });
+}
+
+document.addEventListener("DOMContentLoaded", initAllViews);
+
+const observer = new MutationObserver(initAllViews);
+observer.observe(document.body, { childList: true, subtree: true });

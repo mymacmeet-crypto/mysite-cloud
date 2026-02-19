@@ -50,3 +50,17 @@ export const MagCard = (args) => {
   // Return the live element — Storybook will re-attach it to the canvas.
   return root;
 };
+
+function initAllCards() {
+  document.querySelectorAll(".mag-card").forEach((card) => {
+    if (!card.dataset.initialized) {
+      initMagCard(card);
+      card.dataset.initialized = "true";
+    }
+  });
+}
+
+document.addEventListener("DOMContentLoaded", initAllCards);
+
+const observer = new MutationObserver(initAllCards);
+observer.observe(document.body, { childList: true, subtree: true });

@@ -1,6 +1,6 @@
-<div class="mag-card" data-component="maglist">
+<div class="mag-list" data-component="maglist">
 
-  <div class="mag-card-image">
+  <div class="mag-list-image">
     <div class="mag-image-wrapper">
       {{#if fileReference}}
         <img src="{{fileReference}}" alt="{{title}}" />
@@ -8,10 +8,10 @@
     </div>
   </div>
 
-  <div class="mag-card-body">
-    <h3 class="mag-card-title">{{title}}</h3>
+  <div class="mag-list-body">
+    <h3 class="mag-list-title">{{title}}</h3>
 
-    <div class="mag-card-meta">
+    <div class="mag-list-meta">
       {{#if category}}
         <span class="mag-badge">{{category}}</span>
       {{/if}}
@@ -57,7 +57,7 @@
       {{/if}}
     </div>
 
-    <div class="mag-card-text">{{{text}}}</div>
+    <div class="mag-list-text">{{{text}}}</div>
   </div>
 
 </div>

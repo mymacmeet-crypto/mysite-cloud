@@ -6,8 +6,8 @@ $mag-text-secondary: #6b6b6b;
 $mag-text-meta: #8e8e8e;
 $mag-transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 
-// ─── Card Root ────────────────────────────────────────────────────────────────
-.mag-card {
+// ─── list Root ────────────────────────────────────────────────────────────────
+.mag-list {
   display: flex;
   gap: 28px;
   align-items: flex-start;
@@ -22,7 +22,7 @@ $mag-transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
       transform: scale(1.04);
     }
 
-    .mag-card-title {
+    .mag-list-title {
       text-decoration: underline;
       text-underline-offset: 3px;
     }
@@ -30,7 +30,7 @@ $mag-transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 // ─── Image ────────────────────────────────────────────────────────────────────
-.mag-card-image {
+.mag-list-image {
   flex: 0 0 240px;
 }
 
@@ -50,7 +50,7 @@ $mag-transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 // ─── Body ─────────────────────────────────────────────────────────────────────
-.mag-card-body {
+.mag-list-body {
   flex: 1;
   min-width: 0;
   display: flex;
@@ -60,7 +60,7 @@ $mag-transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 // ─── Title ────────────────────────────────────────────────────────────────────
-.mag-card-title {
+.mag-list-title {
   font-family: "Georgia", serif;
   font-size: 1.5rem;
   font-weight: 700;
@@ -71,7 +71,7 @@ $mag-transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 // ─── Meta Row ─────────────────────────────────────────────────────────────────
-.mag-card-meta {
+.mag-list-meta {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
@@ -112,7 +112,7 @@ $mag-transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 // ─── Excerpt ──────────────────────────────────────────────────────────────────
-.mag-card-text {
+.mag-list-text {
   font-family: "Georgia", serif;
   font-size: 0.9rem;
   line-height: 1.65;
@@ -131,27 +131,27 @@ $mag-transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 
 // ─── Responsive ──────────────────────────────────────────────────────────────
 @media (max-width: 768px) {
-  .mag-card-image {
+  .mag-list-image {
     flex: 0 0 180px;
   }
 
-  .mag-card-title {
+  .mag-list-title {
     font-size: 1.2rem;
   }
 }
 
 @media (max-width: 480px) {
-  .mag-card {
+  .mag-list {
     flex-direction: column;
     gap: 16px;
   }
 
-  .mag-card-image {
+  .mag-list-image {
     flex: none;
     width: 100%;
   }
 
-  .mag-card-title {
+  .mag-list-title {
     font-size: 1.05rem;
   }
 }
