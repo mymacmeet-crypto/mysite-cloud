@@ -28,6 +28,30 @@
                                 fieldDescription="News to be shown per page"
                                 fieldLabel="Limit per page"
                                 name="./limit"/>
+                            <sectionTitle
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldDescription="Heading displayed above the view (e.g. 'Most Read', 'Latest Articles')."
+                                fieldLabel="Section Title"
+                                name="./sectionTitle"/>
+                            <viewType
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                fieldDescription="Choose how items are displayed: Card Grid (3 columns) or List (vertical stack)."
+                                fieldLabel="View Type"
+                                name="./viewType">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <card
+                                        jcr:primaryType="nt:unstructured"
+                                        selected="{Boolean}true"
+                                        text="Card Grid"
+                                        value="card"/>
+                                    <list
+                                        jcr:primaryType="nt:unstructured"
+                                        text="List"
+                                        value="list"/>
+                                </items>
+                            </viewType>
                         </items>
                     </propertiesTab>
                 </items>
