@@ -1,0 +1,110 @@
+// ─── Theme Variables ─────────────────────────────────────────────────────────
+$footer-bg: #2d2d2d;
+$footer-text: #c0c0c0;
+$footer-text-light: #ffffff;
+$footer-accent: #e0e0e0;
+$footer-transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+// ─── Footer Root ─────────────────────────────────────────────────────────────
+.mag-footer {
+  background: $footer-bg;
+  font-family: "Georgia", "Times New Roman", serif;
+  padding: 20px 0;
+}
+
+// ─── Container ───────────────────────────────────────────────────────────────
+.mag-footer-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+// ─── Left: Copyright ─────────────────────────────────────────────────────────
+.mag-footer-left {
+  flex: 1;
+}
+
+.mag-footer-copyright {
+  margin: 0;
+  color: $footer-text;
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+// ─── Center: Links ───────────────────────────────────────────────────────────
+.mag-footer-center {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.mag-footer-link {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: $footer-accent;
+  font-size: 0.85rem;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color $footer-transition;
+
+  &:hover {
+    color: $footer-text-light;
+  }
+}
+
+.mag-footer-link-arrow {
+  flex-shrink: 0;
+}
+
+// ─── Right: Social Icons ─────────────────────────────────────────────────────
+.mag-footer-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-left: 32px;
+}
+
+.mag-footer-social {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  color: $footer-text;
+  transition: color $footer-transition;
+
+  &:hover {
+    color: $footer-text-light;
+  }
+}
+
+// ═════════════════════════════════════════════════════════════════════════════
+//  RESPONSIVE
+// ═════════════════════════════════════════════════════════════════════════════
+
+@media (max-width: 1024px) {
+  .mag-footer-container {
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .mag-footer-left {
+    flex: 1 1 100%;
+    text-align: center;
+  }
+
+  .mag-footer-center {
+    flex: 1 1 100%;
+    justify-content: center;
+  }
+
+  .mag-footer-right {
+    flex: 1 1 100%;
+    justify-content: center;
+    margin-left: 0;
+  }
+}
