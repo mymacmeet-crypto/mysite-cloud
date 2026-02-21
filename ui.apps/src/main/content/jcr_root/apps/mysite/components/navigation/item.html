@@ -1,0 +1,28 @@
+<template
+    data-sly-template.item="${@ item}"
+    data-sly-use.groupTemplate="group.html"
+    data-sly-use.itemContentTemplate="itemContent.html">
+
+    <li
+        class="mag-nav-item
+        ${item.children.size > 0 ? 'mag-has-dropdown' : ''}
+        cmp-navigation__item
+        cmp-navigation__item--level-${item.level}
+        ${item.active ? 'cmp-navigation__item--active' : ''}"
+
+        data-cmp-data-layer="${item.data.json}">
+
+        <!-- Navigation Link -->
+        <sly
+            data-sly-call="${itemContentTemplate.itemContent @ item=item}">
+        </sly>
+
+        <!-- Sub Navigation -->
+        <sly
+            data-sly-test="${item.children.size > 0}"
+            data-sly-call="${groupTemplate.group @ items=item.children}">
+        </sly>
+
+    </li>
+
+</template>

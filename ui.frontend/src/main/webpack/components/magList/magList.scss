@@ -1,0 +1,157 @@
+// ─── Theme Variables ─────────────────────────────────────────────────────────
+$mag-bg: #ffffff;
+$mag-border: #e8e8e8;
+$mag-text-primary: #252525;
+$mag-text-secondary: #6b6b6b;
+$mag-text-meta: #8e8e8e;
+$mag-transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+
+// ─── list Root ────────────────────────────────────────────────────────────────
+.mag-list {
+  display: flex;
+  gap: 28px;
+  align-items: flex-start;
+  background: $mag-bg;
+  padding: 24px 0;
+  font-family: "Georgia", "Times New Roman", serif;
+  color: $mag-text-primary;
+  cursor: pointer;
+
+  &:hover {
+    .mag-image-wrapper img {
+      transform: scale(1.04);
+    }
+
+    .mag-list-title {
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+  }
+}
+
+// ─── Image ────────────────────────────────────────────────────────────────────
+.mag-list-image {
+  flex: 0 0 240px;
+}
+
+.mag-image-wrapper {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: #f0f0f0;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+// ─── Body ─────────────────────────────────────────────────────────────────────
+.mag-list-body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  justify-content: center;
+}
+
+// ─── Title ────────────────────────────────────────────────────────────────────
+.mag-list-title {
+  font-family: "Georgia", serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.3;
+  color: $mag-text-primary;
+  margin: 0;
+  transition: color $mag-transition;
+}
+
+// ─── Meta Row ─────────────────────────────────────────────────────────────────
+.mag-list-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-family: "Arial", "Helvetica", sans-serif;
+  font-size: 0.75rem;
+  color: $mag-text-meta;
+}
+
+.mag-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border: 1px solid $mag-text-primary;
+  border-radius: 999px;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: $mag-text-primary;
+  line-height: 1.6;
+}
+
+.mag-meta-date {
+  color: $mag-text-meta;
+}
+
+.mag-meta-stat {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: $mag-text-meta;
+
+  svg {
+    flex-shrink: 0;
+    opacity: 0.7;
+  }
+}
+
+// ─── Excerpt ──────────────────────────────────────────────────────────────────
+.mag-list-text {
+  font-family: "Georgia", serif;
+  font-size: 0.9rem;
+  line-height: 1.65;
+  color: $mag-text-secondary;
+  margin: 0;
+
+  display: -webkit-box;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+
+  p {
+    margin: 0;
+  }
+}
+
+// ─── Responsive ──────────────────────────────────────────────────────────────
+@media (max-width: 768px) {
+  .mag-list-image {
+    flex: 0 0 180px;
+  }
+
+  .mag-list-title {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .mag-list {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .mag-list-image {
+    flex: none;
+    width: 100%;
+  }
+
+  .mag-list-title {
+    font-size: 1.05rem;
+  }
+}

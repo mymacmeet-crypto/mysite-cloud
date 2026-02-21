@@ -1,0 +1,487 @@
+// ─── Theme Variables ─────────────────────────────────────────────────────────
+$mag-bg: #ffffff;
+$mag-top-bg: #f2f2f2;
+$mag-border: #e0e0e0;
+$mag-text-primary: #1a1a1a;
+$mag-text-secondary: #666666;
+$mag-accent: #0066cc;
+$mag-hover-bg: #f8f8f8;
+$mag-transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+// ─── Header Root ──────────────────────────────────────────────────────────────
+.mag-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: $mag-bg;
+  font-family: "Georgia", "Times New Roman", serif;
+}
+
+// ─── Container ────────────────────────────────────────────────────────────────
+.mag-header-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+// ═════════════════════════════════════════════════════════════════════════════
+//  TOP UTILITY BAR
+// ═════════════════════════════════════════════════════════════════════════════
+
+.mag-header-top {
+  background: $mag-top-bg;
+  border-bottom: 1px solid $mag-border;
+  padding: 10px 0;
+  font-size: 0.85rem;
+}
+
+.mag-header-left,
+.mag-header-center,
+.mag-header-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.mag-header-center {
+  flex: 0 0 auto;
+}
+
+// ─── Social Links ─────────────────────────────────────────────────────────────
+.mag-social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  color: $mag-text-primary;
+  transition: color $mag-transition;
+
+  &:hover {
+    color: $mag-accent;
+  }
+}
+
+// ─── Subscribe Button ─────────────────────────────────────────────────────────
+.mag-subscribe-btn {
+  padding: 6px 18px;
+  background: transparent;
+  border: 1.5px solid $mag-text-primary;
+  color: $mag-text-primary;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  transition: all $mag-transition;
+
+  &:hover {
+    background: $mag-text-primary;
+    color: $mag-bg;
+  }
+}
+
+// ─── Logo ─────────────────────────────────────────────────────────────────────
+.mag-logo-link {
+  display: block;
+  line-height: 0;
+}
+
+.mag-logo {
+  height: 32px;
+  width: auto;
+}
+
+// ─── Weather ──────────────────────────────────────────────────────────────────
+.mag-weather {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: $mag-text-secondary;
+  font-size: 0.8rem;
+
+  svg {
+    flex-shrink: 0;
+  }
+}
+
+// ─── AA Button ────────────────────────────────────────────────────────────────
+.mag-aa-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: $mag-text-primary;
+  border-radius: 50%;
+  color: $mag-bg;
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-decoration: none;
+  transition: transform $mag-transition;
+
+  &:hover {
+    transform: scale(1.08);
+  }
+}
+
+// ═════════════════════════════════════════════════════════════════════════════
+//  MAIN NAVIGATION
+// ═════════════════════════════════════════════════════════════════════════════
+
+.mag-header-nav {
+  background: $mag-bg;
+  border-bottom: 1px solid $mag-border;
+  padding: 0;
+}
+
+// ─── Mobile Elements (Hidden on Desktop) ──────────────────────────────────────
+.mag-mobile-toggle,
+.mag-logo-mobile {
+  display: none;
+}
+
+// ─── Nav List ─────────────────────────────────────────────────────────────────
+.mag-nav-list {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.mag-nav-item {
+  position: relative;
+}
+
+.mag-nav-link {
+  display: block;
+  padding: 20px 24px;
+  color: $mag-text-primary;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all $mag-transition;
+
+  &:hover {
+    color: $mag-accent;
+  }
+}
+
+// ─── Dropdown Menu ────────────────────────────────────────────────────────────
+.mag-has-dropdown {
+  &:hover {
+    .mag-dropdown {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+  }
+}
+
+.mag-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 220px;
+  background: $mag-bg;
+  border: 1px solid $mag-border;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  list-style: none;
+  margin: 0;
+  padding: 8px 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  transition: all $mag-transition;
+  z-index: 100;
+}
+
+.mag-dropdown-item {
+  margin: 0;
+}
+
+.mag-dropdown-link {
+  display: block;
+  padding: 12px 24px;
+  color: $mag-text-primary;
+  font-size: 0.85rem;
+  font-weight: 400;
+  text-decoration: none;
+  transition: background $mag-transition;
+
+  &:hover {
+    background: $mag-hover-bg;
+    color: $mag-accent;
+  }
+}
+
+// ─── Search ───────────────────────────────────────────────────────────────────
+.mag-search {
+  margin-left: auto;
+}
+
+.mag-search-form {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.mag-search-input {
+  width: 240px;
+  padding: 8px 40px 8px 16px;
+  border: 1.5px solid $mag-border;
+  border-radius: 24px;
+  font-family: "Georgia", serif;
+  font-size: 0.85rem;
+  outline: none;
+  transition: border-color $mag-transition;
+
+  &:focus {
+    border-color: $mag-accent;
+  }
+
+  &::placeholder {
+    color: #999;
+  }
+}
+
+.mag-search-btn {
+  position: absolute;
+  right: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: transparent;
+  border: none;
+  color: $mag-text-secondary;
+  cursor: pointer;
+  transition: color $mag-transition;
+
+  &:hover {
+    color: $mag-accent;
+  }
+}
+
+// ═════════════════════════════════════════════════════════════════════════════
+//  MOBILE MENU
+// ═════════════════════════════════════════════════════════════════════════════
+
+.mag-mobile-menu {
+  position: fixed;
+  top: 0;
+  left: -100%;
+  width: 320px;
+  max-width: 85vw;
+  height: 100vh;
+  background: $mag-bg;
+  box-shadow: 4px 0 16px rgba(0, 0, 0, 0.2);
+  overflow-y: auto;
+  transition: left $mag-transition;
+  z-index: 2000;
+
+  &.mag-mobile-menu-open {
+    left: 0;
+  }
+}
+
+.mag-mobile-menu-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  border-bottom: 1px solid $mag-border;
+}
+
+.mag-mobile-logo {
+  height: 28px;
+  width: auto;
+}
+
+.mag-mobile-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  border: none;
+  color: $mag-text-primary;
+  cursor: pointer;
+  transition: color $mag-transition;
+
+  &:hover {
+    color: $mag-accent;
+  }
+}
+
+// ─── Mobile Nav List ──────────────────────────────────────────────────────────
+.mag-mobile-nav {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.mag-mobile-nav-item {
+  border-bottom: 1px solid $mag-border;
+}
+
+.mag-mobile-nav-link {
+  display: block;
+  padding: 16px 20px;
+  color: $mag-text-primary;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  text-decoration: none;
+  letter-spacing: 0.05em;
+}
+
+// ─── Mobile Submenu ───────────────────────────────────────────────────────────
+.mag-has-submenu {
+  position: relative;
+
+  .mag-mobile-nav-link {
+    padding-right: 48px;
+  }
+}
+
+.mag-submenu-toggle {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 100%;
+  background: transparent;
+  border: none;
+  color: $mag-text-secondary;
+  cursor: pointer;
+  transition: transform $mag-transition;
+
+  &.mag-submenu-open {
+    transform: rotate(180deg);
+  }
+}
+
+.mag-mobile-submenu {
+  display: none;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  background: $mag-hover-bg;
+
+  &.mag-submenu-visible {
+    display: block;
+  }
+}
+
+.mag-mobile-submenu-link {
+  display: block;
+  padding: 12px 20px 12px 40px;
+  color: $mag-text-secondary;
+  font-size: 0.85rem;
+  font-weight: 400;
+  text-decoration: none;
+}
+
+// ─── Mobile Search ────────────────────────────────────────────────────────────
+.mag-mobile-search {
+  padding: 20px;
+  border-top: 1px solid $mag-border;
+}
+
+// ═════════════════════════════════════════════════════════════════════════════
+//  RESPONSIVE
+// ═════════════════════════════════════════════════════════════════════════════
+
+@media (max-width: 1024px) {
+  .mag-header-top {
+    display: none;
+  }
+
+  .mag-header-nav .mag-header-container {
+    padding: 12px 20px;
+  }
+
+  .mag-mobile-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+  }
+
+  .mag-hamburger {
+    position: relative;
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: $mag-text-primary;
+    transition: background $mag-transition;
+
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      width: 24px;
+      height: 2px;
+      background: $mag-text-primary;
+      transition: transform $mag-transition;
+    }
+
+    &::before {
+      top: -7px;
+    }
+
+    &::after {
+      top: 7px;
+    }
+  }
+
+  .mag-logo-mobile {
+    display: block;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+
+    img {
+      height: 28px;
+      width: auto;
+    }
+  }
+
+  .mag-nav-list {
+    display: none;
+  }
+
+  .mag-search-input {
+    width: 180px;
+  }
+}
+
+@media (max-width: 640px) {
+  .mag-search {
+    margin-left: 12px;
+    display: none;
+  }
+
+  .mag-search-input {
+    width: 140px;
+    font-size: 0.8rem;
+  }
+}

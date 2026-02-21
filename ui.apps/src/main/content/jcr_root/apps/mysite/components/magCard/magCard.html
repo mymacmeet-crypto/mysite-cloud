@@ -1,0 +1,79 @@
+<sly data-sly-use.templates="core/wcm/components/commons/v1/templates.html" />
+
+<div class="mag-card" data-component="magcard">
+  <sly data-sly-use.model="com.mysite.core.models.MagCardModel"></sly>
+
+  <sly data-sly-test="${model.fileReference}">
+    <div class="mag-card-image">
+      <div class="mag-image-wrapper">
+        <img
+          src="${model.fileReference}"
+          alt="${model.title}"
+          style="width: 100%; height: auto"
+        />
+      </div>
+    </div>
+  </sly>
+
+  <div class="mag-card-body">
+    <sly data-sly-test="${model.title}">
+      <h3 class="mag-card-title">${model.title}</h3>
+    </sly>
+
+    <sly data-sly-test="${model.text}">
+      <div class="mag-card-text">${model.text @ context='html'}</div>
+    </sly>
+
+    <div class="mag-card-meta">
+      <sly data-sly-test="${model.category}">
+        <span class="mag-badge">${model.category}</span>
+      </sly>
+      <sly data-sly-test="${model.comments}">
+        <span class="mag-meta-stat">
+          <svg
+            width="15"
+            height="15"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path
+              d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+            />
+          </svg>
+          ${model.comments}
+        </span>
+      </sly>
+      <sly data-sly-test="${model.views}">
+        <span class="mag-meta-stat">
+          <svg
+            width="15"
+            height="15"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+            <circle cx="12" cy="12" r="3" />
+          </svg>
+          ${model.views}
+        </span>
+      </sly>
+    </div>
+  </div>
+
+  <sly
+    data-sly-call="${templates.placeholder @
+        isEmpty = !model.title,
+        cq:emptyText = 'Mag Card',
+        classAppend='mag-card'}"
+  />
+</div>

@@ -1,0 +1,24 @@
+<div
+ data-sly-use.navigation="com.adobe.cq.wcm.core.components.models.Navigation"
+ data-sly-use.itemTemplate="item.html" 
+  id="${navigation.id}"
+  itemscope itemtype="http://schema.org/SiteNavigationElement"
+     data-cmp-data-layer="${navigation.data.json}"
+     aria-label="${navigation.accessibilityLabel}"
+  
+ />
+
+<sly data-sly-test="${navigation}">
+
+<ul class="mag-nav-list">
+
+    <sly data-sly-list.item="${navigation.items}">
+
+        <sly data-sly-call="${itemTemplate.item @ item=item}" />
+
+    </sly>
+
+</ul>
+
+</div>
+

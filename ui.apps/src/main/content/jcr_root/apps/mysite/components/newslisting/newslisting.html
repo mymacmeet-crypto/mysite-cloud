@@ -1,0 +1,227 @@
+<sly data-sly-use.templates="core/wcm/components/commons/v1/templates.html" />
+
+<div
+  class="mag-view"
+  data-component="magview"
+  data-view-type="${properties.viewType}"
+>
+  <sly data-sly-use.model="com.mysite.core.models.NewsListingModel" 
+ data-sly-test.hasItems="${model.teaserItems && model.teaserItems.size > 0}"></sly>
+
+  <sly data-sly-test="${properties.sectionTitle}">
+    <div class="mag-view-header">
+      <h2 class="mag-view-title">${properties.sectionTitle}</h2>
+    </div>
+  </sly>
+
+  <sly data-sly-test="${hasItems}">
+    <!-- Card Grid View -->
+    <sly data-sly-test="${properties.viewType == 'card'}">
+      <div class="mag-view-grid">
+        <sly data-sly-list.item="${model.teaserItems}">
+          <div class="mag-view-card">
+            <sly data-sly-test="${item.fileReference}">
+              <div class="mag-view-card-image">
+                <div class="mag-view-image-wrapper">
+                  <img
+                    src="${item.fileReference}"
+                    alt="${item.title}"
+                    style="width: 100%; height: auto"
+                  />
+                </div>
+              </div>
+            </sly>
+
+            <div class="mag-view-card-body">
+              <sly data-sly-test="${item.title}">
+                <h3 class="mag-view-card-title">${item.title}</h3>
+              </sly>
+
+              <sly data-sly-test="${item.text}">
+                <div class="mag-view-card-text">
+                  ${item.text @ context='html'}
+                </div>
+              </sly>
+
+              <div class="mag-view-card-meta">
+                <sly data-sly-test="${item.category}">
+                  <span class="mag-view-badge">${item.category}</span>
+                </sly>
+                <sly data-sly-test="${item.comments}">
+                  <span class="mag-view-meta-stat">
+                    <svg
+                      width="15"
+                      height="15"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                    >
+                      <path
+                        d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+                      />
+                    </svg>
+                    ${item.comments}
+                  </span>
+                </sly>
+                <sly data-sly-test="${item.views}">
+                  <span class="mag-view-meta-stat">
+                    <svg
+                      width="15"
+                      height="15"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                    >
+                      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                      <circle cx="12" cy="12" r="3" />
+                    </svg>
+                    ${item.views}
+                  </span>
+                </sly>
+              </div>
+            </div>
+          </div>
+        </sly>
+      </div>
+    </sly>
+
+    <!-- List View -->
+    <sly data-sly-test="${properties.viewType != 'card'}">
+      <div class="mag-view-list">
+        <sly data-sly-list.item="${model.teaserItems}">
+          <div class="mag-view-list-item">
+            <div class="mag-view-list-image">
+              <div class="mag-view-image-wrapper">
+                <sly data-sly-test="${item.fileReference}">
+                  <img
+                    src="${item.fileReference}"
+                    alt="${item.title}"
+                    style="width: 100%; height: auto"
+                  />
+                </sly>
+              </div>
+            </div>
+
+            <div class="mag-view-list-body">
+              <sly data-sly-test="${item.title}">
+                <h3 class="mag-view-list-title">${item.title}</h3>
+              </sly>
+
+              <div class="mag-view-list-meta">
+                <sly data-sly-test="${item.category}">
+                  <span class="mag-view-badge">${item.category}</span>
+                </sly>
+                <sly data-sly-test="${item.date}">
+                  <span class="mag-view-meta-date">${item.date}</span>
+                </sly>
+                <sly data-sly-test="${item.comments}">
+                  <span class="mag-view-meta-stat">
+                    <svg
+                      width="14"
+                      height="14"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                    >
+                      <path
+                        d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+                      />
+                    </svg>
+                    ${item.comments}
+                  </span>
+                </sly>
+                <sly data-sly-test="${item.views}">
+                  <span class="mag-view-meta-stat">
+                    <svg
+                      width="14"
+                      height="14"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                    >
+                      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                      <circle cx="12" cy="12" r="3" />
+                    </svg>
+                    ${item.views}
+                  </span>
+                </sly>
+              </div>
+
+              <sly data-sly-test="${item.text}">
+                <div class="mag-view-list-text">
+                  ${item.text @ context='html'}
+                </div>
+              </sly>
+            </div>
+          </div>
+        </sly>
+      </div>
+    </sly>
+  </sly>
+
+  <sly
+    data-sly-call="${templates.placeholder @
+        isEmpty = !hasItems,
+        cq:emptyText = 'Mag View',
+        classAppend='mag-view'}"
+  />
+</div>
+
+     <div class="pagination"  data-sly-list.page="${model.pageNumbers}">
+        <a href="${model.currentPagePath}.html?page=${page}"
+           class="${page == model.currentPage ? 'active' : ''}">
+            ${page}
+        </a>
+    </div>
+
+
+  
+  <sly data-sly-call="${templates.placeholder @ 
+        isEmpty = !hasItems, 
+        classAppend='cta-list'}"/>
+        </div>
+        
+ <style>
+ .pagination {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.pagination a {
+  display: inline-block;
+  margin: 0 5px;
+  padding: 6px 12px;
+  text-decoration: none;
+  border: 1px solid #ccc;
+  color: #333;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.pagination a:hover {
+  background-color: #f2f2f2;
+}
+
+.pagination a.active {
+  background-color: #333;
+  color: #fff;
+  border-color: #333;
+}
+
+ </style>

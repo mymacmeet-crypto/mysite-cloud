@@ -1,0 +1,15 @@
+<template
+    data-sly-template.group="${@ items}"
+    data-sly-use.itemTemplate="item.html">
+
+    <ul class="mag-dropdown">
+
+        <sly data-sly-list.child="${items}">
+            <sly
+                data-sly-call="${itemTemplate.item @ item=child}">
+            </sly>
+        </sly>
+
+    </ul>
+
+</template>
