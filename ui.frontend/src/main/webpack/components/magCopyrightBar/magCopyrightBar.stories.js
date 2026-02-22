@@ -1,8 +1,8 @@
 /* eslint-disable max-len */
-import { MagFooter } from "./magFooter";
+import { MagCopyrightBar } from "./magCopyrightBar";
 
 export default {
-  title: "Components/MagFooter",
+  title: "Components/MagCopyrightBar",
 };
 
 const defaultFooterLinks = [
@@ -10,10 +10,10 @@ const defaultFooterLinks = [
   { label: "Terms and condition", link: "/terms" },
 ];
 
-/** Default — Full footer matching the Pearl theme */
+/** Default — Full copyright bar with all elements */
 export const Default = {
   render: () =>
-    MagFooter({
+    MagCopyrightBar({
       copyrightText:
         "Copyright &copy; 2026 Pearl Multipurpose WordPress Theme by StyleMixThemes.",
       footerLinks: defaultFooterLinks,
@@ -25,7 +25,7 @@ export const Default = {
 /** No Social Icons */
 export const NoSocialIcons = {
   render: () =>
-    MagFooter({
+    MagCopyrightBar({
       copyrightText:
         "Copyright &copy; 2026 Pearl Multipurpose WordPress Theme by StyleMixThemes.",
       footerLinks: defaultFooterLinks,
@@ -35,8 +35,24 @@ export const NoSocialIcons = {
 /** Minimal — Copyright only */
 export const Minimal = {
   render: () =>
-    MagFooter({
+    MagCopyrightBar({
       copyrightText:
         "Copyright &copy; 2026 Pearl Multipurpose WordPress Theme by StyleMixThemes.",
+    }),
+};
+
+/** With More Links */
+export const WithMoreLinks = {
+  render: () =>
+    MagCopyrightBar({
+      copyrightText: "Copyright &copy; 2026 MyCompany. All rights reserved.",
+      footerLinks: [
+        { label: "About Us", link: "/about" },
+        { label: "Contact", link: "/contact" },
+        { label: "Privacy Policy", link: "/privacy" },
+        { label: "Terms of Service", link: "/terms" },
+      ],
+      twitterUrl: "https://twitter.com",
+      facebookUrl: "https://facebook.com",
     }),
 };

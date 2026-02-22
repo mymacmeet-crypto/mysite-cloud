@@ -1,19 +1,19 @@
 // ─── Theme Variables ─────────────────────────────────────────────────────────
-$footer-bg: #2d2d2d;
-$footer-text: #c0c0c0;
-$footer-text-light: #ffffff;
-$footer-accent: #e0e0e0;
-$footer-transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+$copyright-bar-bg:          #2d2d2d;
+$copyright-bar-text:        #c0c0c0;
+$copyright-bar-text-light:  #ffffff;
+$copyright-bar-accent:      #e0e0e0;
+$copyright-bar-transition:  0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
-// ─── Footer Root ─────────────────────────────────────────────────────────────
-.mag-footer {
-  background: $footer-bg;
+// ─── Copyright Bar Root ──────────────────────────────────────────────────────
+.mag-copyright-bar {
+  background: $copyright-bar-bg;
   font-family: "Georgia", "Times New Roman", serif;
   padding: 20px 0;
 }
 
 // ─── Container ───────────────────────────────────────────────────────────────
-.mag-footer-container {
+.mag-copyright-bar-container {
   max-width: 1400px;
   margin: 0 auto;
   padding: 0 24px;
@@ -23,62 +23,62 @@ $footer-transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 // ─── Left: Copyright ─────────────────────────────────────────────────────────
-.mag-footer-left {
+.mag-copyright-bar-left {
   flex: 1;
 }
 
-.mag-footer-copyright {
+.mag-copyright-bar-text {
   margin: 0;
-  color: $footer-text;
+  color: $copyright-bar-text;
   font-size: 0.85rem;
   line-height: 1.5;
 }
 
 // ─── Center: Links ───────────────────────────────────────────────────────────
-.mag-footer-center {
+.mag-copyright-bar-center {
   display: flex;
   align-items: center;
   gap: 32px;
 }
 
-.mag-footer-link {
+.mag-copyright-bar-link {
   display: flex;
   align-items: center;
   gap: 6px;
-  color: $footer-accent;
+  color: $copyright-bar-accent;
   font-size: 0.85rem;
   text-decoration: none;
   white-space: nowrap;
-  transition: color $footer-transition;
+  transition: color $copyright-bar-transition;
 
   &:hover {
-    color: $footer-text-light;
+    color: $copyright-bar-text-light;
   }
 }
 
-.mag-footer-link-arrow {
+.mag-copyright-bar-link-arrow {
   flex-shrink: 0;
 }
 
 // ─── Right: Social Icons ─────────────────────────────────────────────────────
-.mag-footer-right {
+.mag-copyright-bar-right {
   display: flex;
   align-items: center;
   gap: 16px;
   margin-left: 32px;
 }
 
-.mag-footer-social {
+.mag-copyright-bar-social {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 32px;
   height: 32px;
-  color: $footer-text;
-  transition: color $footer-transition;
+  color: $copyright-bar-text;
+  transition: color $copyright-bar-transition;
 
   &:hover {
-    color: $footer-text-light;
+    color: $copyright-bar-text-light;
   }
 }
 
@@ -87,22 +87,22 @@ $footer-transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 // ═════════════════════════════════════════════════════════════════════════════
 
 @media (max-width: 1024px) {
-  .mag-footer-container {
+  .mag-copyright-bar-container {
     flex-wrap: wrap;
     gap: 16px;
   }
 
-  .mag-footer-left {
+  .mag-copyright-bar-left {
     flex: 1 1 100%;
     text-align: center;
   }
 
-  .mag-footer-center {
+  .mag-copyright-bar-center {
     flex: 1 1 100%;
     justify-content: center;
   }
 
-  .mag-footer-right {
+  .mag-copyright-bar-right {
     flex: 1 1 100%;
     justify-content: center;
     margin-left: 0;
