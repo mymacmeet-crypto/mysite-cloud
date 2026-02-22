@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
+    jcr:primaryType="nt:unstructured"
+    sling:resourceType="cq/gui/components/authoring/dialog">
+    <content
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/container">
+        <items jcr:primaryType="nt:unstructured">
+            <tabs
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/tabs"
+                maximized="{Boolean}true">
+                <items jcr:primaryType="nt:unstructured">
+
+                    <!-- ═══════════════════════════════════════════════════════ -->
+                    <!--  PROPERTIES TAB                                          -->
+                    <!-- ═══════════════════════════════════════════════════════ -->
+                    <propertiesTab
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Mag Counter"
+                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                        <items jcr:primaryType="nt:unstructured">
+
+                            <!-- Background Image -->
+                            <backgroundImage
+                                granite:class="cmp-image__editor-file-upload"
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="cq/gui/components/authoring/dialog/fileupload"
+                                fieldLabel="Background Image"
+                                fieldDescription="Upload a background image for the counter section (optional)."
+                                fileNameParameter="./backgroundFileName"
+                                fileReferenceParameter="./backgroundImage"
+                                mimeTypes="[image/gif,image/jpeg,image/png,image/webp]"
+                                name="./backgroundFile"
+                                rootPath="/content/dam/mysite"/>
+
+                            <!-- Counter Items Multifield -->
+                            <itemsMultifield
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                                composite="{Boolean}true"
+                                fieldLabel="Counter Items"
+                                fieldDescription="Add up to 4 counter items (recommended).">
+                                <field
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/container"
+                                    name="./counterItem">
+                                    <items jcr:primaryType="nt:unstructured">
+
+                                        <!-- Icon Image -->
+                                        <icon
+                                            granite:class="cmp-image__editor-file-upload"
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="cq/gui/components/authoring/dialog/fileupload"
+                                            fieldLabel="Icon Image"
+                                            fieldDescription="Upload an icon (SVG or PNG recommended, 64x64px)."
+                                            fileNameParameter="./iconFileName"
+                                            fileReferenceParameter="./icon"
+                                            mimeTypes="[image/svg+xml,image/png,image/gif]"
+                                            name="./iconFile"
+                                            rootPath="/content/dam/mysite"/>
+
+                                        <!-- Number -->
+                                        <number
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/numberfield"
+                                            fieldLabel="Target Number"
+                                            fieldDescription="The final number to count up to (e.g., 1000, 18945)."
+                                            min="0"
+                                            name="./number"
+                                            required="{Boolean}true"
+                                            value="0"/>
+
+                                        <!-- Suffix -->
+                                        <suffix
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="Suffix"
+                                            fieldDescription="Optional suffix added after the number (e.g., '+', '%', '/7')."
+                                            name="./suffix"
+                                            maxlength="5"/>
+
+                                        <!-- Label -->
+                                        <label
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="Label"
+                                            fieldDescription="Text displayed below the number (e.g., 'PROJECTS DONE')."
+                                            name="./label"
+                                            required="{Boolean}true"/>
+
+                                    </items>
+                                </field>
+                            </itemsMultifield>
+
+                        </items>
+                    </propertiesTab>
+
+                </items>
+            </tabs>
+        </items>
+    </content>
+</jcr:root>

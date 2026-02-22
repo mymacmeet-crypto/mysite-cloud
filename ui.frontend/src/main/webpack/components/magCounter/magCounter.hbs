@@ -1,0 +1,21 @@
+<div class="mag-counter" data-component="magcounter" style="{{#if backgroundImage}}background-image: url('{{backgroundImage}}');{{/if}}">
+  <div class="mag-counter-overlay"></div>
+  
+  <div class="mag-counter-container">
+    {{#if items}}
+      <div class="mag-counter-grid">
+        {{#each items}}
+          <div class="mag-counter-item" data-target="{{number}}" data-suffix="{{suffix}}">
+            {{#if icon}}
+              <div class="mag-counter-icon">
+                <img src="{{icon}}" alt="{{label}}" />
+              </div>
+            {{/if}}
+            <div class="mag-counter-number">0</div>
+            <div class="mag-counter-label">{{label}}</div>
+          </div>
+        {{/each}}
+      </div>
+    {{/if}}
+  </div>
+</div>
