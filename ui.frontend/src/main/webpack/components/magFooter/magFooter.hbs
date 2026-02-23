@@ -1,0 +1,79 @@
+<footer class="mag-footer" data-component="magfooter">
+  <div class="mag-footer-border"></div>
+  
+  <div class="mag-footer-container">
+    <div class="mag-footer-grid">
+
+      <!-- Column 1: Magazine Text -->
+      <div class="mag-footer-col mag-footer-magazine">
+        {{#if magazineTitle}}
+          <h3 class="mag-footer-title">{{magazineTitle}}</h3>
+        {{/if}}
+        {{#if magazineText}}
+          <div class="mag-footer-text">{{{magazineText}}}</div>
+        {{/if}}
+      </div>
+
+      <!-- Column 2: Gallery -->
+      <div class="mag-footer-col mag-footer-gallery">
+        {{#if galleryTitle}}
+          <h3 class="mag-footer-title">{{galleryTitle}}</h3>
+        {{/if}}
+        {{#if galleryImages}}
+          <div class="mag-footer-gallery-grid">
+            {{#each galleryImages}}
+              <a href="{{link}}" class="mag-footer-gallery-item" {{#if link}}{{else}}style="pointer-events: none;"{{/if}}>
+                <img src="{{image}}" alt="{{alt}}" />
+              </a>
+            {{/each}}
+          </div>
+        {{/if}}
+      </div>
+
+      <!-- Column 3: Quick Links -->
+      <div class="mag-footer-col mag-footer-links">
+        {{#if linksTitle}}
+          <h3 class="mag-footer-title">{{linksTitle}}</h3>
+        {{/if}}
+        {{#if quickLinks}}
+          <div class="mag-footer-links-grid">
+            {{#each quickLinksColumns}}
+              <ul class="mag-footer-links-col">
+                {{#each this}}
+                  <li class="mag-footer-link-item">
+                    <a href="{{link}}" class="mag-footer-link">
+                      <svg width="6" height="10" viewBox="0 0 6 10" fill="currentColor" class="mag-footer-link-arrow">
+                        <path d="M1 1l4 4-4 4"/>
+                      </svg>
+                      {{label}}
+                    </a>
+                  </li>
+                {{/each}}
+              </ul>
+            {{/each}}
+          </div>
+        {{/if}}
+      </div>
+
+      <!-- Column 4: Recent Comments -->
+      <div class="mag-footer-col mag-footer-comments">
+        {{#if commentsTitle}}
+          <h3 class="mag-footer-title">{{commentsTitle}}</h3>
+        {{/if}}
+        {{#if recentComments}}
+          <ul class="mag-footer-comments-list">
+            {{#each recentComments}}
+              <li class="mag-footer-comment-item">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mag-footer-comment-icon">
+                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                </svg>
+                <div class="mag-footer-comment-text">{{{text}}}</div>
+              </li>
+            {{/each}}
+          </ul>
+        {{/if}}
+      </div>
+
+    </div>
+  </div>
+</footer>

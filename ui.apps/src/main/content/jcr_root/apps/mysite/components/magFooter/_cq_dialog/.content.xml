@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
+    jcr:primaryType="nt:unstructured"
+    sling:resourceType="cq/gui/components/authoring/dialog">
+    <content
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/container">
+        <items jcr:primaryType="nt:unstructured">
+            <tabs
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/tabs"
+                maximized="{Boolean}true">
+                <items jcr:primaryType="nt:unstructured">
+
+                    <!-- ═══════════════════════════════════════════════════════ -->
+                    <!--  MAGAZINE TAB                                            -->
+                    <!-- ═══════════════════════════════════════════════════════ -->
+                    <magazineTab
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Magazine"
+                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                        <items jcr:primaryType="nt:unstructured">
+
+                            <!-- Magazine Title -->
+                            <magazineTitle
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Magazine Title"
+                                fieldDescription="Title for the magazine column (e.g., 'MAGAZINE')."
+                                name="./magazineTitle"/>
+
+                            <!-- Magazine Text (Rich Text) -->
+                            <magazineText
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="cq/gui/components/authoring/dialog/richtext"
+                                fieldLabel="Magazine Text"
+                                fieldDescription="Rich text content for the magazine column."
+                                name="./magazineText"
+                                useFixedInlineToolbar="{Boolean}true">
+                                <rtePlugins jcr:primaryType="nt:unstructured">
+                                    <format
+                                        jcr:primaryType="nt:unstructured"
+                                        features="bold,italic"/>
+                                    <links
+                                        jcr:primaryType="nt:unstructured"
+                                        features="modifylink,unlink"/>
+                                    <lists
+                                        jcr:primaryType="nt:unstructured"
+                                        features="*"/>
+                                    <paraformat
+                                        jcr:primaryType="nt:unstructured"
+                                        features="*">
+                                        <formats jcr:primaryType="nt:unstructured">
+                                            <default_p
+                                                jcr:primaryType="nt:unstructured"
+                                                description="Paragraph"
+                                                tag="p"/>
+                                        </formats>
+                                    </paraformat>
+                                </rtePlugins>
+                                <uiSettings jcr:primaryType="nt:unstructured">
+                                    <cui jcr:primaryType="nt:unstructured">
+                                        <inline
+                                            jcr:primaryType="nt:unstructured"
+                                            toolbar="[format#bold,format#italic,#lists,links#modifylink,links#unlink,#paraformat]"/>
+                                    </cui>
+                                </uiSettings>
+                            </magazineText>
+
+                        </items>
+                    </magazineTab>
+
+                    <!-- ═══════════════════════════════════════════════════════ -->
+                    <!--  GALLERY TAB                                             -->
+                    <!-- ═══════════════════════════════════════════════════════ -->
+                    <galleryTab
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Gallery"
+                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                        <items jcr:primaryType="nt:unstructured">
+
+                            <!-- Gallery Title -->
+                            <galleryTitle
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Gallery Title"
+                                fieldDescription="Title for the gallery column (e.g., 'GALLERY')."
+                                name="./galleryTitle"/>
+
+                            <!-- Gallery Images Multifield -->
+                            <galleryMultifield
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                                composite="{Boolean}true"
+                                fieldLabel="Gallery Images"
+                                fieldDescription="Add up to 6 images for the gallery grid (3x2).">
+                                <field
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/container"
+                                    name="./galleryImage">
+                                    <items jcr:primaryType="nt:unstructured">
+
+                                        <!-- Image -->
+                                        <image
+                                            granite:class="cmp-image__editor-file-upload"
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="cq/gui/components/authoring/dialog/fileupload"
+                                            fieldLabel="Image"
+                                            fieldDescription="Upload gallery image."
+                                            fileNameParameter="./imageFileName"
+                                            fileReferenceParameter="./image"
+                                            mimeTypes="[image/gif,image/jpeg,image/png,image/webp]"
+                                            name="./imageFile"
+                                            rootPath="/content/dam/mysite"/>
+
+                                        <!-- Alt Text -->
+                                        <alt
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="Alt Text"
+                                            fieldDescription="Alternative text for the image."
+                                            name="./alt"/>
+
+                                        <!-- Link -->
+                                        <link
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                            fieldLabel="Link"
+                                            fieldDescription="Optional link URL for the image."
+                                            name="./link"
+                                            rootPath="/content"/>
+
+                                    </items>
+                                </field>
+                            </galleryMultifield>
+
+                        </items>
+                    </galleryTab>
+
+                    <!-- ═══════════════════════════════════════════════════════ -->
+                    <!--  QUICK LINKS TAB                                         -->
+                    <!-- ═══════════════════════════════════════════════════════ -->
+                    <linksTab
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Quick Links"
+                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                        <items jcr:primaryType="nt:unstructured">
+
+                            <!-- Links Title -->
+                            <linksTitle
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Quick Links Title"
+                                fieldDescription="Title for the quick links column (e.g., 'QUICK LINKS')."
+                                name="./linksTitle"/>
+
+                            <!-- Quick Links Multifield -->
+                            <linksMultifield
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                                composite="{Boolean}true"
+                                fieldLabel="Quick Links"
+                                fieldDescription="Add quick links (will auto-split into 2 columns).">
+                                <field
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/container"
+                                    name="./quickLink">
+                                    <items jcr:primaryType="nt:unstructured">
+
+                                        <!-- Link Label -->
+                                        <label
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="Link Label"
+                                            fieldDescription="Text displayed for the link (e.g., 'Lifestyle')."
+                                            name="./label"
+                                            required="{Boolean}true"/>
+
+                                        <!-- Link URL -->
+                                        <link
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                            fieldLabel="Link URL"
+                                            fieldDescription="URL or page path for this link."
+                                            name="./link"
+                                            rootPath="/content"
+                                            required="{Boolean}true"/>
+
+                                    </items>
+                                </field>
+                            </linksMultifield>
+
+                        </items>
+                    </linksTab>
+
+                    <!-- ═══════════════════════════════════════════════════════ -->
+                    <!--  RECENT COMMENTS TAB                                     -->
+                    <!-- ═══════════════════════════════════════════════════════ -->
+                    <commentsTab
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Recent Comments"
+                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                        <items jcr:primaryType="nt:unstructured">
+
+                            <!-- Comments Title -->
+                            <commentsTitle
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Recent Comments Title"
+                                fieldDescription="Title for the comments column (e.g., 'RECENT COMMENTS')."
+                                name="./commentsTitle"/>
+
+                            <!-- Comments Multifield -->
+                            <commentsMultifield
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                                composite="{Boolean}true"
+                                fieldLabel="Recent Comments"
+                                fieldDescription="Add recent comment excerpts.">
+                                <field
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/container"
+                                    name="./recentComment">
+                                    <items jcr:primaryType="nt:unstructured">
+
+                                        <!-- Comment Text -->
+                                        <text
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textarea"
+                                            fieldLabel="Comment Text"
+                                            fieldDescription="Comment excerpt text."
+                                            name="./text"
+                                            required="{Boolean}true"
+                                            rows="3"/>
+
+                                    </items>
+                                </field>
+                            </commentsMultifield>
+
+                        </items>
+                    </commentsTab>
+
+                </items>
+            </tabs>
+        </items>
+    </content>
+</jcr:root>
