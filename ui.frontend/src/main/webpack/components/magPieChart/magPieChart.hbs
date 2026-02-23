@@ -1,0 +1,32 @@
+<div class="mag-pie-chart" data-component="magpiechart">
+  
+  {{#if title}}
+    <h2 class="mag-pie-chart-title">{{title}}</h2>
+  {{/if}}
+
+  {{#if segments}}
+    <!-- Legend -->
+    <div class="mag-pie-chart-legend">
+      {{#each segments}}
+        <div class="mag-pie-chart-legend-item" data-index="{{@index}}">
+          <span class="mag-pie-chart-legend-color" style="background-color: {{color}};"></span>
+          <span class="mag-pie-chart-legend-label">{{label}}</span>
+        </div>
+      {{/each}}
+    </div>
+
+    <!-- Chart Container -->
+    <div class="mag-pie-chart-container">
+      <svg class="mag-pie-chart-svg" viewBox="0 0 400 400" preserveAspectRatio="xMidYMid meet">
+        <!-- Segments will be drawn by JavaScript -->
+      </svg>
+      
+      <!-- Tooltip -->
+      <div class="mag-pie-chart-tooltip">
+        <div class="mag-pie-chart-tooltip-label"></div>
+        <div class="mag-pie-chart-tooltip-value"></div>
+      </div>
+    </div>
+  {{/if}}
+
+</div>

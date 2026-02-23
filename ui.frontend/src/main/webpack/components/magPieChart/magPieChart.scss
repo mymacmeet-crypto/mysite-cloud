@@ -1,0 +1,164 @@
+// ─── Theme Variables ─────────────────────────────────────────────────────────
+$chart-bg:            #ffffff;
+$chart-title:         #1a1a1a;
+$chart-text:          #3d3d3d;
+$chart-text-light:    #666666;
+$chart-border:        #e0e0e0;
+$tooltip-bg:          rgba(0, 0, 0, 0.85);
+$tooltip-text:        #ffffff;
+$chart-transition:    0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+// ─── Chart Root ──────────────────────────────────────────────────────────────
+.mag-pie-chart {
+  background: $chart-bg;
+  padding: 30px 38px;
+  font-family: "Georgia", "Times New Roman", serif;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+// ─── Title ───────────────────────────────────────────────────────────────────
+.mag-pie-chart-title {
+  font-size: 2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: $chart-title;
+  margin: 0 0 32px;
+  text-align: left;
+}
+
+// ─── Legend ──────────────────────────────────────────────────────────────────
+.mag-pie-chart-legend {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin-bottom: 16px;
+}
+
+.mag-pie-chart-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: opacity $chart-transition;
+
+  &:hover {
+    opacity: 0.7;
+  }
+}
+
+.mag-pie-chart-legend-color {
+  width: 40px;
+  height: 16px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.mag-pie-chart-legend-label {
+  font-size: 0.9rem;
+  color: $chart-text;
+  font-family: "Arial", "Helvetica", sans-serif;
+}
+
+// ─── Chart Container ─────────────────────────────────────────────────────────
+.mag-pie-chart-container {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.mag-pie-chart-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+// ─── Segments ────────────────────────────────────────────────────────────────
+.mag-pie-chart-segment {
+  cursor: pointer;
+  transition: opacity $chart-transition, transform $chart-transition;
+  transform-origin: center;
+
+  &:hover {
+    opacity: 0.85;
+  }
+
+  // Animation
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: drawSegment 1.5s ease-out forwards;
+}
+
+@keyframes drawSegment {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+// ─── Tooltip ─────────────────────────────────────────────────────────────────
+.mag-pie-chart-tooltip {
+  position: absolute;
+  background: $tooltip-bg;
+  color: $tooltip-text;
+  padding: 10px 14px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  pointer-events: none;
+  opacity: 0;
+  transform: translate(-50%, -100%) translateY(-10px);
+  transition: opacity $chart-transition;
+  z-index: 100;
+  white-space: nowrap;
+  font-family: "Arial", "Helvetica", sans-serif;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+
+  &.mag-pie-chart-tooltip-visible {
+    opacity: 1;
+  }
+}
+
+.mag-pie-chart-tooltip-label {
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.mag-pie-chart-tooltip-value {
+  font-size: 0.8rem;
+  opacity: 0.9;
+}
+
+// ─── Responsive ──────────────────────────────────────────────────────────────
+@media (max-width: 768px) {
+  .mag-pie-chart {
+    padding: 32px 24px;
+  }
+
+  .mag-pie-chart-title {
+    font-size: 1.5rem;
+    margin-bottom: 24px;
+  }
+
+  .mag-pie-chart-legend {
+    gap: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .mag-pie-chart {
+    padding: 24px 16px;
+  }
+
+  .mag-pie-chart-title {
+    font-size: 1.25rem;
+  }
+
+  .mag-pie-chart-legend {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+}
