@@ -37,4 +37,11 @@ public class MagCounterModel {
     public boolean hasItems() {
         return items != null && !items.isEmpty();
     }
+
+    public String getBackgroundStyle() {
+    if (backgroundImage != null && !backgroundImage.isEmpty()) {
+        return "background-image: url('" + backgroundImage + "');";
+    }
+    return "";
+}
 }
