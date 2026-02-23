@@ -65,6 +65,15 @@ $mag-transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 }
 
+.mag-social-link svg,
+.mag-weather svg,
+.mag-search-btn svg {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+}
+
+
 // ─── Subscribe Button ─────────────────────────────────────────────────────────
 .mag-subscribe-btn {
   padding: 6px 18px;
