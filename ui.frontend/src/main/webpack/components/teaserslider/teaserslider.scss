@@ -1,0 +1,188 @@
+// ─── Theme Variables ─────────────────────────────────────────────────────────
+$ts-bg: #1a1a1a;
+$ts-surface: #242424;
+$ts-border: #333333;
+$ts-text-primary: #ffffff;
+$ts-text-secondary: #a0a0a0;
+$ts-accent: #2563eb;
+$ts-radius-sm: 6px;
+$ts-radius-md: 10px;
+$ts-radius-lg: 16px;
+$ts-transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+// ─── Component Root ───────────────────────────────────────────────────────────
+.ts-customcardlist {
+  background: $ts-bg;
+  padding: 40px 48px;
+  font-family: "Georgia", "Times New Roman", serif;
+  color: $ts-text-primary;
+  overflow: hidden;
+}
+
+// ─── Header ──────────────────────────────────────────────────────────────────
+.ts-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 36px;
+}
+
+.ts-section-title {
+  font-family: "Georgia", serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: $ts-text-primary;
+  margin: 0;
+}
+
+// ─── Controls ────────────────────────────────────────────────────────────────
+.ts-controls {
+  display: flex;
+  gap: 8px;
+}
+
+.ts-control-btn {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 1.5px solid $ts-border;
+  color: $ts-text-primary;
+  cursor: pointer;
+  border-radius: 0;
+  transition:
+    background $ts-transition,
+    border-color $ts-transition;
+
+  svg {
+    display: block;
+    flex-shrink: 0;
+  }
+
+  &:hover {
+    background: $ts-accent;
+    border-color: $ts-accent;
+    color: #fff;
+  }
+
+  &:disabled {
+    opacity: 0.3;
+    cursor: default;
+    &:hover {
+      background: transparent;
+      border-color: $ts-border;
+      color: $ts-text-primary;
+    }
+  }
+}
+
+// ─── Track ───────────────────────────────────────────────────────────────────
+.ts-track-wrapper {
+  overflow: hidden;
+}
+
+.ts-track {
+  display: flex;
+  gap: 24px;
+  transition: transform $ts-transition;
+  will-change: transform;
+}
+
+// ─── Card ─────────────────────────────────────────────────────────────────────
+.ts-card {
+  flex: 0 0 calc(25% - 18px);
+  min-width: 0;
+  cursor: pointer;
+
+  &:hover {
+    .ts-image-wrapper img {
+      transform: scale(1.04);
+    }
+
+    .ts-typography-h3 {
+      color: darken($ts-text-primary, 15%);
+    }
+  }
+}
+
+// ─── Card Image ──────────────────────────────────────────────────────────────
+.ts-card-image {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.ts-image-wrapper {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: $ts-surface;
+  border-radius: 0;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+// ─── Card Body ───────────────────────────────────────────────────────────────
+.ts-card-body {
+  padding: 0;
+}
+
+.ts-typography-h3 {
+  font-family: "Georgia", serif;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.4;
+  color: $ts-text-primary;
+  margin: 0 0 10px;
+  transition: color $ts-transition;
+
+  // Clamp to 2 lines
+  display: -webkit-box;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.ts-typography-p {
+  font-family: "Georgia", serif;
+  font-size: 0.82rem;
+  line-height: 1.6;
+  color: $ts-text-secondary;
+  margin: 0;
+
+  // Clamp to 3 lines
+  display: -webkit-box;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+// ─── Responsive ──────────────────────────────────────────────────────────────
+@media (max-width: 1024px) {
+  .ts-card {
+    flex: 0 0 calc(50% - 12px);
+  }
+
+  .ts-customcardlist {
+    padding: 32px 24px;
+  }
+}
+
+@media (max-width: 640px) {
+  .ts-card {
+    flex: 0 0 calc(100%);
+  }
+
+  .ts-customcardlist {
+    padding: 24px 16px;
+  }
+}

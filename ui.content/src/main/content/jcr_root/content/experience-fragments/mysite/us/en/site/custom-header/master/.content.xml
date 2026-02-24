@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:lastModified="{Date}2026-02-20T21:31:05.604+05:30"
+        cq:lastModifiedBy="admin"
+        cq:tags="[experience-fragments:variation/web]"
+        cq:template="/conf/mysite/settings/wcm/templates/xf-web-variation"
+        cq:xfMasterVariation="{Boolean}true"
+        cq:xfVariantType="web"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="Custom Header"
+        sling:resourceType="mysite/components/xfpage">
+        <root
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="mysite/components/container"
+            layout="responsiveGrid">
+            <magheader
+                jcr:created="{Date}2026-02-20T21:23:16.433+05:30"
+                jcr:createdBy="admin"
+                jcr:lastModified="{Date}2026-02-20T21:30:29.530+05:30"
+                jcr:lastModifiedBy="admin"
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="mysite/components/magHeader"
+                logoAlt="Site Logo"
+                logoFileName="Screenshot 2023-06-01 152730.png">
+                <logoFile/>
+                <navItem jcr:primaryType="nt:unstructured">
+                    <item0
+                        jcr:primaryType="nt:unstructured"
+                        label="Home"
+                        link="/content/mysite/us"/>
+                </navItem>
+                <navigation
+                    jcr:lastModified="{Date}2026-02-20T21:31:05.446+05:30"
+                    jcr:lastModifiedBy="admin"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="mysite/components/navigation"
+                    collectAllPages="true"
+                    disableShadowing="false"
+                    navigationRoot="/content/mysite/us/en"
+                    structureStart="1"/>
+            </magheader>
+        </root>
+    </jcr:content>
+</jcr:root>

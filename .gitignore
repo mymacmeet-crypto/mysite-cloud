@@ -107,3 +107,5 @@ dispatcher/src/conf.d/variables/default.vars
 
 ._*
 
+aem-patterns.md
+component-guide.md

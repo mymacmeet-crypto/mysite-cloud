@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
+    jcr:primaryType="nt:unstructured"
+    sling:resourceType="cq/gui/components/authoring/dialog">
+    <content
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/container">
+        <items jcr:primaryType="nt:unstructured">
+            <tabs
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/tabs">
+                <items jcr:primaryType="nt:unstructured">
+                    <propertiesTab
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Teaser Slider"
+                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                        <items jcr:primaryType="nt:unstructured">
+                            <parentpage
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                fieldDescription="Parent Page path to show list of pages as news"
+                                fieldLabel="Parent Page Path"
+                                name="./parentPagePath"
+                                rootPath="/content/mysite"/>
+                            <limitperpage
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/numberfield"
+                                fieldDescription="News to be shown per page"
+                                fieldLabel="Limit per page"
+                                name="./limit"/>
+                            <sectionTitle
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldDescription="Heading displayed above the view (e.g. 'Most Read', 'Latest Articles')."
+                                fieldLabel="Section Title"
+                                name="./sectionTitle"/>
+                            <viewType
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                fieldDescription="Choose how items are displayed: Card Grid (3 columns) or List (vertical stack)."
+                                fieldLabel="View Type"
+                                name="./viewType">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <card
+                                        jcr:primaryType="nt:unstructured"
+                                        selected="{Boolean}true"
+                                        text="Card Grid"
+                                        value="card"/>
+                                    <list
+                                        jcr:primaryType="nt:unstructured"
+                                        text="List"
+                                        value="list"/>
+                                </items>
+                            </viewType>
+                        </items>
+                    </propertiesTab>
+                </items>
+            </tabs>
+        </items>
+    </content>
+</jcr:root>

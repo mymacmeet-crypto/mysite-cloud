@@ -1,0 +1,33 @@
+<sly data-sly-use.templates="core/wcm/components/commons/v1/templates.html" />
+<sly data-sly-use.model="com.mysite.core.models.MagPieChartModel" />
+
+<div class="mag-pie-chart" data-component="magpiechart" data-segments="${model.segmentsJson}">
+
+  <sly data-sly-test="${model.title}">
+    <h2 class="mag-pie-chart-title">${model.title}</h2>
+  </sly>
+
+  <sly data-sly-test="${model.segments && model.segments.size > 0}">
+    <div class="mag-pie-chart-legend">
+      <sly data-sly-list.segment="${model.segments}">
+        <div class="mag-pie-chart-legend-item" data-index="${segmentList.index}">
+          <span class="mag-pie-chart-legend-color" data-color="${segment.color}"></span>
+          <span class="mag-pie-chart-legend-label">${segment.label}</span>
+        </div>
+      </sly>
+    </div>
+
+    <div class="mag-pie-chart-container">
+      <svg class="mag-pie-chart-svg" viewBox="0 0 400 400" preserveAspectRatio="xMidYMid meet">
+      </svg>
+      
+      <div class="mag-pie-chart-tooltip">
+        <div class="mag-pie-chart-tooltip-label"></div>
+        <div class="mag-pie-chart-tooltip-value"></div>
+      </div>
+    </div>
+  </sly>
+
+  <sly data-sly-call="${templates.placeholder @ isEmpty = !model.segments || model.segments.size == 0, cq:emptyText = 'Mag Pie Chart', classAppend='mag-pie-chart'}" />
+
+</div>

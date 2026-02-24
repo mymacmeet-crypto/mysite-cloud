@@ -1,0 +1,121 @@
+// ─── Theme Variables ─────────────────────────────────────────────────────────
+$copyright-bar-bg:          #2d2d2d;
+$copyright-bar-text:        #c0c0c0;
+$copyright-bar-text-light:  #ffffff;
+$copyright-bar-accent:      #e0e0e0;
+$copyright-bar-transition:  0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+// ─── Copyright Bar Root ──────────────────────────────────────────────────────
+.mag-copyright-bar {
+  background: $copyright-bar-bg;
+  font-family: "Georgia", "Times New Roman", serif;
+  padding: 20px 0;
+}
+
+// ─── Container ───────────────────────────────────────────────────────────────
+.mag-copyright-bar-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+// ─── Left: Copyright ─────────────────────────────────────────────────────────
+.mag-copyright-bar-left {
+  flex: 1;
+}
+
+.mag-copyright-bar-text {
+  margin: 0;
+  color: $copyright-bar-text;
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+// ─── Center: Links ───────────────────────────────────────────────────────────
+.mag-copyright-bar-center {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.mag-copyright-bar-link {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: $copyright-bar-accent;
+  font-size: 0.85rem;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color $copyright-bar-transition;
+
+  &:hover {
+    color: $copyright-bar-text-light;
+  }
+}
+
+.mag-copyright-bar-link-arrow {
+  flex-shrink: 0;
+}
+
+// ─── Right: Social Icons ─────────────────────────────────────────────────────
+.mag-copyright-bar-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-left: 32px;
+}
+
+.mag-copyright-bar-social {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  color: $copyright-bar-text;
+  transition: color $copyright-bar-transition;
+
+  &:hover {
+    color: $copyright-bar-text-light;
+  }
+}
+
+.cmp-link__screen-reader-only {
+  display: none;
+}
+
+.mag-copyright-bar-social svg,
+.mag-copyright-bar-link-arrow {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+
+// ═════════════════════════════════════════════════════════════════════════════
+//  RESPONSIVE
+// ═════════════════════════════════════════════════════════════════════════════
+
+@media (max-width: 1024px) {
+  .mag-copyright-bar-container {
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .mag-copyright-bar-left {
+    flex: 1 1 100%;
+    text-align: center;
+  }
+
+  .mag-copyright-bar-center {
+    flex: 1 1 100%;
+    justify-content: center;
+  }
+
+  .mag-copyright-bar-right {
+    flex: 1 1 100%;
+    justify-content: center;
+    margin-left: 0;
+  }
+}

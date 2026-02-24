@@ -1,0 +1,34 @@
+<sly data-sly-use.templates="core/wcm/components/commons/v1/templates.html" />
+<sly data-sly-use.model="com.mysite.core.models.MagCounterModel" />
+
+<div class="mag-counter" 
+     data-component="magcounter"
+     data-background="${model.backgroundImage}">
+
+  <div class="mag-counter-overlay"></div>
+  
+  <div class="mag-counter-container">
+    <sly data-sly-test="${model.items && model.items.size > 0}">
+      <div class="mag-counter-grid">
+        <sly data-sly-list.item="${model.items}">
+          <div class="mag-counter-item" data-target="${item.number}" data-suffix="${item.suffix}">
+            
+            <sly data-sly-test="${item.icon}">
+              <div class="mag-counter-icon">
+                <img src="${item.icon}" alt="${item.label}" />
+              </div>
+            </sly>
+            
+            <div class="mag-counter-number">0</div>
+            
+            <div class="mag-counter-label">${item.label}</div>
+            
+          </div>
+        </sly>
+      </div>
+    </sly>
+  </div>
+
+  <sly data-sly-call="${templates.placeholder @ isEmpty = !model.items || model.items.size == 0, cq:emptyText = 'Mag Counter', classAppend='mag-counter'}" />
+
+</div>

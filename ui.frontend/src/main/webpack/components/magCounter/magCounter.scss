@@ -1,0 +1,137 @@
+// ─── Theme Variables ─────────────────────────────────────────────────────────
+$mag-counter-bg:        #1a1a1a;
+$mag-counter-overlay:   rgba(0, 0, 0, 0.7);
+$mag-counter-text:      #ffffff;
+$mag-counter-label:     rgba(255, 255, 255, 0.85);
+$mag-transition:        0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+// ─── Counter Root ─────────────────────────────────────────────────────────────
+.mag-counter {
+  position: relative;
+  background-color: $mag-counter-bg;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 80px 0;
+  overflow: hidden;
+  font-family: "Georgia", "Times New Roman", serif;
+}
+
+// ─── Overlay ──────────────────────────────────────────────────────────────────
+.mag-counter-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: $mag-counter-overlay;
+  z-index: 1;
+}
+
+// ─── Container ────────────────────────────────────────────────────────────────
+.mag-counter-container {
+  position: relative;
+  z-index: 2;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 48px;
+}
+
+// ─── Grid ─────────────────────────────────────────────────────────────────────
+.mag-counter-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 48px;
+  align-items: center;
+}
+
+// ─── Counter Item ─────────────────────────────────────────────────────────────
+.mag-counter-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 16px;
+}
+
+// ─── Icon ─────────────────────────────────────────────────────────────────────
+.mag-counter-icon {
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: brightness(0) invert(1); // Make icons white
+  }
+}
+
+// ─── Number ───────────────────────────────────────────────────────────────────
+.mag-counter-number {
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: $mag-counter-text;
+  line-height: 1;
+  font-family: "Arial", "Helvetica", sans-serif;
+  letter-spacing: -0.02em;
+}
+
+// ─── Label ────────────────────────────────────────────────────────────────────
+.mag-counter-label {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: $mag-counter-label;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  line-height: 1.4;
+  font-family: "Arial", "Helvetica", sans-serif;
+}
+
+// ─── Responsive ──────────────────────────────────────────────────────────────
+@media (max-width: 1024px) {
+  .mag-counter {
+    padding: 60px 0;
+  }
+
+  .mag-counter-container {
+    padding: 0 32px;
+  }
+
+  .mag-counter-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+  }
+
+  .mag-counter-number {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .mag-counter {
+    padding: 48px 0;
+  }
+
+  .mag-counter-container {
+    padding: 0 24px;
+  }
+
+  .mag-counter-grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  .mag-counter-number {
+    font-size: 2.5rem;
+  }
+
+  .mag-counter-icon {
+    width: 56px;
+    height: 56px;
+  }
+}

@@ -277,14 +277,14 @@ Bundle-DocURL:
                   <cnds>tccl:aem.cnd</cnds>
                 </options>
               </jackrabbit-nodetypes>
-            </validatorsSettings>
+            </validatorsSettings>            
           </configuration>
           <dependencies>
             <dependency>
               <groupId>biz.netcentric.aem</groupId>
               <artifactId>aem-nodetypes</artifactId>
               <version>6.5.7.0</version>
-            </dependency>
+            </dependency>           
           </dependencies>
         </plugin>
         <!-- AEM Analyser Plugin -->

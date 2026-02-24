@@ -1,0 +1,90 @@
+<sly data-sly-use.templates="core/wcm/components/commons/v1/templates.html" />
+
+<footer class="mag-footer" data-component="magfooter">
+  <sly data-sly-use.model="com.mysite.core.models.MagFooterModel"></sly>
+
+  <div class="mag-footer-border"></div>
+  
+  <div class="mag-footer-container">
+    <div class="mag-footer-grid">
+
+      <!-- Column 1: Magazine Text -->
+      <div class="mag-footer-col mag-footer-magazine">
+        <sly data-sly-test="${model.magazineTitle}">
+          <h3 class="mag-footer-title">${model.magazineTitle}</h3>
+        </sly>
+        <sly data-sly-test="${model.magazineText}">
+          <div class="mag-footer-text">${model.magazineText @ context='html'}</div>
+        </sly>
+      </div>
+
+      <!-- Column 2: Gallery -->
+      <div class="mag-footer-col mag-footer-gallery">
+        <sly data-sly-test="${model.galleryTitle}">
+          <h3 class="mag-footer-title">${model.galleryTitle}</h3>
+        </sly>
+        <sly data-sly-test="${model.galleryImages && model.galleryImages.size > 0}">
+          <div class="mag-footer-gallery-grid">
+            <sly data-sly-list.galleryItem="${model.galleryImages}">
+              <a href="${galleryItem.link}" class="mag-footer-gallery-item" ${galleryItem.link ? '' : 'style="pointer-events: none;"'}>
+                <img src="${galleryItem.image}" alt="${galleryItem.alt}" />
+              </a>
+            </sly>
+          </div>
+        </sly>
+      </div>
+
+      <!-- Column 3: Quick Links -->
+      <div class="mag-footer-col mag-footer-links">
+        <sly data-sly-test="${model.linksTitle}">
+          <h3 class="mag-footer-title">${model.linksTitle}</h3>
+        </sly>
+        <sly data-sly-test="${model.quickLinksColumns && model.quickLinksColumns.size > 0}">
+          <div class="mag-footer-links-grid">
+            <sly data-sly-list.column="${model.quickLinksColumns}">
+              <ul class="mag-footer-links-col">
+                <sly data-sly-list.link="${column}">
+                  <li class="mag-footer-link-item">
+                    <a href="${link.link}" class="mag-footer-link">
+                      <svg width="6" height="10" viewBox="0 0 6 10" fill="currentColor" class="mag-footer-link-arrow">
+                        <path d="M1 1l4 4-4 4"/>
+                      </svg>
+                      ${link.label}
+                    </a>
+                  </li>
+                </sly>
+              </ul>
+            </sly>
+          </div>
+        </sly>
+      </div>
+
+      <!-- Column 4: Recent Comments -->
+      <div class="mag-footer-col mag-footer-comments">
+        <sly data-sly-test="${model.commentsTitle}">
+          <h3 class="mag-footer-title">${model.commentsTitle}</h3>
+        </sly>
+        <sly data-sly-test="${model.recentComments && model.recentComments.size > 0}">
+          <ul class="mag-footer-comments-list">
+            <sly data-sly-list.comment="${model.recentComments}">
+              <li class="mag-footer-comment-item">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mag-footer-comment-icon">
+                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                </svg>
+                <div class="mag-footer-comment-text">${comment.text @ context='html'}</div>
+              </li>
+            </sly>
+          </ul>
+        </sly>
+      </div>
+
+    </div>
+  </div>
+
+  <sly
+    data-sly-call="${templates.placeholder @
+        isEmpty = !model.magazineTitle && !model.galleryTitle && !model.linksTitle && !model.commentsTitle,
+        cq:emptyText = 'Mag Footer',
+        classAppend='mag-footer'}"
+  />
+</footer>

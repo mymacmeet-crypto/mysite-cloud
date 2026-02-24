@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
+    jcr:primaryType="nt:unstructured"
+    sling:resourceType="cq/gui/components/authoring/dialog">
+    <content
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/container">
+        <items jcr:primaryType="nt:unstructured">
+            <tabs
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/tabs"
+                maximized="{Boolean}true">
+                <items jcr:primaryType="nt:unstructured">
+
+                    <!-- ═══════════════════════════════════════════════════════ -->
+                    <!--  BRANDING TAB                                            -->
+                    <!-- ═══════════════════════════════════════════════════════ -->
+                    <brandingTab
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Branding"
+                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                        <items jcr:primaryType="nt:unstructured">
+
+                            <!-- Logo Image -->
+                            <logoImage
+                                granite:class="cmp-image__editor-file-upload"
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="cq/gui/components/authoring/dialog/fileupload"
+                                fieldLabel="Logo Image"
+                                fieldDescription="Upload the site logo image."
+                                fileNameParameter="./logoFileName"
+                                fileReferenceParameter="./logoUrl"
+                                mimeTypes="[image/gif,image/jpeg,image/png,image/svg+xml]"
+                                name="./logoFile"
+                                rootPath="/content/dam/mysite"/>
+
+                            <!-- Logo Link -->
+                            <logoLink
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                fieldLabel="Logo Link"
+                                fieldDescription="URL or page path the logo links to (usually homepage '/')."
+                                name="./logoLink"
+                                rootPath="/content"/>
+
+                            <!-- Logo Alt Text -->
+                            <logoAlt
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Logo Alt Text"
+                                fieldDescription="Accessible description of the logo."
+                                name="./logoAlt"
+                                value="Site Logo"/>
+
+                        </items>
+                    </brandingTab>
+
+                    <!-- ═══════════════════════════════════════════════════════ -->
+                    <!--  TOP BAR TAB                                             -->
+                    <!-- ═══════════════════════════════════════════════════════ -->
+                    <topBarTab
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Top Bar"
+                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                        <items jcr:primaryType="nt:unstructured">
+
+                            <!-- Social Links Section -->
+                            <socialLinksHeading
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/heading"
+                                level="{Long}3"
+                                text="Social Media Links"/>
+
+                            <!-- Twitter URL -->
+                            <twitterUrl
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Twitter URL"
+                                fieldDescription="Full URL to Twitter/X profile (e.g. https://twitter.com/yourhandle)."
+                                name="./twitterUrl"/>
+
+                            <!-- Facebook URL -->
+                            <facebookUrl
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Facebook URL"
+                                fieldDescription="Full URL to Facebook page."
+                                name="./facebookUrl"/>
+
+                            <!-- YouTube URL -->
+                            <youtubeUrl
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="YouTube URL"
+                                fieldDescription="Full URL to YouTube channel."
+                                name="./youtubeUrl"/>
+
+                            <!-- Subscribe Button -->
+                            <subscribeHeading
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/heading"
+                                level="{Long}3"
+                                text="Subscribe Button"/>
+
+                            <subscribeUrl
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                fieldLabel="Subscribe Link"
+                                fieldDescription="Link for the SUBSCRIBE button."
+                                name="./subscribeUrl"
+                                rootPath="/content"/>
+
+                            <!-- Weather Widget -->
+                            <weatherHeading
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/heading"
+                                level="{Long}3"
+                                text="Weather Widget"/>
+
+                            <weatherText
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Weather Text"
+                                fieldDescription="Weather display text (e.g. '5° in California')."
+                                name="./weatherText"/>
+
+                            <!-- Accessibility Button -->
+                            <aaHeading
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/heading"
+                                level="{Long}3"
+                                text="Accessibility Button"/>
+
+                            <aaButtonUrl
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                fieldLabel="AA Button Link"
+                                fieldDescription="Link for the accessibility (Aa) button."
+                                name="./aaButtonUrl"
+                                rootPath="/content"/>
+
+                        </items>
+                    </topBarTab>
+
+                    <!-- ═══════════════════════════════════════════════════════ -->
+                    <!--  NAVIGATION TAB                                          -->
+                    <!-- ═══════════════════════════════════════════════════════ -->
+                    <navigationTab
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Navigation"
+                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                        <items jcr:primaryType="nt:unstructured">
+
+                            <!-- Navigation Items Multifield -->
+                            <navItemsMultifield
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                                composite="{Boolean}true"
+                                fieldLabel="Navigation Items">
+                                <field
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/container"
+                                    name="./navItem">
+                                    <items jcr:primaryType="nt:unstructured">
+
+                                        <!-- Nav Item Label -->
+                                        <label
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="Label"
+                                            fieldDescription="Navigation item text (e.g. 'NEWS', 'SPORT')."
+                                            name="./label"
+                                            required="{Boolean}true"/>
+
+                                        <!-- Nav Item Link -->
+                                        <link
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                            fieldLabel="Link"
+                                            fieldDescription="URL or page path for this nav item."
+                                            name="./link"
+                                            rootPath="/content"
+                                            required="{Boolean}true"/>
+
+                                        <!-- Submenu Items Multifield -->
+                                        <submenuMultifield
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                                            composite="{Boolean}true"
+                                            fieldLabel="Submenu Items"
+                                            fieldDescription="Optional dropdown submenu items for this nav item.">
+                                            <field
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/container"
+                                                name="./submenuItem">
+                                                <items jcr:primaryType="nt:unstructured">
+
+                                                    <!-- Submenu Label -->
+                                                    <label
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                        fieldLabel="Submenu Label"
+                                                        fieldDescription="Text for the submenu link (e.g. 'NEWS – LIST VIEW')."
+                                                        name="./label"/>
+
+                                                    <!-- Submenu Link -->
+                                                    <link
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                        fieldLabel="Submenu Link"
+                                                        fieldDescription="URL or page path for this submenu item."
+                                                        name="./link"
+                                                        rootPath="/content"/>
+
+                                                </items>
+                                            </field>
+                                        </submenuMultifield>
+
+                                    </items>
+                                </field>
+                            </navItemsMultifield>
+
+                        </items>
+                    </navigationTab>
+
+                </items>
+            </tabs>
+        </items>
+    </content>
+</jcr:root>

@@ -1,0 +1,16 @@
+@import "../card/card.scss";
+@import "../typography/typography.scss";
+
+.customcardlist-empty {
+  padding: 40px;
+  text-align: center;
+  color: #9ca3af;
+  font-size: 1rem;
+  font-family: sans-serif;
+}
+
+.customcardlist {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px
+}

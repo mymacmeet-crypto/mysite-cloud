@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
+    jcr:primaryType="nt:unstructured"
+    sling:resourceType="cq/gui/components/authoring/dialog">
+    <content
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/container">
+        <items jcr:primaryType="nt:unstructured">
+            <tabs
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/tabs"
+                maximized="{Boolean}true">
+                <items jcr:primaryType="nt:unstructured">
+
+                    <!-- ═══════════════════════════════════════════════════════ -->
+                    <!--  PROPERTIES TAB                                          -->
+                    <!-- ═══════════════════════════════════════════════════════ -->
+                    <propertiesTab
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Mag Copyright Bar"
+                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                        <items jcr:primaryType="nt:unstructured">
+
+                            <!-- Copyright Text -->
+                            <copyrightText
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Copyright Text"
+                                fieldDescription="Copyright text with HTML support (e.g., 'Copyright &amp;copy; 2026 Company Name.')."
+                                name="./copyrightText"
+                                required="{Boolean}true"/>
+
+                            <!-- Footer Links Multifield -->
+                            <linksMultifield
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                                composite="{Boolean}true"
+                                fieldLabel="Footer Links"
+                                fieldDescription="Add footer links (e.g., Privacy Policy, Terms).">
+                                <field
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/container"
+                                    name="./footerLink">
+                                    <items jcr:primaryType="nt:unstructured">
+
+                                        <!-- Link Label -->
+                                        <label
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="Link Label"
+                                            fieldDescription="Text displayed for the link (e.g., 'Privacy Policy')."
+                                            name="./label"
+                                            required="{Boolean}true"/>
+
+                                        <!-- Link URL -->
+                                        <link
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                            fieldLabel="Link URL"
+                                            fieldDescription="URL or page path for this link."
+                                            name="./link"
+                                            rootPath="/content"
+                                            required="{Boolean}true"/>
+
+                                    </items>
+                                </field>
+                            </linksMultifield>
+
+                            <!-- Social Media Section -->
+                            <socialHeading
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/heading"
+                                level="{Long}3"
+                                text="Social Media Links"/>
+
+                            <!-- Twitter URL -->
+                            <twitterUrl
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Twitter URL"
+                                fieldDescription="Full URL to Twitter/X profile (optional)."
+                                name="./twitterUrl"/>
+
+                            <!-- Facebook URL -->
+                            <facebookUrl
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Facebook URL"
+                                fieldDescription="Full URL to Facebook page (optional)."
+                                name="./facebookUrl"/>
+
+                        </items>
+                    </propertiesTab>
+
+                </items>
+            </tabs>
+        </items>
+    </content>
+</jcr:root>

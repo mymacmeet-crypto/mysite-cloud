@@ -1,0 +1,222 @@
+// ─── Theme Variables ─────────────────────────────────────────────────────────
+$footer-bg:           #ffffff;
+$footer-border:       #1a1a1a;
+$footer-text:         #3d3d3d;
+$footer-text-light:   #666666;
+$footer-title:        #1a1a1a;
+$footer-link:         #3d3d3d;
+$footer-link-hover:   #0066cc;
+$footer-transition:   0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+// ─── Footer Root ─────────────────────────────────────────────────────────────
+.mag-footer {
+  background: $footer-bg;
+  font-family: "Georgia", "Times New Roman", serif;
+  padding: 60px 0 40px;
+  position: relative;
+}
+
+// ─── Top Border ──────────────────────────────────────────────────────────────
+.mag-footer-border {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: $footer-border;
+}
+
+// ─── Container ───────────────────────────────────────────────────────────────
+.mag-footer-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 48px;
+}
+
+// ─── Grid ─────────────────────────────────────────────────────────────────────
+.mag-footer-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 48px;
+}
+
+// ─── Column ───────────────────────────────────────────────────────────────────
+.mag-footer-col {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+// ─── Title ────────────────────────────────────────────────────────────────────
+.mag-footer-title {
+  font-family: "Georgia", serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: $footer-title;
+  margin: 0;
+}
+
+// ═════════════════════════════════════════════════════════════════════════════
+//  COLUMN 1: MAGAZINE TEXT
+// ═════════════════════════════════════════════════════════════════════════════
+
+.mag-footer-text {
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: $footer-text;
+
+  p {
+    margin: 0 0 12px;
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+// ═════════════════════════════════════════════════════════════════════════════
+//  COLUMN 2: GALLERY
+// ═════════════════════════════════════════════════════════════════════════════
+
+.mag-footer-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.mag-footer-gallery-item {
+  aspect-ratio: 1;
+  overflow: hidden;
+  display: block;
+  transition: transform $footer-transition;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+}
+
+// ═════════════════════════════════════════════════════════════════════════════
+//  COLUMN 3: QUICK LINKS
+// ═════════════════════════════════════════════════════════════════════════════
+
+.mag-footer-links-grid {
+  display: flex;
+  gap: 24px;
+}
+
+.mag-footer-links-col {
+  flex: 1;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.mag-footer-link-item {
+  margin: 0;
+}
+
+.mag-footer-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: $footer-link;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: color $footer-transition;
+
+  &:hover {
+    color: $footer-link-hover;
+  }
+}
+
+.mag-footer-link-arrow {
+  flex-shrink: 0;
+  opacity: 0.6;
+}
+
+// ═════════════════════════════════════════════════════════════════════════════
+//  COLUMN 4: RECENT COMMENTS
+// ═════════════════════════════════════════════════════════════════════════════
+
+.mag-footer-comments-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.mag-footer-comment-item {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  margin: 0;
+}
+
+.mag-footer-comment-icon {
+  flex-shrink: 0;
+  color: $footer-text-light;
+  margin-top: 2px;
+}
+
+.mag-footer-comment-text {
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: $footer-text-light;
+
+  p {
+    margin: 0;
+  }
+}
+
+// ═════════════════════════════════════════════════════════════════════════════
+//  RESPONSIVE
+// ═════════════════════════════════════════════════════════════════════════════
+
+@media (max-width: 1024px) {
+  .mag-footer {
+    padding: 48px 0 32px;
+  }
+
+  .mag-footer-container {
+    padding: 0 32px;
+  }
+
+  .mag-footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+  }
+}
+
+@media (max-width: 640px) {
+  .mag-footer {
+    padding: 40px 0 24px;
+  }
+
+  .mag-footer-container {
+    padding: 0 24px;
+  }
+
+  .mag-footer-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .mag-footer-links-grid {
+    flex-direction: column;
+    gap: 12px;
+  }
+}
