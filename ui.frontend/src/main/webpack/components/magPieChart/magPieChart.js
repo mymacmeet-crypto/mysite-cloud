@@ -23,10 +23,20 @@ export function initMagPieChart(root) {
     return;
   }
 
+  // Apply colors from data attributes to legend
+  legendItems.forEach(item => {
+    const colorSpan = item.querySelector(".mag-pie-chart-legend-color");
+    const color = colorSpan.dataset.color;
+    if (color) {
+      colorSpan.style.backgroundColor = color;
+    }
+  });
+
   // Extract data from legend items
   const segments = legendItems.map((item, index) => {
     const label = item.querySelector(".mag-pie-chart-legend-label").textContent.trim();
-    const color = item.querySelector(".mag-pie-chart-legend-color").style.backgroundColor;
+    const colorSpan = item.querySelector(".mag-pie-chart-legend-color");
+    const color = colorSpan.dataset.color || colorSpan.style.backgroundColor;
     // Value will be set from data attribute or parsed from context
     return { label, color, value: 0, index };
   });
@@ -125,6 +135,10 @@ export function initMagPieChart(root) {
   });
 }
 
+/**
+ * createSegmentPath
+ * Creates an SVG path for a pie chart segment.
+ */
 function createSegmentPath(cx, cy, r, startAngle, endAngle) {
   const start = polarToCartesian(cx, cy, r, endAngle);
   const end = polarToCartesian(cx, cy, r, startAngle);
