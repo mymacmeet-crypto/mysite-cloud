@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
+    jcr:primaryType="nt:unstructured"
+    sling:resourceType="cq/gui/components/authoring/dialog">
+    <content
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/container">
+        <items jcr:primaryType="nt:unstructured">
+            <tabs
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/tabs"
+                maximized="{Boolean}true">
+                <items jcr:primaryType="nt:unstructured">
+
+                    <!-- ═══════════════════════════════════════════════════════ -->
+                    <!--  PROPERTIES TAB                                          -->
+                    <!-- ═══════════════════════════════════════════════════════ -->
+                    <propertiesTab
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Mag Pie Chart"
+                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                        <items jcr:primaryType="nt:unstructured">
+
+                            <!-- Chart Title -->
+                            <title
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Chart Title"
+                                fieldDescription="Title displayed above the pie chart (e.g., 'ROUND CHART')."
+                                name="./title"/>
+
+                            <!-- Info Text -->
+                            <infoText
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/well"
+                                text="Add 1-5 segments. Colors are automatically assigned from a predefined palette (Blue, Green, Amber, Red, Violet)."/>
+
+                            <!-- Segments Multifield -->
+                            <segmentsMultifield
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                                composite="{Boolean}true"
+                                fieldLabel="Chart Segments"
+                                fieldDescription="Add segments to the pie chart (minimum 1, maximum 5).">
+                                <field
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/container"
+                                    name="./segment">
+                                    <items jcr:primaryType="nt:unstructured">
+
+                                        <!-- Segment Label -->
+                                        <label
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="Label"
+                                            fieldDescription="Segment label (e.g., 'Option 1', 'Product A')."
+                                            name="./label"
+                                            required="{Boolean}true"/>
+
+                                        <!-- Segment Value -->
+                                        <value
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/numberfield"
+                                            fieldLabel="Value"
+                                            fieldDescription="Numeric value for this segment."
+                                            min="0"
+                                            name="./value"
+                                            required="{Boolean}true"
+                                            step="0.01"/>
+
+                                        <!-- Optional: Custom Color Override -->
+                                        <color
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/colorfield"
+                                            fieldLabel="Custom Color (Optional)"
+                                            fieldDescription="Override the auto-assigned color from the palette."
+                                            name="./color"/>
+
+                                    </items>
+                                </field>
+                            </segmentsMultifield>
+
+                        </items>
+                    </propertiesTab>
+
+                </items>
+            </tabs>
+        </items>
+    </content>
+</jcr:root>

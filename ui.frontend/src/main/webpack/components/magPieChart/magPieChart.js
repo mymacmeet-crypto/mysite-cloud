@@ -3,11 +3,11 @@ import "./magPieChart.scss";
 
 // Predefined color palette (supports up to 5 segments)
 const COLOR_PALETTE = [
-  "#00BCD4", // Cyan
-  "#FF6B6B", // Coral
-  "#4A4A5A", // Dark Gray
-  "#9B59B6", // Purple
-  "#F39C12", // Orange
+  "#3B82F6", // Blue
+  "#10B981", // Green
+  "#F59E0B", // Amber
+  "#EF4444", // Red
+  "#8B5CF6", // Violet
 ];
 
 export function initMagPieChart(root) {
@@ -57,14 +57,6 @@ export function initMagPieChart(root) {
     seg.percentage = ((seg.value / total) * 100).toFixed(1);
   });
 
-  // Update legend with percentages
-  legendItems.forEach((item, i) => {
-    const label = item.querySelector(".mag-pie-chart-legend-label");
-    if (segments[i]) {
-      label.textContent = `${segments[i].label} (${segments[i].percentage}%)`;
-    }
-  });
-
   // ── Draw Pie Chart ────────────────────────────────────────────────────────
 
   const centerX = 200;
@@ -76,14 +68,28 @@ export function initMagPieChart(root) {
     const angle = (segment.value / total) * 360;
     const endAngle = currentAngle + angle;
 
-    // Create path for segment
-    const path = createSegmentPath(centerX, centerY, radius, currentAngle, endAngle);
-    const segmentElement = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    let segmentElement;
+
+    // Special case: full circle (single segment with 100%)
+    if (angle >= 359.99) {
+      segmentElement = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+      segmentElement.setAttribute("cx", centerX);
+      segmentElement.setAttribute("cy", centerY);
+      segmentElement.setAttribute("r", radius);
+      segmentElement.setAttribute("fill", segment.color);
+      segmentElement.setAttribute("stroke", "#ffffff");
+      segmentElement.setAttribute("stroke-width", "2");
+    } else {
+      // Create path for segment
+      const path = createSegmentPath(centerX, centerY, radius, currentAngle, endAngle);
+      segmentElement = document.createElementNS("http://www.w3.org/2000/svg", "path");
+      
+      segmentElement.setAttribute("d", path);
+      segmentElement.setAttribute("fill", segment.color);
+      segmentElement.setAttribute("stroke", "#ffffff");
+      segmentElement.setAttribute("stroke-width", "2");
+    }
     
-    segmentElement.setAttribute("d", path);
-    segmentElement.setAttribute("fill", segment.color);
-    segmentElement.setAttribute("stroke", "#ffffff");
-    segmentElement.setAttribute("stroke-width", "2");
     segmentElement.classList.add("mag-pie-chart-segment");
     segmentElement.dataset.index = index;
     
@@ -119,10 +125,6 @@ export function initMagPieChart(root) {
   });
 }
 
-/**
- * createSegmentPath
- * Creates an SVG path for a pie chart segment.
- */
 function createSegmentPath(cx, cy, r, startAngle, endAngle) {
   const start = polarToCartesian(cx, cy, r, endAngle);
   const end = polarToCartesian(cx, cy, r, startAngle);
@@ -182,7 +184,6 @@ function updateTooltipPosition(event, tooltip) {
 function hideTooltip(tooltip) {
   tooltip.classList.remove("mag-pie-chart-tooltip-visible");
 }
-
 
 export const MagPieChart = (args) => {
   // Assign colors from palette if not provided
