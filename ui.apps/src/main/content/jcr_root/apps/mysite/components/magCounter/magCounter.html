@@ -1,11 +1,11 @@
 <sly data-sly-use.templates="core/wcm/components/commons/v1/templates.html" />
+<sly data-sly-use.model="com.mysite.core.models.MagCounterModel" />
 
-<div 
-  class="mag-counter"
-  data-component="magcounter"
-  data-sly-attribute.style="${model.backgroundStyle}"
->
-  <sly data-sly-use.model="com.mysite.core.models.MagCounterModel"></sly>
+<div class="mag-counter" data-component="magcounter">
+
+  <sly data-sly-test="${model.backgroundImage}">
+    <sly data-sly-attribute.style="background-image: url('${model.backgroundImage}')"></sly>
+  </sly>
 
   <div class="mag-counter-overlay"></div>
   
@@ -31,10 +31,6 @@
     </sly>
   </div>
 
-  <sly
-    data-sly-call="${templates.placeholder @
-        isEmpty = !model.items || model.items.size == 0,
-        cq:emptyText = 'Mag Counter',
-        classAppend='mag-counter'}"
-  />
+  <sly data-sly-call="${templates.placeholder @ isEmpty = !model.items || model.items.size == 0, cq:emptyText = 'Mag Counter', classAppend='mag-counter'}" />
+
 </div>
