@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
+    jcr:primaryType="nt:unstructured"
+    sling:resourceType="cq/gui/components/authoring/dialog">
+    <content
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/container">
+        <items jcr:primaryType="nt:unstructured">
+            <tabs
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/tabs"
+                maximized="{Boolean}true">
+                <items jcr:primaryType="nt:unstructured">
+
+                    <!-- ═══════════════════════════════════════════════════════ -->
+                    <!--  MAP SETTINGS TAB                                       -->
+                    <!-- ═══════════════════════════════════════════════════════ -->
+                    <mapSettingsTab
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Map Settings"
+                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                        <items jcr:primaryType="nt:unstructured">
+
+                            <!-- Google Maps API Key -->
+                            <apiKey
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Google Maps API Key"
+                                fieldDescription="Enter your Google Maps JavaScript API key."
+                                name="./apiKey"
+                                required="{Boolean}true"/>
+
+                            <!-- Default Zoom Level -->
+                            <mapZoom
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/numberfield"
+                                fieldLabel="Default Zoom Level"
+                                fieldDescription="Zoom level from 1 (world) to 20 (building). Default: 4."
+                                name="./mapZoom"
+                                min="{Long}1"
+                                max="{Long}20"
+                                value="4"/>
+
+                            <!-- Map Height -->
+                            <mapHeight
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Map Height"
+                                fieldDescription="CSS height value, e.g. 500px (default: 500px)."
+                                name="./mapHeight"/>
+
+                            <!-- Enable Scroll Zoom -->
+                            <enableScrollZoom
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                fieldDescription="Allow users to zoom the map with scroll wheel."
+                                name="./enableScrollZoom"
+                                text="Enable Scroll Zoom"
+                                uncheckedValue=""
+                                value="true"/>
+
+                            <!-- Show Street View Control -->
+                            <enableStreetView
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                fieldDescription="Display the street view pegman control."
+                                name="./enableStreetView"
+                                text="Show Street View Control"
+                                uncheckedValue=""
+                                value="true"/>
+
+                            <!-- Map Style -->
+                            <mapStyle
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                fieldLabel="Map Style"
+                                fieldDescription="Visual style preset for the map."
+                                name="./mapStyle">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <grayscale
+                                        jcr:primaryType="nt:unstructured"
+                                        text="Grayscale"
+                                        value="grayscale"
+                                        selected="{Boolean}true"/>
+                                    <standard
+                                        jcr:primaryType="nt:unstructured"
+                                        text="Standard"
+                                        value="standard"/>
+                                    <dark
+                                        jcr:primaryType="nt:unstructured"
+                                        text="Dark"
+                                        value="dark"/>
+                                    <retro
+                                        jcr:primaryType="nt:unstructured"
+                                        text="Retro"
+                                        value="retro"/>
+                                </items>
+                            </mapStyle>
+
+                        </items>
+                    </mapSettingsTab>
+
+                    <!-- ═══════════════════════════════════════════════════════ -->
+                    <!--  LOCATIONS TAB                                          -->
+                    <!-- ═══════════════════════════════════════════════════════ -->
+                    <locationsTab
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Locations"
+                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                        <items jcr:primaryType="nt:unstructured">
+
+                            <!-- Locations Multifield -->
+                            <locationsMultifield
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                                composite="{Boolean}true"
+                                fieldLabel="Office Locations"
+                                fieldDescription="Add office locations with coordinates.">
+                                <field
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/container"
+                                    name="./mapLocation">
+                                    <items jcr:primaryType="nt:unstructured">
+
+                                        <!-- Location Name -->
+                                        <locationName
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="Location Name"
+                                            fieldDescription="e.g. 'Satellite Office', 'Head Quarter'"
+                                            name="./locationName"
+                                            required="{Boolean}true"/>
+
+                                        <!-- Address -->
+                                        <address
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textarea"
+                                            fieldLabel="Address"
+                                            fieldDescription="Full street address."
+                                            name="./address"
+                                            required="{Boolean}true"
+                                            rows="2"/>
+
+                                        <!-- Phone -->
+                                        <phone
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="Phone Number"
+                                            fieldDescription="e.g. '+44 20 7946 0958'"
+                                            name="./phone"/>
+
+                                        <!-- Email -->
+                                        <email
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="Email Address"
+                                            fieldDescription="e.g. 'london@company.com'"
+                                            name="./email"/>
+
+                                        <!-- Latitude -->
+                                        <latitude
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="Latitude"
+                                            fieldDescription="e.g. '51.5074'"
+                                            name="./latitude"
+                                            required="{Boolean}true"/>
+
+                                        <!-- Longitude -->
+                                        <longitude
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="Longitude"
+                                            fieldDescription="e.g. '-0.1278'"
+                                            name="./longitude"
+                                            required="{Boolean}true"/>
+
+                                    </items>
+                                </field>
+                            </locationsMultifield>
+
+                        </items>
+                    </locationsTab>
+
+                </items>
+            </tabs>
+        </items>
+    </content>
+</jcr:root>
