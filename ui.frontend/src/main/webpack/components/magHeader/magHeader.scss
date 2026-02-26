@@ -230,6 +230,10 @@ $mag-transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 }
 
+.cmp-link__screen-reader-only {
+  display: none;
+}
+
 // ─── Search ───────────────────────────────────────────────────────────────────
 .mag-search {
   margin-left: auto;

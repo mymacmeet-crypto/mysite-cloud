@@ -82,6 +82,10 @@ $copyright-bar-transition:  0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 }
 
+.cmp-link__screen-reader-only {
+  display: none;
+}
+
 .mag-copyright-bar-social svg,
 .mag-copyright-bar-link-arrow {
   display: inline-block;

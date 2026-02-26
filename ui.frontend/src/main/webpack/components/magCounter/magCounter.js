@@ -6,6 +6,12 @@ export function initMagCounter(root) {
     return;
   }
 
+  // Apply background image from data attribute
+  const backgroundImage = root.dataset.background;
+  if (backgroundImage) {
+    root.style.backgroundImage = `url('${backgroundImage}')`;
+  }
+
   const items = Array.from(root.querySelectorAll(".mag-counter-item"));
   
   if (!items.length) {
@@ -40,7 +46,9 @@ export function initMagCounter(root) {
   }
 
   function animateAllCounters() {
-    if (hasAnimated) {return;}
+    if (hasAnimated) {
+      return;
+    }
     
     hasAnimated = true;
     
