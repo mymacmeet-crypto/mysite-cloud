@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
+    jcr:primaryType="nt:unstructured"
+    sling:resourceType="cq/gui/components/authoring/dialog">
+    <content
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/container">
+        <items jcr:primaryType="nt:unstructured">
+            <tabs
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/tabs"
+                maximized="{Boolean}true">
+                <items jcr:primaryType="nt:unstructured">
+
+                    <!-- ═══════════════════════════════════════════════════════ -->
+                    <!--  PROPERTIES TAB                                          -->
+                    <!-- ═══════════════════════════════════════════════════════ -->
+                    <propertiesTab
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Properties"
+                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                        <items jcr:primaryType="nt:unstructured">
+
+                            <!-- Title -->
+                            <title
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Section Title"
+                                fieldDescription="Title displayed above the tabs (e.g., 'Featured Projects')."
+                                name="./title"/>
+
+                        </items>
+                    </propertiesTab>
+
+                    <!-- ═══════════════════════════════════════════════════════ -->
+                    <!--  TABS TAB                                                -->
+                    <!-- ═══════════════════════════════════════════════════════ -->
+                    <tabsTab
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Tabs"
+                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                        <items jcr:primaryType="nt:unstructured">
+
+                            <!-- Info Text -->
+                            <infoText
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/well"
+                                text="Define tab buttons. Each tab filters cards by matching category. Add a tab with category 'all' to show all cards."/>
+
+                            <!-- Tabs Multifield -->
+                            <tabsMultifield
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                                composite="{Boolean}true"
+                                fieldLabel="Tab Buttons"
+                                fieldDescription="Add tab buttons (no limit).">
+                                <field
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/container"
+                                    name="./tab">
+                                    <items jcr:primaryType="nt:unstructured">
+
+                                        <!-- Tab Label -->
+                                        <label
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="Tab Label"
+                                            fieldDescription="Text displayed on the tab button (e.g., 'ALL PROJECTS', 'BUILDINGS')."
+                                            name="./label"
+                                            required="{Boolean}true"/>
+
+                                        <!-- Tab Category -->
+                                        <category
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="Category Filter"
+                                            fieldDescription="Category value to filter cards (e.g., 'BUILDINGS', 'INTERIOR DESIGN'). Use 'all' to show all cards."
+                                            name="./category"
+                                            required="{Boolean}true"/>
+
+                                    </items>
+                                </field>
+                            </tabsMultifield>
+
+                        </items>
+                    </tabsTab>
+
+                    <!-- ═══════════════════════════════════════════════════════ -->
+                    <!--  CARDS TAB                                               -->
+                    <!-- ═══════════════════════════════════════════════════════ -->
+                    <cardsTab
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Cards"
+                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                        <items jcr:primaryType="nt:unstructured">
+
+                            <!-- Info Text -->
+                            <infoCards
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/well"
+                                text="Add cards with category field. Cards will be filtered by tabs based on matching category values."/>
+
+                            <!-- Cards Multifield -->
+                            <cardsMultifield
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                                composite="{Boolean}true"
+                                fieldLabel="Cards"
+                                fieldDescription="Add cards to display in the tab panels.">
+                                <field
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/container"
+                                    name="./card">
+                                    <items jcr:primaryType="nt:unstructured">
+
+                                        <!-- Image -->
+                                        <image
+                                            granite:class="cmp-image__editor-file-upload"
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="cq/gui/components/authoring/dialog/fileupload"
+                                            fieldLabel="Card Image"
+                                            fieldDescription="Upload card thumbnail image."
+                                            fileNameParameter="./imageFileName"
+                                            fileReferenceParameter="./fileReference"
+                                            mimeTypes="[image/gif,image/jpeg,image/png,image/webp]"
+                                            name="./imageFile"
+                                            rootPath="/content/dam/mysite"/>
+
+                                        <!-- Title -->
+                                        <title
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="Title"
+                                            fieldDescription="Card headline."
+                                            name="./title"
+                                            required="{Boolean}true"/>
+
+                                        <!-- Text (RTE) -->
+                                        <text
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="cq/gui/components/authoring/dialog/richtext"
+                                            fieldLabel="Description"
+                                            fieldDescription="Card excerpt text."
+                                            name="./text"
+                                            useFixedInlineToolbar="{Boolean}true">
+                                            <rtePlugins jcr:primaryType="nt:unstructured">
+                                                <format
+                                                    jcr:primaryType="nt:unstructured"
+                                                    features="bold,italic"/>
+                                            </rtePlugins>
+                                        </text>
+
+                                        <!-- Category -->
+                                        <category
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="Category"
+                                            fieldDescription="Category for filtering (must match tab category values, e.g., 'BUILDINGS')."
+                                            name="./category"
+                                            required="{Boolean}true"/>
+
+                                        <!-- Comments -->
+                                        <comments
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/numberfield"
+                                            fieldLabel="Comments Count"
+                                            fieldDescription="Number of comments (optional)."
+                                            min="0"
+                                            name="./comments"/>
+
+                                        <!-- Views -->
+                                        <views
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/numberfield"
+                                            fieldLabel="Views Count"
+                                            fieldDescription="Number of views (optional)."
+                                            min="0"
+                                            name="./views"/>
+
+                                        <!-- Link -->
+                                        <link
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                            fieldLabel="Link"
+                                            fieldDescription="Navigation URL when card is clicked (optional)."
+                                            name="./link"
+                                            rootPath="/content"/>
+
+                                    </items>
+                                </field>
+                            </cardsMultifield>
+
+                        </items>
+                    </cardsTab>
+
+                </items>
+            </tabs>
+        </items>
+    </content>
+</jcr:root>

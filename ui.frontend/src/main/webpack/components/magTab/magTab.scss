@@ -1,0 +1,255 @@
+// ─── Theme Variables ─────────────────────────────────────────────────────────
+$tab-bg:              #2c3e50;
+$tab-title:           #ffffff;
+$tab-button-bg:       rgba(0, 0, 0, 0.2);
+$tab-button-active:   #3B82F6;
+$tab-button-text:     rgba(255, 255, 255, 0.8);
+$tab-button-hover:    rgba(255, 255, 255, 0.1);
+$card-bg:             #ffffff;
+$card-text:           #3d3d3d;
+$card-border:         #e0e0e0;
+$tab-transition:      0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+// ─── Tab Root ────────────────────────────────────────────────────────────────
+.mag-tab {
+  background: $tab-bg;
+  padding: 30px;
+  font-family: "Georgia", "Times New Roman", serif;
+}
+
+// ─── Title ───────────────────────────────────────────────────────────────────
+.mag-tab-title {
+  max-width: 1400px;
+  margin: 0 auto 24px;
+  font-size: 2.5rem;
+  font-weight: 500;
+  color: $tab-title;
+  text-transform: capitalize;
+}
+
+// ─── Tab Navigation ──────────────────────────────────────────────────────────
+.mag-tab-nav-wrapper {
+  max-width: 1400px;
+  margin: 0 auto 32px;
+  overflow: hidden;
+}
+
+.mag-tab-nav {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.mag-tab-button {
+  flex-shrink: 0;
+  padding: 14px 32px;
+  background: $tab-button-bg;
+  border: none;
+  color: $tab-button-text;
+  font-family: "Arial", "Helvetica", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: all $tab-transition;
+  white-space: nowrap;
+
+  &:hover {
+    background: $tab-button-hover;
+    color: #ffffff;
+  }
+
+  &.mag-tab-active {
+    background: $tab-button-active;
+    color: #ffffff;
+  }
+}
+
+// ─── Tab Content ─────────────────────────────────────────────────────────────
+.mag-tab-content {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.mag-tab-panel {
+  display: none;
+
+  &.mag-tab-panel-active {
+    display: block;
+  }
+}
+
+// ─── Card Grid ───────────────────────────────────────────────────────────────
+.mag-tab-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px 32px;
+}
+
+// ─── Card Item (Inline from magCard) ────────────────────────────────────────
+.mag-tab-card {
+  display: flex;
+  flex-direction: column;
+  background: $card-bg;
+  cursor: pointer;
+  transition: transform $tab-transition;
+
+  &:hover {
+    transform: translateY(-4px);
+
+    .mag-tab-card-image img {
+      transform: scale(1.04);
+    }
+
+    .mag-tab-card-title {
+      opacity: 0.8;
+    }
+  }
+}
+
+// ─── Card Image ──────────────────────────────────────────────────────────────
+.mag-tab-card-image {
+  width: 100%;
+  margin-bottom: 20px;
+  overflow: hidden;
+  background: #e0e0e0;
+}
+
+.mag-tab-card-image img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+// ─── Card Body ───────────────────────────────────────────────────────────────
+.mag-tab-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 0px 10px 20px;
+}
+
+.mag-tab-card-title {
+  font-family: "Georgia", serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 1.3;
+  color: $card-text;
+  margin: 0;
+  transition: opacity $tab-transition;
+}
+
+.mag-tab-card-text {
+  font-family: "Georgia", serif;
+  font-size: 0.9rem;
+  line-height: 1.65;
+  color: $card-text;
+  margin: 0;
+
+  p {
+    margin: 0;
+  }
+}
+
+.mag-tab-card-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  font-family: "Arial", "Helvetica", sans-serif;
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.mag-tab-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  border: 1px solid black;
+  border-radius: 999px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: $card-text;
+  line-height: 1.6;
+  white-space: nowrap;
+}
+
+.mag-tab-meta-stat {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: $card-text;
+
+  svg {
+    flex-shrink: 0;
+    opacity: 0.65;
+  }
+}
+
+// ═════════════════════════════════════════════════════════════════════════════
+//  RESPONSIVE
+// ═════════════════════════════════════════════════════════════════════════════
+
+@media (max-width: 1200px) {
+  .mag-tab-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .mag-tab {
+    padding: 48px 0 60px;
+  }
+
+  .mag-tab-title {
+    font-size: 2rem;
+    padding: 0 32px;
+    margin-bottom: 32px;
+  }
+
+  .mag-tab-nav-wrapper {
+    padding: 0 32px;
+    margin-bottom: 48px;
+  }
+
+  .mag-tab-content {
+    padding: 0 32px;
+  }
+
+  .mag-tab-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .mag-tab-button {
+    padding: 12px 24px;
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .mag-tab-title {
+    font-size: 1.5rem;
+    padding: 0 24px;
+  }
+
+  .mag-tab-nav-wrapper {
+    padding: 0 24px;
+  }
+
+  .mag-tab-content {
+    padding: 0 24px;
+  }
+}
