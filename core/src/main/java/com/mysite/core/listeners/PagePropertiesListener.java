@@ -1,10 +1,18 @@
 package com.mysite.core.listeners;
 
-import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+
+import javax.jcr.Node;
+import javax.jcr.Property;
+import javax.jcr.PropertyIterator;
+import javax.jcr.Session;
+import javax.jcr.version.Version;
+import javax.jcr.version.VersionHistory;
+import javax.jcr.version.VersionIterator;
+import javax.jcr.version.VersionManager;
 
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
@@ -19,9 +27,7 @@ import com.day.cq.wcm.api.PageManager;
 
 @Component(service = ResourceChangeListener.class, property = {
 
-		ResourceChangeListener.PATHS + "=/content/mysite",
-
-		ResourceChangeListener.CHANGES + "=CHANGED"
+//		ResourceChangeListener.PATHS + "=/content/mysite", ResourceChangeListener.CHANGES + "=CHANGED"
 
 })
 public class PagePropertiesListener implements ResourceChangeListener {
@@ -29,24 +35,40 @@ public class PagePropertiesListener implements ResourceChangeListener {
 	@Reference
 	private ResourceResolverFactory resolverFactory;
 
-// prevent duplicate triggers
+	/** prevent duplicate triggers **/
 	private static final Map<String, Long> LOCK = new HashMap<>();
 
 	@Override
 	public void onChange(List<ResourceChange> changes) {
+
 		Map<String, Object> param = Map.of(ResourceResolverFactory.SUBSERVICE, "myproject-service");
 
 		try (ResourceResolver resolver = resolverFactory.getServiceResourceResolver(param)) {
 
 			PageManager pm = resolver.adaptTo(PageManager.class);
 
+			Session session = resolver.adaptTo(Session.class);
+
+			VersionManager vm = session.getWorkspace().getVersionManager();
+
 			for (ResourceChange change : changes) {
 
 				String path = change.getPath();
 
+/// ONLY jcr:content
 				if (!path.endsWith("jcr:content")) {
 					continue;
 				}
+
+				long now = System.currentTimeMillis();
+
+/// STOP LOOP (Revision also fires event)
+				if (LOCK.containsKey(path) && now - LOCK.get(path) < 10000) {
+
+					continue;
+				}
+
+				LOCK.put(path, now);
 
 				Resource resource = resolver.getResource(path);
 
@@ -54,54 +76,93 @@ public class PagePropertiesListener implements ResourceChangeListener {
 					continue;
 				}
 
-				long now = System.currentTimeMillis();
-
-				if (LOCK.containsKey(path) && now - LOCK.get(path) < 5000) {
-
-					continue;
-				}
-
-				LOCK.put(path, now);
-
 				Page page = pm.getContainingPage(resource);
 
 				if (page == null) {
 					continue;
 				}
 
-				Calendar offTime = resource.getValueMap().get("offTime", Calendar.class);
+				String versionPath = page.getPath() + "/jcr:content";
 
-				if (offTime == null) {
+/// MUST be versionable
+				if (!session.nodeExists(versionPath)) {
 					continue;
 				}
 
-				long expiryMillis = offTime.getTimeInMillis();
+				Node currentNode = session.getNode(versionPath);
 
-				long currentMillis = System.currentTimeMillis();
+/// ensure versionable
+				if (!currentNode.isNodeType("mix:versionable")) {
+					continue;
+				}
 
-				long diffMillis = expiryMillis - currentMillis;
+				VersionHistory vh = vm.getVersionHistory(versionPath);
 
-				String message = "";
-				if (diffMillis <= 0) {
+				VersionIterator it = vh.getAllVersions();
 
-					message = "Page already expired";
+				Version lastVersion = null;
 
-				} else {
+/// get latest REAL version
+				while (it.hasNext()) {
 
-					long hours = diffMillis / (1000 * 60 * 60);
-
-					message = "Page is going to expire in : " + hours + " hours";
+					lastVersion = it.nextVersion();
 
 				}
 
+// ignore rootVersion
+				if (lastVersion == null || "jcr:rootVersion".equals(lastVersion.getName())) {
+
+					continue;
+				}
+
+				Node frozenNode = lastVersion.getFrozenNode();
+
+				PropertyIterator props = currentNode.getProperties();
+
+				StringBuilder changeLog = new StringBuilder();
+
+/// compare properties
+				while (props.hasNext()) {
+
+					Property prop = props.nextProperty();
+
+					String name = prop.getName();
+
+/// Skip system props BUT allow title
+					if ((name.startsWith("jcr") && !"jcr:title".equals(name)) || name.startsWith("cq")) {
+						continue;
+					}
+
+					if (!frozenNode.hasProperty(name)) {
+						continue;
+					}
+
+					String newValue = prop.getString();
+
+					String oldValue = frozenNode.getProperty(name).getString();
+
+					if (!Objects.equals(oldValue, newValue)) {
+
+						changeLog.append(name).append(" changed from ").append(oldValue).append(" → ").append(newValue)
+								.append("\n");
+
+					}
+
+				}
+
+// DO NOT CREATE EMPTY REVISION
+				if (changeLog.length() == 0) {
+					continue;
+				}
+
+// CREATE REVISION
 				pm.createRevision(
 
-						page,
+						page, "Page Properties Updated", changeLog.toString()
 
-						"",
-
-						message
 				);
+
+				System.out.println("Revision created -> " + page.getPath());
 
 			}
 
