@@ -29,6 +29,25 @@
                                 fieldDescription="Title displayed above the tabs (e.g., 'Featured Projects')."
                                 name="./title"/>
 
+                            <!-- ─────────────────────────────────────────────── -->
+                            <!--  PARENT PATH (Content Reuse)                    -->
+                            <!-- ─────────────────────────────────────────────── -->
+
+                            <!-- Info banner shown only when parentPath is in use -->
+                            <parentPathInfo
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/well"
+                                text="Optional — Parent Path. When set, cards are loaded from the specified AEM node instead of the locally-authored Cards tab. Local cards act as a fallback if the path cannot be resolved."/>
+
+                            <!-- Parent Path field -->
+                            <parentPath
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                fieldLabel="Parent Path"
+                                fieldDescription="Path to another page or component node whose 'card' child nodes will be used as the card source (e.g., /content/mysite/en/projects/jcr:content/root/container/magtab)."
+                                name="./parentPath"
+                                rootPath="/content"/>
+
                         </items>
                     </propertiesTab>
 
@@ -98,7 +117,7 @@
                             <infoCards
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/well"
-                                text="Add cards with category field. Cards will be filtered by tabs based on matching category values."/>
+                                text="Add cards with category field. Cards will be filtered by tabs based on matching category values. Note: if a Parent Path is configured in the Properties tab, these local cards will only be used as a fallback."/>
 
                             <!-- Cards Multifield -->
                             <cardsMultifield

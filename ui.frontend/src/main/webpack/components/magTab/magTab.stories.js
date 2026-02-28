@@ -80,6 +80,37 @@ const sampleCards = [
   },
 ];
 
+// ─── Simulated "parent path" card set ────────────────────────────────────────
+// In AEM, these cards would live under a different page/node. In Storybook we
+// simulate the resolved result that MagTabModel would produce after resolving
+// the parentPath and reading its "card" child nodes.
+const parentPathCards = [
+  {
+    fileReference: "https://images.unsplash.com/photo-1486325212027-8081e485255e?w=600&q=80",
+    title: "Shared Heritage Library",
+    text: "<p>Cards pulled from /content/mysite/en/shared-projects — reused across multiple pages without duplication.</p>",
+    category: "BUILDINGS",
+    comments: 31,
+    views: 1200,
+  },
+  {
+    fileReference: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&q=80",
+    title: "Global Innovation Hub",
+    text: "<p>A multi-site workspace designed for collaborative research and cross-disciplinary teams.</p>",
+    category: "INTERIOR DESIGN",
+    comments: 44,
+    views: 2100,
+  },
+  {
+    fileReference: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80",
+    title: "Green Rooftop Garden Complex",
+    text: "<p>Urban farming meets architectural innovation in this award-winning mixed-use development.</p>",
+    category: "BUILDINGS",
+    comments: 19,
+    views: 870,
+  },
+];
+
 /** Default — Matching reference image */
 export const Default = {
   render: () =>
@@ -94,6 +125,29 @@ export const Default = {
         { label: "TILING", category: "TILING" },
       ],
       cards: sampleCards,
+    }),
+};
+
+/**
+ * Parent Path — simulates the AEM server-side behaviour where MagTabModel
+ * resolves the authored parentPath and substitutes those cards in place of
+ * the locally-authored ones.  The `parentPath` arg is purely cosmetic in
+ * Storybook (it sets data-parent-path on the root element for inspection);
+ * the actual card substitution is driven by the `cards` array here, just as
+ * MagTabModel would supply after resolving the remote node.
+ */
+export const ParentPath = {
+  render: () =>
+    MagTab({
+      title: "Shared Portfolio (Parent Path)",
+      parentPath: "/content/mysite/en/shared-projects/jcr:content/root/container/magtab",
+      tabs: [
+        { label: "ALL PROJECTS", category: "all" },
+        { label: "BUILDINGS", category: "BUILDINGS" },
+        { label: "INTERIOR DESIGN", category: "INTERIOR DESIGN" },
+      ],
+      // Cards resolved from the remote parentPath node by MagTabModel
+      cards: parentPathCards,
     }),
 };
 

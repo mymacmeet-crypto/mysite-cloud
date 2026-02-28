@@ -194,6 +194,8 @@ export function initMagTab(root) {
 }
 
 export const MagTab = (args) => {
+  // Pass parentPath from args through to dataset for JS inspection
+  // (AEM sets this via data-parent-path in HTL; Storybook mirrors it here)
   const wrapper = document.createElement("div");
   wrapper.innerHTML = template(args);
   const root = wrapper.firstElementChild;
@@ -201,6 +203,11 @@ export const MagTab = (args) => {
   // Store cards data for filtering
   if (args.cards) {
     root.dataset.cards = JSON.stringify(args.cards);
+  }
+
+  // Mirror the AEM data-parent-path attribute for Storybook inspection
+  if (args.parentPath) {
+    root.dataset.parentPath = args.parentPath;
   }
 
   // Generate unique ID for localStorage

@@ -1,5 +1,9 @@
-<div class="mag-tab" data-component="magtab">
-  
+<div
+  class="mag-tab"
+  data-component="magtab"
+  {{#if parentPath}}data-parent-path="{{parentPath}}"{{/if}}
+>
+
   {{#if title}}
     <h2 class="mag-tab-title">{{title}}</h2>
   {{/if}}
@@ -9,8 +13,8 @@
     <div class="mag-tab-nav-wrapper">
       <div class="mag-tab-nav">
         {{#each tabs}}
-          <button 
-            class="mag-tab-button {{#if @first}}mag-tab-active{{/if}}" 
+          <button
+            class="mag-tab-button {{#if @first}}mag-tab-active{{/if}}"
             data-category="{{category}}"
             data-index="{{@index}}"
           >
@@ -26,7 +30,7 @@
         {{#each tabs}}
           <div class="mag-tab-panel {{#if @first}}mag-tab-panel-active{{/if}}" data-category="{{category}}">
             <div class="mag-tab-grid">
-              <!-- Cards will be filtered and rendered by JavaScript -->
+              <!-- Cards are filtered and rendered by JavaScript -->
             </div>
           </div>
         {{/each}}

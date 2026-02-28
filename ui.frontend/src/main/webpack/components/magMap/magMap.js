@@ -104,8 +104,8 @@ function createMarkerIcon() {
 
 function getVisibleCount() {
   const width = window.innerWidth;
-  if (width <= 640) return 1;
-  if (width <= 1024) return 2;
+  if (width <= 640) {return 1;}
+  if (width <= 1024) {return 2;}
   return 3;
 }
 
@@ -114,7 +114,7 @@ function getVisibleCount() {
 // ══════════════════════════════════════════════════════════════════════════════
 
 export function initMagMap(root) {
-  if (!root) return;
+  if (!root) {return;}
 
   const apiKey = root.dataset.apiKey;
   const canvas = root.querySelector(".mag-map-canvas");
@@ -123,7 +123,7 @@ export function initMagMap(root) {
   const prevBtn = root.querySelector(".mag-map-nav-prev");
   const nextBtn = root.querySelector(".mag-map-nav-next");
 
-  if (!canvas) return;
+  if (!canvas) {return;}
 
   // Apply map height
   const mapHeight = root.dataset.mapHeight || "500px";
@@ -141,11 +141,10 @@ export function initMagMap(root) {
   // ── Carousel State ────────────────────────────────────────────────────────
 
   let currentIndex = 0;
-  let markers = [];
   let map = null;
 
   function updateCarousel() {
-    if (!track || cards.length === 0) return;
+    if (!track || cards.length === 0) {return;}
 
     const visibleCount = getVisibleCount();
     const cardWidth = cards[0].offsetWidth;
@@ -154,9 +153,9 @@ export function initMagMap(root) {
     track.style.transform = "translateX(-" + offset + "px)";
 
     // Update button states
-    if (prevBtn) prevBtn.disabled = currentIndex === 0;
+    if (prevBtn) {prevBtn.disabled = currentIndex === 0;}
     if (nextBtn)
-      nextBtn.disabled = currentIndex >= cards.length - visibleCount;
+      {nextBtn.disabled = currentIndex >= cards.length - visibleCount;}
 
     // Highlight active cards
     cards.forEach((card, i) => {
@@ -168,7 +167,7 @@ export function initMagMap(root) {
   }
 
   function fitMapToVisibleMarkers() {
-    if (!map || !window.google) return;
+    if (!map || !window.google) {return;}
 
     const visibleCount = getVisibleCount();
     const visibleLocations = locations.slice(
@@ -176,7 +175,7 @@ export function initMagMap(root) {
       currentIndex + visibleCount,
     );
 
-    if (visibleLocations.length === 0) return;
+    if (visibleLocations.length === 0) {return;}
 
     if (visibleLocations.length === 1) {
       map.setCenter({
@@ -216,7 +215,7 @@ export function initMagMap(root) {
   // Card click -> center map on that location
   cards.forEach((card, i) => {
     card.addEventListener("click", () => {
-      if (!map || !window.google) return;
+      if (!map || !window.google) { return; }
       const loc = locations[i];
       map.setCenter({ lat: loc.lat, lng: loc.lng });
       map.setZoom(14);
@@ -230,7 +229,7 @@ export function initMagMap(root) {
   // ── Google Maps Init ──────────────────────────────────────────────────────
 
   // For Storybook or missing API key, show a styled placeholder
-  if (!apiKey || apiKey === "AIzaSyDbxdM_pA81YqlheJSleL2wG2-5-64j9NQ" || apiKey === "undefined") {
+  if (!apiKey  || apiKey === "undefined") {
     canvas.innerHTML =
       '<div class="mag-map-placeholder">' +
       '<svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#999" stroke-width="1.5">' +

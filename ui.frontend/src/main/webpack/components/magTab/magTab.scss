@@ -253,3 +253,32 @@ $tab-transition:      0.3s cubic-bezier(0.4, 0, 0.2, 1);
     padding: 0 24px;
   }
 }
+
+// ─── Author-mode Parent Path Notice ──────────────────────────────────────────
+// Shown in WCM Edit mode only when cards are sourced from a parentPath node.
+.mag-tab-parent-path-notice {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  max-width: 1400px;
+  margin: 0 auto 16px;
+  padding: 10px 16px;
+  background: rgba(59, 130, 246, 0.12);
+  border: 1px solid rgba(59, 130, 246, 0.4);
+  border-radius: 4px;
+  font-family: "Arial", "Helvetica", sans-serif;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.4;
+
+  svg {
+    flex-shrink: 0;
+    color: #3B82F6;
+  }
+
+  strong {
+    font-family: "Courier New", monospace;
+    font-size: 0.75rem;
+    word-break: break-all;
+  }
+}
