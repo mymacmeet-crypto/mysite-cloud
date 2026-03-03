@@ -1,17 +1,21 @@
 import template from "./conCarousel.hbs";
 import "./conCarousel.scss";
 
-/**
- * initConCarousel
- * Carousel with 3D cube block rotation animation and automatic title highlighting.
- *
- * @param {HTMLElement} root – the .con-carousel element
- */
+const CUBE_FACES = [
+  { rotate: "rotateY(0deg)", show: "rotateY(0deg)" }, // front  → rotates right
+  { rotate: "rotateY(90deg)", show: "rotateY(-90deg)" }, // right  → rotates up
+  { rotate: "rotateX(-90deg)", show: "rotateX(90deg)" }, // top    → rotates back
+  { rotate: "rotateY(180deg)", show: "rotateY(-180deg)" }, // back   → rotates left
+  { rotate: "rotateY(-90deg)", show: "rotateY(90deg)" }, // left   → rotates down
+  { rotate: "rotateX(90deg)", show: "rotateX(-90deg)" }, // bottom → repeats cycle
+];
+
 export function initConCarousel(root) {
   if (!root) {
     return;
   }
 
+  const viewport = root.querySelector(".con-carousel-viewport");
   const track = root.querySelector(".con-carousel-track");
   const prevBtn = root.querySelector(".con-carousel-prev");
   const nextBtn = root.querySelector(".con-carousel-next");
@@ -26,8 +30,7 @@ export function initConCarousel(root) {
   let autoplayTimer = null;
 
   // ── Apply Background Images ──────────────────────────────────────────────
-
-  slides.forEach(slide => {
+  slides.forEach((slide) => {
     const bgImage = slide.dataset.background;
     if (bgImage) {
       slide.style.backgroundImage = `url('${bgImage}')`;
@@ -35,36 +38,57 @@ export function initConCarousel(root) {
   });
 
   // ── Split Titles (First Word Highlighted) ────────────────────────────────
-
-  slides.forEach(slide => {
+  slides.forEach((slide) => {
     const titleEl = slide.querySelector(".con-carousel-title");
-    if (titleEl) {
-      const titleText = titleEl.dataset.title;
-      if (titleText) {
-        const words = titleText.trim().split(/\s+/);
-        if (words.length > 0) {
-          const firstWord = words[0];
-          const restWords = words.slice(1).join(" ");
-          
-          titleEl.innerHTML = `<span class="con-highlight">${firstWord}</span> ${restWords}`;
-        } else {
-          titleEl.textContent = titleText;
-        }
-      }
+    if (!titleEl) {
+      return;
+    }
+    const titleText = titleEl.dataset.title;
+    if (!titleText) {
+      return;
+    }
+    const words = titleText.trim().split(/\s+/);
+    if (words.length > 0) {
+      const firstWord = words[0];
+      const restWords = words.slice(1).join(" ");
+      titleEl.innerHTML = `<span class="con-highlight">${firstWord}</span>${restWords ? " " + restWords : ""}`;
+    } else {
+      titleEl.textContent = titleText;
     }
   });
 
-  // ── 3D Cube Rotation ──────────────────────────────────────────────────────
+  function getHalfSize() {
+    return viewport ? viewport.offsetWidth / 2 : root.offsetWidth / 2;
+  }
 
+  function positionFaces() {
+    const half = getHalfSize();
+
+    slides.forEach((slide, i) => {
+      const face = CUBE_FACES[i % CUBE_FACES.length];
+      // Rotate to face position, then push out to the cube surface
+      slide.style.transform = `${face.rotate} translateZ(${half}px)`;
+    });
+
+    // Push the cube back so front face sits at Z=0 (avoids text fuzziness)
+    // Then rotate to the current face
+    const face = CUBE_FACES[currentIndex % CUBE_FACES.length];
+    track.style.transform = `translateZ(-${half}px) ${face.show}`;
+  }
+
+  // ── Rotate Cube to Show a Slide ───────────────────────────────────────────
   function rotateCube(index) {
-    if (isAnimating) {return;}
-    
+    if (isAnimating) {
+      return;
+    }
     isAnimating = true;
     currentIndex = index;
 
-    // Rotate the entire track (cube) by -90 degrees for each slide
-    const angle = -90 * currentIndex;
-    track.style.transform = `translateZ(0px) rotateY(${angle}deg)`;
+    const half = getHalfSize();
+    const face = CUBE_FACES[currentIndex % CUBE_FACES.length];
+
+    // translateZ(-half) pushes cube back; face.show rotates it to the target face
+    track.style.transform = `translateZ(-${half}px) ${face.show}`;
 
     // Update button states
     if (prevBtn && nextBtn) {
@@ -72,15 +96,14 @@ export function initConCarousel(root) {
       nextBtn.disabled = currentIndex === slides.length - 1;
     }
 
-    // Reset animation lock after transition
     setTimeout(() => {
       isAnimating = false;
-    }, 800);
+    }, 900);
   }
 
   function goNext() {
-    const nextIndex = currentIndex >= slides.length - 1 ? 0 : currentIndex + 1;
-    rotateCube(nextIndex);
+    const next = currentIndex >= slides.length - 1 ? 0 : currentIndex + 1;
+    rotateCube(next);
   }
 
   function goPrev() {
@@ -90,14 +113,12 @@ export function initConCarousel(root) {
   }
 
   // ── Autoplay ──────────────────────────────────────────────────────────────
-
   function startAutoplay() {
-    if (slides.length <= 1) {return;}
-    
+    if (slides.length <= 1) {
+      return;
+    }
     stopAutoplay();
-    autoplayTimer = setInterval(() => {
-      goNext();
-    }, 5000);
+    autoplayTimer = setInterval(goNext, 5000);
   }
 
   function stopAutoplay() {
@@ -108,53 +129,45 @@ export function initConCarousel(root) {
   }
 
   // ── Event Listeners ───────────────────────────────────────────────────────
+  prevBtn?.addEventListener("click", () => {
+    goPrev();
+    stopAutoplay();
+    startAutoplay();
+  });
+  nextBtn?.addEventListener("click", () => {
+    goNext();
+    stopAutoplay();
+    startAutoplay();
+  });
 
-  if (prevBtn) {
-    prevBtn.addEventListener("click", () => {
-      goPrev();
-      stopAutoplay();
-      startAutoplay();
-    });
-  }
-
-  if (nextBtn) {
-    nextBtn.addEventListener("click", () => {
-      goNext();
-      stopAutoplay();
-      startAutoplay();
-    });
-  }
-
-  // Pause autoplay on hover
   root.addEventListener("mouseenter", stopAutoplay);
   root.addEventListener("mouseleave", startAutoplay);
 
-  // Keyboard navigation
   document.addEventListener("keydown", (e) => {
     if (e.key === "ArrowLeft") {
       goPrev();
       stopAutoplay();
       startAutoplay();
-    } else if (e.key === "ArrowRight") {
+    }
+    if (e.key === "ArrowRight") {
       goNext();
       stopAutoplay();
       startAutoplay();
     }
   });
 
-  // ── Initialize ────────────────────────────────────────────────────────────
+  // Re-position faces on resize (translateZ depends on container width)
+  window.addEventListener("resize", () => {
+    positionFaces();
+  });
 
-  rotateCube(0);
+  // ── Initialize ────────────────────────────────────────────────────────────
+  positionFaces();
   startAutoplay();
 }
 
 /**
- * ConCarousel factory – renders the HBS template with the given args and
- * bootstraps interactive behaviour before returning the live element.
- *
- * @param {object} args
- * @param {Array}   args.slides  – Slide objects with backgroundImage, title, description, buttonText, buttonLink
- * @returns {HTMLElement}
+ * ConCarousel factory – renders the HBS template and bootstraps interaction.
  */
 export const ConCarousel = (args) => {
   const wrapper = document.createElement("div");
@@ -171,7 +184,6 @@ export const ConCarousel = (args) => {
 // ══════════════════════════════════════════════════════════════════════════
 //  AEM INITIALIZATION
 // ══════════════════════════════════════════════════════════════════════════
-
 function initAllCarousels() {
   document.querySelectorAll(".con-carousel").forEach((carousel) => {
     if (!carousel.dataset.initialized) {
@@ -183,6 +195,5 @@ function initAllCarousels() {
 
 document.addEventListener("DOMContentLoaded", initAllCarousels);
 
-// Important for AEM Author mode (dynamic re-render)
 const observer = new MutationObserver(initAllCarousels);
 observer.observe(document.body, { childList: true, subtree: true });

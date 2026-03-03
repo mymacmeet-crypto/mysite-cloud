@@ -1,0 +1,76 @@
+<sly data-sly-use.templates="core/wcm/components/commons/v1/templates.html" />
+<sly data-sly-use.model="com.mysite.core.models.ConCarouselModel" />
+
+<div class="con-carousel" data-component="concarousel">
+  <div class="con-carousel-viewport">
+    <div class="con-carousel-track">
+      <sly data-sly-test="${model.slides && model.slides.size > 0}">
+        <sly data-sly-list.slide="${model.slides}">
+          <div
+            class="con-carousel-slide"
+            data-background="${slide.backgroundImage}"
+          >
+            <div class="con-carousel-overlay"></div>
+
+            <div class="con-carousel-content">
+              <div class="con-carousel-inner">
+                <div class="con-carousel-line"></div>
+
+                <sly data-sly-test="${slide.title}">
+                  <h2
+                    class="con-carousel-title"
+                    data-title="${slide.title}"
+                  ></h2>
+                </sly>
+
+                <sly data-sly-test="${slide.description}">
+                  <p class="con-carousel-description">
+                    ${slide.description @ context='html'}
+                  </p>
+                </sly>
+
+                <sly data-sly-test="${slide.buttonText}">
+                  <a href="${slide.buttonLink}" class="con-carousel-button"
+                    >${slide.buttonText}</a
+                  >
+                </sly>
+              </div>
+            </div>
+          </div>
+        </sly>
+      </sly>
+    </div>
+  </div>
+
+  <sly data-sly-test="${model.slides && model.slides.size > 0}">
+    <button class="con-carousel-prev" aria-label="Previous slide">
+      <svg
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+      >
+        <polyline points="15 18 9 12 15 6" />
+      </svg>
+    </button>
+
+    <button class="con-carousel-next" aria-label="Next slide">
+      <svg
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+      >
+        <polyline points="9 18 15 12 9 6" />
+      </svg>
+    </button>
+  </sly>
+
+  <sly
+    data-sly-call="${templates.placeholder @ isEmpty = !model.slides || model.slides.size == 0, cq:emptyText = 'Con Carousel', classAppend='con-carousel'}"
+  />
+</div>
