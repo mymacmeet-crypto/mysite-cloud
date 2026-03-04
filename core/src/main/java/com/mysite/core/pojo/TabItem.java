@@ -14,13 +14,15 @@ public class TabItem {
     @ValueMapValue
     private String category;
 
-    // Getters
+    // Required by Sling Models for resource-based adaptation
+    public TabItem() {}
 
-    public String getLabel() {
-        return label;
+    // Used by MagTabModel to build tabs programmatically from card categories
+    public TabItem(String label, String category) {
+        this.label    = label;
+        this.category = category;
     }
 
-    public String getCategory() {
-        return category;
-    }
+    public String getLabel()    { return label; }
+    public String getCategory() { return category; }
 }

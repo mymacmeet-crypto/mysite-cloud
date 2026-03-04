@@ -1,7 +1,10 @@
 package com.mysite.core.models;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 import javax.annotation.PostConstruct;
@@ -14,8 +17,10 @@ import org.apache.sling.models.annotations.injectorspecific.ChildResource;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
+import com.day.cq.wcm.api.Page;
+import com.day.cq.wcm.api.PageManager;
 import com.google.gson.Gson;
-import com.mysite.core.pojo.TabCard;
+import com.mysite.core.pojo.MagCard;
 import com.mysite.core.pojo.TabItem;
 
 @Model(adaptables = { Resource.class }, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
@@ -25,23 +30,33 @@ public class MagTabModel {
     //  INJECTED FIELDS
     // ══════════════════════════════════════════════════════════════════════════
 
+    /**
+     * Selects the content source strategy (authored in dialog Tab 1):
+     *   "static"     – title + cards come from the local multifield.
+     *   "parentPath" – title taken from the target page's jcr:title;
+     *                  cards taken from the first MagView component on that page.
+     */
+    @ValueMapValue
+    private String version;
+
+    /** Authored title; used when version = "static". */
     @ValueMapValue
     private String title;
 
     /**
-     * Optional path to another AEM page/node whose child "card" nodes will be
-     * used as the card source instead of the locally-authored cards.
-     * When set, the remote cards take priority; local cards are used as a
-     * fallback if the path cannot be resolved or yields no cards.
+     * Target page path; used when version = "parentPath".
+     * Title and cards are resolved from this page at runtime.
      */
     @ValueMapValue
     private String parentPath;
 
-    @ChildResource(name = "tab")
-    private List<TabItem> tabs;
-
+    /**
+     * Locally authored card child nodes; used when version = "static".
+     * Each node adapts to MagCard (fileReference, title, text, category,
+     * cq:tags, date, comments, views, link).
+     */
     @ChildResource(name = "card")
-    private List<TabCard> localCards;
+    private List<MagCard> localCards;
 
     @SlingObject
     private ResourceResolver resourceResolver;
@@ -50,13 +65,17 @@ public class MagTabModel {
     //  COMPUTED FIELDS
     // ══════════════════════════════════════════════════════════════════════════
 
-    /** Resolved card list – either from parentPath or from local child nodes. */
-    private List<TabCard> cards;
+    private List<MagCard> cards;
+
+    /**
+     * Auto-generated tabs derived from the unique category values across all
+     * resolved cards. Always starts with an "ALL" tab.
+     * No manual tab authoring required — the dialog no longer has a tab multifield.
+     */
+    private List<TabItem> tabs;
 
     private String cardsJson;
     private String componentId;
-
-    /** True when cards were resolved from the parentPath (useful for HTL / debug). */
     private boolean usingParentPath;
 
     // ══════════════════════════════════════════════════════════════════════════
@@ -65,14 +84,23 @@ public class MagTabModel {
 
     @PostConstruct
     protected void init() {
-        // Generate unique component ID for localStorage
         componentId = UUID.randomUUID().toString();
 
-        // Resolve cards – prefer parentPath over local cards
-        cards = resolveCards();
+        boolean isParentPathMode = "parentPath".equals(version)
+                && parentPath != null && !parentPath.trim().isEmpty();
 
-        // Serialize cards to JSON for JavaScript consumption
-        cardsJson = cards.isEmpty() ? "[]" : serializeCards();
+        if (isParentPathMode) {
+            resolveFromParentPath();
+        } else {
+            cards           = localCards != null ? localCards : Collections.emptyList();
+            usingParentPath = false;
+        }
+
+        // Build tabs automatically — no manual authoring needed
+        tabs = buildTabsFromCards(cards);
+
+        Gson gson = new Gson();
+        cardsJson = cards.isEmpty() ? "[]" : gson.toJson(cards);
     }
 
     // ══════════════════════════════════════════════════════════════════════════
@@ -80,127 +108,101 @@ public class MagTabModel {
     // ══════════════════════════════════════════════════════════════════════════
 
     /**
-     * Attempts to load cards from the authored parentPath.
-     * Falls back to locally-authored cards when:
-     *   – parentPath is blank / null
-     *   – the resource cannot be resolved
-     *   – the resolved resource has no "card" child nodes
-     *
-     * @return non-null, possibly empty list of {@link TabCard}
+     * Populates title + cards from the page at parentPath:
+     *   1. title  ← parentPage.getTitle()
+     *   2. cards  ← first MagViewModel with items found on that page (recursive)
+     * Falls back to local cards if resolution fails.
      */
-    private List<TabCard> resolveCards() {
-        if (parentPath != null && !parentPath.trim().isEmpty()) {
-            try {
-                Resource parentResource = resourceResolver.getResource(parentPath.trim());
+    private void resolveFromParentPath() {
+        try {
+            PageManager pageManager = resourceResolver.adaptTo(PageManager.class);
+            if (pageManager == null) { fallbackToLocal(); return; }
 
-                if (parentResource != null) {
-                    // Adapt the resolved resource to MagTabModel to reuse its
-                    // @ChildResource(name = "card") injection automatically.
-                    // Alternatively, iterate child resources named "card" directly.
-                    List<TabCard> remoteCards = resolveChildCards(parentResource);
+            Page parentPage = pageManager.getPage(parentPath.trim());
+            if (parentPage == null) { fallbackToLocal(); return; }
 
-                    if (remoteCards != null && !remoteCards.isEmpty()) {
-                        usingParentPath = true;
-                        return remoteCards;
-                    }
+            // Title from page jcr:title
+            title = parentPage.getTitle();
+
+            // Cards from the first MagView component found on the page
+            Resource contentResource = parentPage.getContentResource();
+            if (contentResource != null) {
+                List<MagCard> remoteCards = findMagViewCards(contentResource);
+                if (remoteCards != null && !remoteCards.isEmpty()) {
+                    cards           = remoteCards;
+                    usingParentPath = true;
+                    return;
                 }
-            } catch (Exception e) {
-                // Log and fall through to local cards
             }
+        } catch (Exception e) {
+            // Fall through to local fallback
         }
+        fallbackToLocal();
+    }
 
-        // Fall back to local cards
+    private void fallbackToLocal() {
+        cards           = localCards != null ? localCards : Collections.emptyList();
         usingParentPath = false;
-        return localCards != null ? localCards : Collections.emptyList();
     }
 
     /**
-     * Iterates the direct children of {@code parentResource} whose name starts
-     * with "card" and adapts each one to a {@link TabCard} Sling Model.
-     *
-     * @param parentResource the resolved parent resource
-     * @return list of adapted TabCard models (never null)
+     * Depth-first search for a MagViewModel with at least one item.
+     * Returns its items, or an empty list if none is found.
      */
-    private List<TabCard> resolveChildCards(Resource parentResource) {
-        List<TabCard> result = new java.util.ArrayList<>();
-
-        // Look for child nodes named "card" or "card0", "card1", … (multifield pattern)
-        for (Resource child : parentResource.getChildren()) {
-            String nodeName = child.getName();
-            if (nodeName.equals("card") || nodeName.startsWith("card")) {
-                TabCard card = child.adaptTo(TabCard.class);
-                if (card != null) {
-                    result.add(card);
-                }
-            }
+    private List<MagCard> findMagViewCards(Resource resource) {
+        MagViewModel model = resource.adaptTo(MagViewModel.class);
+        if (model != null && model.hasItems()) {
+            return model.getItems();
         }
-
-        return result;
+        for (Resource child : resource.getChildren()) {
+            List<MagCard> result = findMagViewCards(child);
+            if (!result.isEmpty()) return result;
+        }
+        return Collections.emptyList();
     }
 
     /**
-     * Serializes {@link #cards} to JSON for client-side JavaScript consumption.
-     *
-     * @return JSON string
+     * Builds tabs from unique card categories in insertion order.
+     * Tab 0 is always { label:"ALL", category:"all" }.
      */
-    private String serializeCards() {
-        Gson gson = new Gson();
-        return gson.toJson(cards);
+    private List<TabItem> buildTabsFromCards(List<MagCard> cardList) {
+        List<TabItem> tabList = new ArrayList<>();
+        tabList.add(new TabItem("ALL", "all")); // always first
+
+        if (cardList == null || cardList.isEmpty()) return tabList;
+
+        Set<String> seen = new LinkedHashSet<>();
+        for (MagCard card : cardList) {
+            String cat = card.getCategory();
+            if (cat != null && !cat.trim().isEmpty()) seen.add(cat.trim());
+        }
+        for (String cat : seen) {
+            tabList.add(new TabItem(cat, cat));
+        }
+        return tabList;
     }
 
     // ══════════════════════════════════════════════════════════════════════════
     //  GETTERS
     // ══════════════════════════════════════════════════════════════════════════
 
-    public String getTitle() {
-        return title;
-    }
+    public String getTitle()           { return title; }
+    public String getVersion()         { return version; }
+    public String getParentPath()      { return parentPath; }
+    public String getCardsJson()       { return cardsJson; }
+    public String getComponentId()     { return componentId; }
+    public boolean isUsingParentPath() { return usingParentPath; }
 
-    /**
-     * Returns the authored parent path (may be null/blank when not configured).
-     * Exposed to HTL for use as a data attribute or conditional rendering.
-     */
-    public String getParentPath() {
-        return parentPath;
-    }
-
+    /** Auto-generated tabs — always begins with "ALL". */
     public List<TabItem> getTabs() {
         return tabs != null ? tabs : Collections.emptyList();
     }
 
-    /**
-     * Returns the resolved card list. Source is either the parentPath node or
-     * the locally-authored multifield, depending on configuration and resolution.
-     */
-    public List<TabCard> getCards() {
-        return cards;
+    /** Resolved cards (local or from parentPath). */
+    public List<MagCard> getCards() {
+        return cards != null ? cards : Collections.emptyList();
     }
 
-    public String getCardsJson() {
-        return cardsJson;
-    }
-
-    public String getComponentId() {
-        return componentId;
-    }
-
-    /**
-     * Indicates whether the current card set was sourced from the parentPath.
-     * Useful for HTL conditional rendering or author-mode indicators.
-     */
-    public boolean isUsingParentPath() {
-        return usingParentPath;
-    }
-
-    public boolean isEmpty() {
-        return (tabs == null || tabs.isEmpty()) && cards.isEmpty();
-    }
-
-    public boolean hasTabs() {
-        return tabs != null && !tabs.isEmpty();
-    }
-
-    public boolean hasCards() {
-        return !cards.isEmpty();
-    }
+    public boolean isEmpty()  { return cards == null || cards.isEmpty(); }
+    public boolean hasCards() { return cards != null && !cards.isEmpty(); }
 }

@@ -3,6 +3,18 @@ import "./magTab.scss";
 
 const STORAGE_KEY_PREFIX = "mag-tab-active-";
 
+function buildTabsFromCards(cards) {
+  const tabs = [{ label: "ALL", category: "all" }];
+  const seen = new Set();
+  (cards || []).forEach((card) => {
+    if (card.category && !seen.has(card.category)) {
+      seen.add(card.category);
+      tabs.push({ label: card.category, category: card.category });
+    }
+  });
+  return tabs;
+}
+
 export function initMagTab(root) {
   if (!root) {
     return;
@@ -15,7 +27,6 @@ export function initMagTab(root) {
     return;
   }
 
-  // Get cards data from dataset
   let cardsData = [];
   try {
     if (root.dataset.cards) {
@@ -25,33 +36,24 @@ export function initMagTab(root) {
     console.error("Failed to parse cards data", e);
   }
 
-  // Generate unique storage key based on component position
   const storageKey = `${STORAGE_KEY_PREFIX}${root.dataset.componentId || "default"}`;
 
-  // ── Render Cards in Panels ───────────────────────────────────────────────
+  // ── Render Cards ──────────────────────────────────────────────────────────
 
   function renderCardsForCategory(panel, category) {
     const grid = panel.querySelector(".mag-tab-grid");
     if (!grid) {
-        return;
+      return;
     }
 
-    // Filter cards by category (or show all if category is "all")
-    const filteredCards = category.toLowerCase() === "all" 
-      ? cardsData 
-      : cardsData.filter(card => card.category === category);
+    const filtered =
+      category.toLowerCase() === "all"
+        ? cardsData
+        : cardsData.filter((c) => c.category === category);
 
-    // Clear existing content
     grid.innerHTML = "";
-
-    // Render each card
-    filteredCards.forEach(card => {
-      const cardElement = createCardElement(card);
-      grid.appendChild(cardElement);
-    });
+    filtered.forEach((card) => grid.appendChild(createCardElement(card)));
   }
-
-  // ── Create Card Element ──────────────────────────────────────────────────
 
   function createCardElement(card) {
     const cardDiv = document.createElement("div");
@@ -60,157 +62,107 @@ export function initMagTab(root) {
       cardDiv.dataset.href = card.link;
     }
 
-    let cardHTML = "";
+    let html = "";
 
-    // Image
     if (card.fileReference) {
-      cardHTML += `
-        <div class="mag-tab-card-image">
-          <img src="${card.fileReference}" alt="${card.title || ''}" />
-        </div>
-      `;
+      html += `<div class="mag-tab-card-image">
+        <img src="${card.fileReference}" alt="${card.title || ""}" />
+      </div>`;
     }
 
-    // Body
-    cardHTML += `<div class="mag-tab-card-body">`;
-
-    // Title
+    html += `<div class="mag-tab-card-body">`;
     if (card.title) {
-      cardHTML += `<h3 class="mag-tab-card-title">${card.title}</h3>`;
+      html += `<h3 class="mag-tab-card-title">${card.title}</h3>`;
     }
-
-    // Text
     if (card.text) {
-      cardHTML += `<div class="mag-tab-card-text">${card.text}</div>`;
+      html += `<div class="mag-tab-card-text">${card.text}</div>`;
     }
 
-    // Meta
     const hasMeta = card.category || card.comments || card.views;
     if (hasMeta) {
-      cardHTML += `<div class="mag-tab-card-meta">`;
-      
+      html += `<div class="mag-tab-card-meta">`;
       if (card.category) {
-        cardHTML += `<span class="mag-tab-badge">${card.category}</span>`;
+        html += `<span class="mag-tab-badge">${card.category}</span>`;
       }
-      
       if (card.comments) {
-        cardHTML += `
-          <span class="mag-tab-meta-stat">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-            </svg>
-            ${card.comments}
-          </span>
-        `;
+        html += `<span class="mag-tab-meta-stat">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+          </svg>${card.comments}</span>`;
       }
-      
       if (card.views) {
-        cardHTML += `
-          <span class="mag-tab-meta-stat">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-              <circle cx="12" cy="12" r="3"/>
-            </svg>
-            ${card.views}
-          </span>
-        `;
+        html += `<span class="mag-tab-meta-stat">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+            <circle cx="12" cy="12" r="3"/>
+          </svg>${card.views}</span>`;
       }
-      
-      cardHTML += `</div>`;
+      html += `</div>`;
     }
+    html += `</div>`;
 
-    cardHTML += `</div>`; // Close body
-
-    cardDiv.innerHTML = cardHTML;
-
-    // Add click handler
+    cardDiv.innerHTML = html;
     if (card.link) {
       cardDiv.addEventListener("click", () => {
         window.location.href = card.link;
       });
     }
-
     return cardDiv;
   }
 
-  // ── Tab Switching ────────────────────────────────────────────────────────
+  // ── Tab Switching ─────────────────────────────────────────────────────────
 
   function switchTab(index) {
-    // Update buttons
-    buttons.forEach((btn, i) => {
-      if (i === index) {
-        btn.classList.add("mag-tab-active");
-      } else {
-        btn.classList.remove("mag-tab-active");
-      }
-    });
-
-    // Update panels
+    buttons.forEach((btn, i) =>
+      btn.classList.toggle("mag-tab-active", i === index),
+    );
     panels.forEach((panel, i) => {
-      if (i === index) {
-        panel.classList.add("mag-tab-panel-active");
-        // Render cards for this category
-        const category = buttons[i].dataset.category;
-        renderCardsForCategory(panel, category);
-      } else {
-        panel.classList.remove("mag-tab-panel-active");
+      const active = i === index;
+      panel.classList.toggle("mag-tab-panel-active", active);
+      if (active) {
+        renderCardsForCategory(panel, buttons[i].dataset.category);
       }
     });
-
-    // Save to localStorage
     try {
       localStorage.setItem(storageKey, index.toString());
-    } catch (e) {
-      // localStorage might be disabled
-    }
+    } catch (e) {}
   }
 
-  // ── Event Listeners ──────────────────────────────────────────────────────
+  buttons.forEach((btn, i) =>
+    btn.addEventListener("click", () => switchTab(i)),
+  );
 
-  buttons.forEach((button, index) => {
-    button.addEventListener("click", () => {
-      switchTab(index);
-    });
-  });
-
-  // ── Initialize ───────────────────────────────────────────────────────────
-
-  // Check localStorage for saved tab
+  // Restore saved tab or default to 0
   let activeIndex = 0;
   try {
-    const savedIndex = localStorage.getItem(storageKey);
-    if (savedIndex !== null) {
-      const parsed = parseInt(savedIndex, 10);
+    const saved = localStorage.getItem(storageKey);
+    if (saved !== null) {
+      const parsed = parseInt(saved, 10);
       if (!isNaN(parsed) && parsed >= 0 && parsed < buttons.length) {
         activeIndex = parsed;
       }
     }
-  } catch (e) {
-    // localStorage might be disabled
-  }
+  } catch (e) {}
 
-  // Activate the saved or default tab
   switchTab(activeIndex);
 }
 
+// ── Storybook entry point ─────────────────────────────────────────────────────
+// `tabs` are no longer authored manually — they are derived from card categories.
 export const MagTab = (args) => {
-  // Pass parentPath from args through to dataset for JS inspection
-  // (AEM sets this via data-parent-path in HTL; Storybook mirrors it here)
+  // Auto-generate tabs from the cards array
+  const generatedTabs = buildTabsFromCards(args.cards);
+
   const wrapper = document.createElement("div");
-  wrapper.innerHTML = template(args);
+  wrapper.innerHTML = template({ ...args, tabs: generatedTabs });
   const root = wrapper.firstElementChild;
 
-  // Store cards data for filtering
   if (args.cards) {
     root.dataset.cards = JSON.stringify(args.cards);
   }
-
-  // Mirror the AEM data-parent-path attribute for Storybook inspection
   if (args.parentPath) {
     root.dataset.parentPath = args.parentPath;
   }
-
-  // Generate unique ID for localStorage
   root.dataset.componentId = `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
 
   document.body.appendChild(root);
@@ -220,10 +172,7 @@ export const MagTab = (args) => {
   return root;
 };
 
-// ══════════════════════════════════════════════════════════════════════════
-//  AEM INITIALIZATION
-// ══════════════════════════════════════════════════════════════════════════
-
+// ── AEM initialization ────────────────────────────────────────────────────────
 function initAllTabs() {
   document.querySelectorAll(".mag-tab").forEach((tab) => {
     if (!tab.dataset.initialized) {
@@ -234,7 +183,5 @@ function initAllTabs() {
 }
 
 document.addEventListener("DOMContentLoaded", initAllTabs);
-
-// Important for AEM Author mode (dynamic re-render)
 const observer = new MutationObserver(initAllTabs);
 observer.observe(document.body, { childList: true, subtree: true });
