@@ -3,6 +3,8 @@ import "./magTab.scss";
 
 const STORAGE_KEY_PREFIX = "mag-tab-active-";
 
+// ── Auto-generate tabs from card categories ───────────────────────────────────
+// Tab 0 is always "ALL". Subsequent tabs are one-per-unique-category in order.
 function buildTabsFromCards(cards) {
   const tabs = [{ label: "ALL", category: "all" }];
   const seen = new Set();
@@ -15,6 +17,7 @@ function buildTabsFromCards(cards) {
   return tabs;
 }
 
+// ── Core initialisation ────────────────────────────────────────────────────────
 export function initMagTab(root) {
   if (!root) {
     return;
@@ -27,18 +30,19 @@ export function initMagTab(root) {
     return;
   }
 
+  // Parse cards from data attribute (set before initMagTab is called)
   let cardsData = [];
   try {
     if (root.dataset.cards) {
       cardsData = JSON.parse(root.dataset.cards);
     }
   } catch (e) {
-    console.error("Failed to parse cards data", e);
+    console.error("MagTab: failed to parse cards data", e);
   }
 
   const storageKey = `${STORAGE_KEY_PREFIX}${root.dataset.componentId || "default"}`;
 
-  // ── Render Cards ──────────────────────────────────────────────────────────
+  // ── Render ──────────────────────────────────────────────────────────────────
 
   function renderCardsForCategory(panel, category) {
     const grid = panel.querySelector(".mag-tab-grid");
@@ -51,22 +55,23 @@ export function initMagTab(root) {
         ? cardsData
         : cardsData.filter((c) => c.category === category);
 
+    // Build all card nodes before touching the DOM (avoids observer thrashing)
+    const fragment = document.createDocumentFragment();
+    filtered.forEach((card) => fragment.appendChild(createCardElement(card)));
+
     grid.innerHTML = "";
-    filtered.forEach((card) => grid.appendChild(createCardElement(card)));
+    grid.appendChild(fragment);
   }
 
   function createCardElement(card) {
     const cardDiv = document.createElement("div");
     cardDiv.className = "mag-tab-card";
-    if (card.link) {
-      cardDiv.dataset.href = card.link;
-    }
 
     let html = "";
 
     if (card.fileReference) {
       html += `<div class="mag-tab-card-image">
-        <img src="${card.fileReference}" alt="${card.title || ""}" />
+        <img src="${card.fileReference}" alt="${card.title || ""}" loading="lazy" />
       </div>`;
     }
 
@@ -102,15 +107,18 @@ export function initMagTab(root) {
     html += `</div>`;
 
     cardDiv.innerHTML = html;
+
     if (card.link) {
+      cardDiv.style.cursor = "pointer";
       cardDiv.addEventListener("click", () => {
         window.location.href = card.link;
       });
     }
+
     return cardDiv;
   }
 
-  // ── Tab Switching ─────────────────────────────────────────────────────────
+  // ── Tab switching ────────────────────────────────────────────────────────────
 
   function switchTab(index) {
     buttons.forEach((btn, i) =>
@@ -124,8 +132,8 @@ export function initMagTab(root) {
       }
     });
     try {
-      localStorage.setItem(storageKey, index.toString());
-    } catch (e) {}
+      localStorage.setItem(storageKey, String(index));
+    } catch (_) {}
   }
 
   buttons.forEach((btn, i) =>
@@ -135,22 +143,20 @@ export function initMagTab(root) {
   // Restore saved tab or default to 0
   let activeIndex = 0;
   try {
-    const saved = localStorage.getItem(storageKey);
-    if (saved !== null) {
-      const parsed = parseInt(saved, 10);
-      if (!isNaN(parsed) && parsed >= 0 && parsed < buttons.length) {
-        activeIndex = parsed;
-      }
+    const saved = parseInt(localStorage.getItem(storageKey), 10);
+    if (!isNaN(saved) && saved >= 0 && saved < buttons.length) {
+      activeIndex = saved;
     }
-  } catch (e) {}
+  } catch (_) {}
 
   switchTab(activeIndex);
 }
 
-// ── Storybook entry point ─────────────────────────────────────────────────────
-// `tabs` are no longer authored manually — they are derived from card categories.
+// ── Storybook factory ──────────────────────────────────────────────────────────
+// NOTE: querySelectorAll works on detached nodes — no body.appendChild needed.
+// Removing that pattern eliminates the MutationObserver re-initialisation race
+// that caused cards to be wiped before they could be displayed.
 export const MagTab = (args) => {
-  // Auto-generate tabs from the cards array
   const generatedTabs = buildTabsFromCards(args.cards);
 
   const wrapper = document.createElement("div");
@@ -164,15 +170,16 @@ export const MagTab = (args) => {
     root.dataset.parentPath = args.parentPath;
   }
   root.dataset.componentId = `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+  // Mark as initialised NOW so the MutationObserver (fired when Storybook
+  // appends this element) does not run initMagTab a second time.
+  root.dataset.initialized = "true";
 
-  document.body.appendChild(root);
-  initMagTab(root);
-  document.body.removeChild(root);
+  initMagTab(root); // ← works fine on a detached node
 
   return root;
 };
 
-// ── AEM initialization ────────────────────────────────────────────────────────
+// ── AEM initialisation ─────────────────────────────────────────────────────────
 function initAllTabs() {
   document.querySelectorAll(".mag-tab").forEach((tab) => {
     if (!tab.dataset.initialized) {
@@ -183,5 +190,7 @@ function initAllTabs() {
 }
 
 document.addEventListener("DOMContentLoaded", initAllTabs);
+
+// AEM Author: re-init after dynamic component drops
 const observer = new MutationObserver(initAllTabs);
 observer.observe(document.body, { childList: true, subtree: true });
