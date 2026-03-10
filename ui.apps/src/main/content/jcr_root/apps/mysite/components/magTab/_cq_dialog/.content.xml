@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
-          xmlns:cq="http://www.day.com/jcr/cq/1.0"
-          xmlns:jcr="http://www.jcp.org/jcr/1.0"
-          xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
-          xmlns:granite="http://www.adobe.com/jcr/granite/1.0"
-          jcr:primaryType="nt:unstructured"
-          jcr:title="Mag Tab"
-          sling:resourceType="cq/gui/components/authoring/dialog">
-
+<jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
+    jcr:primaryType="nt:unstructured"
+    jcr:title="Mag Tab"
+    sling:resourceType="cq/gui/components/authoring/dialog"
+    extraClientlibs="[mysite.magtab]">
     <content
         jcr:primaryType="nt:unstructured"
         sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
@@ -16,21 +12,12 @@
                 jcr:primaryType="nt:unstructured"
                 sling:resourceType="granite/ui/components/coral/foundation/container">
                 <items jcr:primaryType="nt:unstructured">
-
-                    <!-- ── Version selector ─────────────────────────────── -->
-                    <!--
-                        cq-dialog-dropdown-showhide-target points at every
-                        container that has that CSS class. AEM's built-in
-                        showhide JS will show only the container whose
-                        granite:data showhideTargetValue matches the selected
-                        option value, hiding the rest.
-                    -->
                     <version
+                        granite:class="cq-dialog-dropdown-showhide"
                         jcr:primaryType="nt:unstructured"
                         sling:resourceType="granite/ui/components/coral/foundation/form/select"
-                        class="cq-dialog-dropdown-showhide"
-                        fieldLabel="Version"
                         fieldDescription="Static: author cards directly. Parent Path: pull title and cards from another page."
+                        fieldLabel="Version"
                         name="./version">
                         <granite:data
                             jcr:primaryType="nt:unstructured"
@@ -38,153 +25,123 @@
                         <items jcr:primaryType="nt:unstructured">
                             <static
                                 jcr:primaryType="nt:unstructured"
+                                selected="{Boolean}true"
                                 text="Static"
-                                value="static"
-                                selected="{Boolean}true"/>
+                                value="static"/>
                             <parentPath
                                 jcr:primaryType="nt:unstructured"
                                 text="Parent Path"
                                 value="parentPath"/>
                         </items>
                     </version>
-
-                    <!-- ── Static fields ────────────────────────────────── -->
                     <staticFields
+                        granite:class="js-mag-tab-fields hide"
                         jcr:primaryType="nt:unstructured"
-                        sling:resourceType="granite/ui/components/coral/foundation/container"
-                        class="js-mag-tab-fields hide">
+                        sling:resourceType="granite/ui/components/coral/foundation/container">
                         <granite:data
                             jcr:primaryType="nt:unstructured"
                             showhideTargetValue="static"/>
                         <items jcr:primaryType="nt:unstructured">
-
                             <title
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldLabel="Title"
                                 fieldDescription="Optional heading displayed above the tabs."
+                                fieldLabel="Title"
                                 name="./title"/>
-
-                            <!--
-                                Cards multifield — mirrors all fields from MagCard.java.
-                                Tabs are auto-generated from the Category values entered
-                                here; no separate tab authoring is required.
-                            -->
                             <cards
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
-                                fieldLabel="Cards"
-                                fieldDescription="Add one card per item. Tabs are generated automatically from the Category field."
                                 composite="{Boolean}true"
+                                fieldDescription="Add one card per item. Tabs are generated automatically from the Category field."
+                                fieldLabel="Cards"
                                 name="./card">
                                 <field
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/coral/foundation/container">
                                     <items jcr:primaryType="nt:unstructured">
-
                                         <fileReference
                                             jcr:primaryType="nt:unstructured"
                                             sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
-                                            fieldLabel="Image"
                                             fieldDescription="Select an asset from the DAM."
+                                            fieldLabel="Image"
                                             name="./fileReference"
                                             rootPath="/content/dam"/>
-
                                         <title
                                             jcr:primaryType="nt:unstructured"
                                             sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                             fieldLabel="Card Title"
                                             name="./title"/>
-
                                         <text
                                             jcr:primaryType="nt:unstructured"
                                             sling:resourceType="cq/gui/components/authoring/dialog/richtext"
                                             fieldLabel="Description"
                                             name="./text"
                                             useFixedInlineToolbar="{Boolean}true"/>
-
                                         <category
                                             jcr:primaryType="nt:unstructured"
                                             sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                            fieldLabel="Category"
                                             fieldDescription="Cards sharing the same category are grouped under one auto-generated tab."
+                                            fieldLabel="Category"
                                             name="./category"/>
-
                                         <tags
                                             jcr:primaryType="nt:unstructured"
                                             sling:resourceType="cq/gui/components/common/tagfield"
                                             fieldLabel="Tags"
+                                            multiple="{Boolean}true"
                                             name="./cq:tags"
-                                            rootPath="/content/cq:tags"
-                                            multiple="{Boolean}true"/>
-
+                                            rootPath="/content/cq:tags"/>
                                         <date
                                             jcr:primaryType="nt:unstructured"
                                             sling:resourceType="granite/ui/components/coral/foundation/form/datepicker"
+                                            displayedFormat="YYYY-MM-DD"
                                             fieldLabel="Date"
                                             name="./date"
                                             type="date"
-                                            displayedFormat="YYYY-MM-DD"
                                             valueFormat="YYYY-MM-DD"/>
-
                                         <comments
                                             jcr:primaryType="nt:unstructured"
                                             sling:resourceType="granite/ui/components/coral/foundation/form/numberfield"
                                             fieldLabel="Comments"
                                             min="{Long}0"
                                             name="./comments"/>
-
                                         <views
                                             jcr:primaryType="nt:unstructured"
                                             sling:resourceType="granite/ui/components/coral/foundation/form/numberfield"
                                             fieldLabel="Views"
                                             min="{Long}0"
                                             name="./views"/>
-
                                         <link
                                             jcr:primaryType="nt:unstructured"
                                             sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
-                                            fieldLabel="Link"
                                             fieldDescription="Optional page or URL this card links to."
+                                            fieldLabel="Link"
                                             name="./link"
                                             rootPath="/content"/>
-
                                     </items>
                                 </field>
                             </cards>
-
                         </items>
                     </staticFields>
-
-                    <!-- ── Parent Path fields ────────────────────────────── -->
-                    <!--
-                        Only one field needed. Title is auto-resolved from the
-                        target page's jcr:title; cards from its MagView component.
-                    -->
                     <parentPathFields
+                        granite:class="js-mag-tab-fields hide"
                         jcr:primaryType="nt:unstructured"
-                        sling:resourceType="granite/ui/components/coral/foundation/container"
-                        class="js-mag-tab-fields hide">
+                        sling:resourceType="granite/ui/components/coral/foundation/container">
                         <granite:data
                             jcr:primaryType="nt:unstructured"
                             showhideTargetValue="parentPath"/>
                         <items jcr:primaryType="nt:unstructured">
-
                             <parentPath
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
-                                fieldLabel="Parent Path"
                                 fieldDescription="Path to an AEM page that contains a MagView component. Title is taken from the page jcr:title; cards from its MagView items. Tabs are auto-generated from card categories."
+                                fieldLabel="Parent Path"
+                                filter="hierarchyNotFile"
                                 name="./parentPath"
-                                rootPath="/content"
-                                filter="hierarchyNotFile"/>
-
+                                rootPath="/content"/>
                         </items>
                     </parentPathFields>
-
                 </items>
             </column>
         </items>
     </content>
-
 </jcr:root>

@@ -61,6 +61,10 @@ public class MagTabModel {
     @ChildResource(name = "card")
     private List<MagCard> localCards;
 
+    public List<MagCard> getLocalCards(){
+        return localCards;
+    }
+
     @SlingObject
     private ResourceResolver resourceResolver;
 
