@@ -1,0 +1,75 @@
+<sly data-sly-use.templates="core/wcm/components/commons/v1/templates.html" />
+
+<div class="mag-map" data-component="magmap"
+     data-sly-use.model="com.mysite.core.models.MagMapModel"
+     data-api-key="${model.apiKey}"
+     data-zoom="${model.mapZoom}"
+     data-map-height="${model.mapHeight}"
+     data-scroll-zoom="${model.enableScrollZoom}"
+     data-street-view="${model.enableStreetView}"
+     data-map-style="${model.mapStyle}">
+
+  <!-- Map Canvas -->
+  <div class="mag-map-canvas"></div>
+
+  <!-- Location Cards -->
+  <sly data-sly-test="${model.locations && model.locations.size > 0}">
+    <div class="mag-map-locations">
+      <div class="mag-map-locations-track">
+        <sly data-sly-list.location="${model.locations}">
+          <div class="mag-map-location-card"
+               data-lat="${location.latitude}"
+               data-lng="${location.longitude}"
+               data-index="${locationList.index}">
+            <h4 class="mag-map-location-name">${location.locationName}</h4>
+            <sly data-sly-test="${location.address}">
+              <p class="mag-map-location-address">${location.address}</p>
+            </sly>
+            <sly data-sly-test="${location.phone}">
+              <p class="mag-map-location-phone">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                </svg>
+                ${location.phone}
+              </p>
+            </sly>
+            <sly data-sly-test="${location.email}">
+              <p class="mag-map-location-email">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                  <polyline points="22,6 12,13 2,6"/>
+                </svg>
+                ${location.email}
+              </p>
+            </sly>
+          </div>
+        </sly>
+      </div>
+
+      <!-- Carousel Navigation -->
+      <div class="mag-map-nav">
+        <button class="mag-map-nav-btn mag-map-nav-prev" aria-label="Previous locations">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2">
+            <polyline points="15 18 9 12 15 6"/>
+          </svg>
+        </button>
+        <button class="mag-map-nav-btn mag-map-nav-next" aria-label="Next locations">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2">
+            <polyline points="9 18 15 12 9 6"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </sly>
+
+  <sly
+    data-sly-call="${templates.placeholder @
+        isEmpty = model.isEmpty,
+        cq:emptyText = 'Mag Map',
+        classAppend='mag-map'}"
+  />
+</div>

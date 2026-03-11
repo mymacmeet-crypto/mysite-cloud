@@ -1,0 +1,15 @@
+<sly data-sly-use.templates="core/wcm/components/commons/v1/templates.html" />
+<sly data-sly-use.container="com.adobe.cq.wcm.core.components.models.LayoutContainer" />
+
+<div class="container-wrapper container-wrapper--${properties.variant || 'constrainedPadded'}">
+    <div class="container-content cmp-container" data-cmp-is="container">
+        <sly data-sly-repeat.child="${container.items}">
+            <sly data-sly-resource="${child.name @ resourceType=child.resourceType}" />
+        </sly>
+    </div>
+</div>
+
+<sly data-sly-call="${templates.placeholder @
+    isEmpty = !container.items,
+    cq:emptyText = 'Container',
+    classAppend = 'container-wrapper'}" />

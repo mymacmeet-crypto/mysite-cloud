@@ -1,0 +1,53 @@
+<div class="con-carousel" data-component="concarousel">
+  
+  <div class="con-carousel-viewport">
+    <div class="con-carousel-track">
+      
+      {{#if slides}}
+        {{#each slides}}
+          <div class="con-carousel-slide" data-background="{{backgroundImage}}">
+            <div class="con-carousel-overlay"></div>
+            
+            <div class="con-carousel-content">
+              <div class="con-carousel-inner">
+                
+                <div class="con-carousel-line"></div>
+                
+                {{#if title}}
+                  <h2 class="con-carousel-title" data-title="{{title}}">
+                    <!-- Title will be split by JavaScript -->
+                  </h2>
+                {{/if}}
+                
+                {{#if description}}
+                  <p class="con-carousel-description">{{{description}}}</p>
+                {{/if}}
+                
+                {{#if buttonText}}
+                  <a href="{{buttonLink}}" class="con-carousel-button">{{buttonText}}</a>
+                {{/if}}
+                
+              </div>
+            </div>
+          </div>
+        {{/each}}
+      {{/if}}
+      
+    </div>
+  </div>
+
+  {{#if slides}}
+    <button class="con-carousel-prev" aria-label="Previous slide">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polyline points="15 18 9 12 15 6"/>
+      </svg>
+    </button>
+    
+    <button class="con-carousel-next" aria-label="Next slide">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polyline points="9 18 15 12 9 6"/>
+      </svg>
+    </button>
+  {{/if}}
+
+</div>

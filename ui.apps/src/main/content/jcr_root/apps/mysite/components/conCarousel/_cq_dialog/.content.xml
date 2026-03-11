@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
+    jcr:primaryType="nt:unstructured"
+    sling:resourceType="cq/gui/components/authoring/dialog">
+    <content
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/container">
+        <items jcr:primaryType="nt:unstructured">
+            <tabs
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/tabs"
+                maximized="{Boolean}true">
+                <items jcr:primaryType="nt:unstructured">
+
+                    <!-- ═══════════════════════════════════════════════════════ -->
+                    <!--  SLIDES TAB                                              -->
+                    <!-- ═══════════════════════════════════════════════════════ -->
+                    <slidesTab
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Carousel Slides"
+                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                        <items jcr:primaryType="nt:unstructured">
+
+                            <!-- Info Text -->
+                            <infoText
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/well"
+                                text="Add carousel slides. The first word of the title will automatically be highlighted in yellow. Navigation arrows are shown when there are 2+ slides. Carousel automatically advances every 5 seconds and loops continuously."/>
+
+                            <!-- Slides Multifield -->
+                            <slidesMultifield
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                                composite="{Boolean}true"
+                                fieldLabel="Slides"
+                                fieldDescription="Add carousel slides with 3D cube rotation animation.">
+                                <field
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/container"
+                                    name="./slide">
+                                    <items jcr:primaryType="nt:unstructured">
+
+                                        <!-- Background Image -->
+                                        <backgroundImage
+                                            granite:class="cmp-image__editor-file-upload"
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="cq/gui/components/authoring/dialog/fileupload"
+                                            fieldLabel="Background Image"
+                                            fieldDescription="Upload hero background image for this slide."
+                                            fileNameParameter="./backgroundFileName"
+                                            fileReferenceParameter="./backgroundImage"
+                                            mimeTypes="[image/gif,image/jpeg,image/png,image/webp]"
+                                            name="./backgroundFile"
+                                            rootPath="/content/dam/mysite"
+                                            required="{Boolean}true"/>
+
+                                        <!-- Title -->
+                                        <title
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="Title"
+                                            fieldDescription="Slide title. First word will be highlighted in yellow (e.g., 'Renovating Homes and Offices')."
+                                            name="./title"
+                                            required="{Boolean}true"/>
+
+                                        <!-- Description -->
+                                        <description
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textarea"
+                                            fieldLabel="Description"
+                                            fieldDescription="Slide description text."
+                                            name="./description"
+                                            rows="3"/>
+
+                                        <!-- Button Text -->
+                                        <buttonText
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="Button Text"
+                                            fieldDescription="Call-to-action button text (e.g., 'PROJECTS')."
+                                            name="./buttonText"
+                                            required="{Boolean}true"/>
+
+                                        <!-- Button Link -->
+                                        <buttonLink
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                            fieldLabel="Button Link"
+                                            fieldDescription="URL or page path for the button."
+                                            name="./buttonLink"
+                                            rootPath="/content"
+                                            required="{Boolean}true"/>
+
+                                    </items>
+                                </field>
+                            </slidesMultifield>
+
+                        </items>
+                    </slidesTab>
+
+                </items>
+            </tabs>
+        </items>
+    </content>
+</jcr:root>

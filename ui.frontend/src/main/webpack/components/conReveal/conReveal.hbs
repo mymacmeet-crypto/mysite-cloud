@@ -1,0 +1,70 @@
+<div class="con-reveal" data-component="conreveal">
+  
+  <div class="con-reveal-container">
+    
+    {{#if slides}}
+      <div class="con-reveal-track">
+        {{#each slides}}
+          <div class="con-reveal-slide {{#if @first}}con-reveal-slide-active{{/if}}" data-index="{{@index}}">
+            
+            <!-- Left: Before/After Image Slider -->
+            <div class="con-reveal-image-section">
+              <div class="con-reveal-image-wrapper">
+                
+                <!-- Before Image (Background) -->
+                {{#if beforeImage}}
+                  <div class="con-reveal-before" data-before="{{beforeImage}}"></div>
+                {{/if}}
+                
+                <!-- After Image (Foreground with clip) -->
+                {{#if afterImage}}
+                  <div class="con-reveal-after" data-after="{{afterImage}}"></div>
+                {{/if}}
+                
+                <!-- Vertical Divider Line -->
+                <div class="con-reveal-divider">
+                  <button class="con-reveal-handle" aria-label="Drag to compare">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <polyline points="15 18 9 12 15 6"/>
+                    </svg>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <polyline points="9 18 15 12 9 6"/>
+                    </svg>
+                  </button>
+                </div>
+                
+              </div>
+            </div>
+            
+            <!-- Right: Content Section -->
+            <div class="con-reveal-content-section">
+              <div class="con-reveal-content">
+                
+                {{#if title}}
+                  <h2 class="con-reveal-title">{{title}}</h2>
+                {{/if}}
+                
+                {{#if description}}
+                  <div class="con-reveal-description">{{{description}}}</div>
+                {{/if}}
+                
+              </div>
+            </div>
+            
+          </div>
+        {{/each}}
+      </div>
+      
+      <!-- Diamond Dot Navigation -->
+      {{#if slides}}
+        <div class="con-reveal-dots">
+          {{#each slides}}
+            <button class="con-reveal-dot {{#if @first}}con-reveal-dot-active{{/if}}" data-index="{{@index}}" aria-label="Slide navigation"></button>
+          {{/each}}
+        </div>
+      {{/if}}
+    {{/if}}
+    
+  </div>
+
+</div>

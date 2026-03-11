@@ -1,0 +1,170 @@
+// ─── Theme Variables ─────────────────────────────────────────────────────────
+$carousel-overlay:     rgba(0, 0, 0, 0.4);
+$carousel-text:        #ffffff;
+$carousel-highlight:   #FFA500;
+$carousel-button-bg:   #ffffff;
+$carousel-button-text: #1a1a1a;
+$carousel-arrow-bg:    rgba(255, 255, 255, 0.15);
+$carousel-transition:  0.9s cubic-bezier(0.645, 0.045, 0.355, 1);
+
+.con-carousel {
+  position: relative;
+  width: 100%;
+  height: 600px;
+  font-family: "Georgia", "Times New Roman", serif;
+}
+
+// perspective must sit on the PARENT of the preserve-3d element
+.con-carousel-viewport {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  perspective: 1400px;
+  perspective-origin: 50% 50%;
+}
+
+// JS sets: translateZ(-halfWidth) rotateY/X(angle)
+.con-carousel-track {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform $carousel-transition;
+}
+
+// Face transforms set dynamically by JS: rotateY/X(Ndeg) translateZ(halfWidth)
+.con-carousel-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.con-carousel-overlay {
+  position: absolute;
+  inset: 0;
+  background: $carousel-overlay;
+  z-index: 1;
+}
+
+.con-carousel-content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  z-index: 2;
+}
+
+.con-carousel-inner {
+  max-width: 500px;
+  margin: 0 140px;
+  padding: 32px;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.con-carousel-line {
+  width: 60px;
+  height: 4px;
+  background: $carousel-highlight;
+  margin-bottom: 24px;
+}
+
+.con-carousel-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: $carousel-text;
+  margin: 0 0 24px;
+  max-width: 700px;
+
+  .con-highlight {
+    color: $carousel-highlight;
+  }
+}
+
+.con-carousel-description {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0 0 40px;
+  max-width: 600px;
+}
+
+.con-carousel-button {
+  display: inline-block;
+  padding: 16px 40px;
+  background: $carousel-button-bg;
+  color: $carousel-button-text;
+  font-family: "Arial", "Helvetica", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  }
+}
+
+.con-carousel-prev,
+.con-carousel-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50px;
+  height: 50px;
+  background: $carousel-arrow-bg;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  color: $carousel-text;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: background 0.3s ease;
+
+  &:hover { background: rgba(255, 255, 255, 0.6); }
+  &:disabled { opacity: 0.3; cursor: not-allowed; }
+}
+
+.con-carousel-prev { left: 40px; }
+.con-carousel-next { right: 40px; }
+
+@media (max-width: 1024px) {
+  .con-carousel { height: 500px; }
+  .con-carousel-inner { margin: 0 60px; padding: 24px; }
+  .con-carousel-title { font-size: 2.5rem; }
+  .con-carousel-description { font-size: 1rem; }
+  .con-carousel-prev { left: 20px; }
+  .con-carousel-next { right: 20px; }
+}
+
+@media (max-width: 768px) {
+  .con-carousel { height: 450px; }
+  .con-carousel-inner { margin: 0 40px; padding: 20px; }
+  .con-carousel-title { font-size: 2rem; }
+  .con-carousel-description { font-size: 0.95rem; margin-bottom: 30px; }
+  .con-carousel-button { padding: 14px 32px; font-size: 0.85rem; }
+  .con-carousel-prev, .con-carousel-next { width: 40px; height: 40px; }
+}
+
+@media (max-width: 480px) {
+  .con-carousel { height: 400px; }
+  .con-carousel-inner { margin: 0 24px; padding: 16px; }
+  .con-carousel-title { font-size: 1.5rem; }
+  .con-carousel-line { width: 40px; height: 3px; margin-bottom: 16px; }
+  .con-carousel-prev { left: 10px; }
+  .con-carousel-next { right: 10px; }
+}

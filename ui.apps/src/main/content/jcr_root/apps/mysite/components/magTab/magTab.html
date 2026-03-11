@@ -1,0 +1,60 @@
+<sly data-sly-use.templates="core/wcm/components/commons/v1/templates.html" />
+<sly data-sly-use.model="com.mysite.core.models.MagTabModel" />
+
+<div
+    class="mag-tab"
+    data-component="magtab"
+    data-cards="${model.cardsJson}"
+    data-component-id="${model.componentId}"
+    data-parent-path="${model.parentPath}"
+    data-using-parent-path="${model.usingParentPath}">
+
+    <sly data-sly-test="${model.title}">
+        <h2 class="mag-tab-title">${model.title}</h2>
+    </sly>
+
+    <!--
+        Author-mode indicator: shown in WCM Edit mode only when cards are
+        being sourced from a parent path, so authors know local cards are
+        not active.
+    -->
+    <sly data-sly-test="${wcmmode.edit && model.usingParentPath}">
+        <div class="mag-tab-parent-path-notice">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"/>
+                <line x1="12" y1="8" x2="12" y2="12"/>
+                <line x1="12" y1="16" x2="12.01" y2="16"/>
+            </svg>
+            Cards sourced from: <strong>${model.parentPath}</strong>
+        </div>
+    </sly>
+
+    <sly data-sly-test="${model.tabs && model.tabs.size > 0}">
+        <div class="mag-tab-nav-wrapper">
+            <div class="mag-tab-nav">
+                <sly data-sly-list.tab="${model.tabs}">
+                    <button
+                        class="mag-tab-button ${tabList.first ? 'mag-tab-active' : ''}"
+                        data-category="${tab.category}"
+                        data-index="${tabList.index}">
+                        ${tab.label}
+                    </button>
+                </sly>
+            </div>
+        </div>
+
+        <sly data-sly-test="${model.cards && model.cards.size > 0}">
+            <div class="mag-tab-content">
+                <sly data-sly-list.tab="${model.tabs}">
+                    <div class="mag-tab-panel ${tabList.first ? 'mag-tab-panel-active' : ''}" data-category="${tab.category}">
+                        <div class="mag-tab-grid">
+                        </div>
+                    </div>
+                </sly>
+            </div>
+        </sly>
+    </sly>
+
+    <sly data-sly-call="${templates.placeholder @ isEmpty = !model.tabs || model.tabs.size == 0, cq:emptyText = 'Mag Tab', classAppend='mag-tab'}" />
+
+</div>
