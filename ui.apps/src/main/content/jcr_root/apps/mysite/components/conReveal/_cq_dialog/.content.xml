@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
+    jcr:primaryType="nt:unstructured"
+    sling:resourceType="cq/gui/components/authoring/dialog">
+    <content
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/container">
+        <items jcr:primaryType="nt:unstructured">
+            <tabs
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/tabs"
+                maximized="{Boolean}true">
+                <items jcr:primaryType="nt:unstructured">
+
+                    <!-- ═══════════════════════════════════════════════════════ -->
+                    <!--  SLIDES TAB                                              -->
+                    <!-- ═══════════════════════════════════════════════════════ -->
+                    <slidesTab
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Before/After Slides"
+                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                        <items jcr:primaryType="nt:unstructured">
+
+                            <!-- Info Text -->
+                            <infoText
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/well"
+                                text="Add before/after comparison slides. Users can drag the divider to reveal the transformation. Navigate between slides using diamond-shaped dots."/>
+
+                            <!-- Slides Multifield -->
+                            <slidesMultifield
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                                composite="{Boolean}true"
+                                fieldLabel="Slides"
+                                fieldDescription="Add before/after transformation slides.">
+                                <field
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/container"
+                                    name="./slide">
+                                    <items jcr:primaryType="nt:unstructured">
+
+                                        <!-- Before Image -->
+                                        <beforeImage
+                                            granite:class="cmp-image__editor-file-upload"
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="cq/gui/components/authoring/dialog/fileupload"
+                                            fieldLabel="Before Image"
+                                            fieldDescription="Upload the 'before' transformation image."
+                                            fileNameParameter="./beforeFileName"
+                                            fileReferenceParameter="./beforeImage"
+                                            mimeTypes="[image/gif,image/jpeg,image/png,image/webp]"
+                                            name="./beforeFile"
+                                            rootPath="/content/dam/mysite"
+                                            required="{Boolean}true"/>
+
+                                        <!-- After Image -->
+                                        <afterImage
+                                            granite:class="cmp-image__editor-file-upload"
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="cq/gui/components/authoring/dialog/fileupload"
+                                            fieldLabel="After Image"
+                                            fieldDescription="Upload the 'after' transformation image."
+                                            fileNameParameter="./afterFileName"
+                                            fileReferenceParameter="./afterImage"
+                                            mimeTypes="[image/gif,image/jpeg,image/png,image/webp]"
+                                            name="./afterFile"
+                                            rootPath="/content/dam/mysite"
+                                            required="{Boolean}true"/>
+
+                                        <!-- Title -->
+                                        <title
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="Title"
+                                            fieldDescription="Slide title (e.g., 'Meghan Wolf Lost 90 Pounds and 3 Sizes')."
+                                            name="./title"
+                                            required="{Boolean}true"/>
+
+                                        <!-- Description (RTE) -->
+                                        <description
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="cq/gui/components/authoring/dialog/richtext"
+                                            fieldLabel="Description"
+                                            fieldDescription="Slide description text with rich text formatting."
+                                            name="./description"
+                                            useFixedInlineToolbar="{Boolean}true">
+                                            <rtePlugins jcr:primaryType="nt:unstructured">
+                                                <format
+                                                    jcr:primaryType="nt:unstructured"
+                                                    features="bold,italic"/>
+                                                <paraformat
+                                                    jcr:primaryType="nt:unstructured"
+                                                    features="*">
+                                                    <formats jcr:primaryType="nt:unstructured">
+                                                        <default_p
+                                                            jcr:primaryType="nt:unstructured"
+                                                            description="Paragraph"
+                                                            tag="p"/>
+                                                    </formats>
+                                                </paraformat>
+                                            </rtePlugins>
+                                            <uiSettings jcr:primaryType="nt:unstructured">
+                                                <cui jcr:primaryType="nt:unstructured">
+                                                    <inline
+                                                        jcr:primaryType="nt:unstructured"
+                                                        toolbar="[format#bold,format#italic,#paraformat]"/>
+                                                </cui>
+                                            </uiSettings>
+                                        </description>
+
+                                    </items>
+                                </field>
+                            </slidesMultifield>
+
+                        </items>
+                    </slidesTab>
+
+                </items>
+            </tabs>
+        </items>
+    </content>
+</jcr:root>

@@ -1,0 +1,99 @@
+<sly data-sly-use.templates="core/wcm/components/commons/v1/templates.html" />
+<sly data-sly-use.model="com.mysite.core.models.ConRevealModel" />
+
+<div class="con-reveal" data-component="conreveal">
+  <div class="con-reveal-container">
+    <sly data-sly-test="${model.slides && model.slides.size > 0}">
+      <div class="con-reveal-track">
+        <sly data-sly-list.slide="${model.slides}">
+          <div
+            class="con-reveal-slide ${slideList.first ? 'con-reveal-slide-active' : ''}"
+            data-index="${slideList.index}"
+          >
+            <!-- Left: Before/After Image Slider -->
+            <div class="con-reveal-image-section">
+              <div class="con-reveal-image-wrapper">
+                <!-- Before Image -->
+                <sly data-sly-test="${slide.beforeImage}">
+                  <div
+                    class="con-reveal-before"
+                    data-before="${slide.beforeImage}"
+                  ></div>
+                </sly>
+
+                <!-- After Image -->
+                <sly data-sly-test="${slide.afterImage}">
+                  <div
+                    class="con-reveal-after"
+                    data-after="${slide.afterImage}"
+                  ></div>
+                </sly>
+
+                <!-- Vertical Divider Line -->
+                <div class="con-reveal-divider">
+                  <button
+                    class="con-reveal-handle"
+                    aria-label="Drag to compare"
+                  >
+                    <svg
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    >
+                      <polyline points="15 18 9 12 15 6" />
+                    </svg>
+                    <svg
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    >
+                      <polyline points="9 18 15 12 9 6" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right: Content Section -->
+            <div class="con-reveal-content-section">
+              <div class="con-reveal-content">
+                <sly data-sly-test="${slide.title}">
+                  <h2 class="con-reveal-title">${slide.title}</h2>
+                </sly>
+
+                <sly data-sly-test="${slide.description}">
+                  <div class="con-reveal-description">
+                    ${slide.description @ context='html'}
+                  </div>
+                </sly>
+              </div>
+            </div>
+          </div>
+        </sly>
+      </div>
+
+      <!-- Diamond Dot Navigation -->
+      <sly data-sly-test="${model.slides.size > 1}">
+        <div class="con-reveal-dots">
+          <sly data-sly-list.slide="${model.slides}">
+            <button
+              class="con-reveal-dot ${slideList.first ? 'con-reveal-dot-active' : ''}"
+              data-index="${slideList.index}"
+              aria-label="Go to slide ${slideList.index + 1}"
+            ></button>
+          </sly>
+        </div>
+      </sly>
+    </sly>
+  </div>
+
+  <sly
+    data-sly-call="${templates.placeholder @ isEmpty = !model.slides || model.slides.size == 0, cq:emptyText = 'Con Reveal', classAppend='con-reveal'}"
+  />
+</div>
