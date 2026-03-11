@@ -1,0 +1,36 @@
+<sly data-sly-use.templates="core/wcm/components/commons/v1/templates.html" />
+
+<div class="sidebar-layout"
+     data-state="${properties.defaultOpen != 'false' ? 'expanded' : 'collapsed'}"
+     data-collapsible="${properties.collapsible || 'offcanvas'}"
+     data-variant="${properties.variant || 'sidebar'}">
+
+    <div class="sidebar-layout__overlay"></div>
+
+    <aside class="sidebar">
+        <div class="sidebar__header"></div>
+
+        <div class="sidebar__content"></div>
+
+        <div class="sidebar__footer"></div>
+
+        <button class="sidebar__rail" type="button" aria-label="Toggle sidebar"></button>
+    </aside>
+
+    <main class="sidebar-main">
+        <div class="sidebar-main__header">
+            <button class="sidebar-trigger" type="button" aria-label="Toggle sidebar">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect width="18" height="18" x="3" y="3" rx="2"/>
+                    <path d="M9 3v18"/>
+                </svg>
+            </button>
+        </div>
+        <div class="sidebar-main__content"></div>
+    </main>
+</div>
+
+<sly data-sly-call="${templates.placeholder @
+    isEmpty = !properties.variant,
+    cq:emptyText = 'Sidebar',
+    classAppend = 'sidebar-layout'}" />
