@@ -54,9 +54,10 @@
                                 composite="{Boolean}true"
                                 fieldDescription="Add one card per item. Tabs are generated automatically from the Category field."
                                 fieldLabel="Cards"
-                                name="./card">
+                                >
                                 <field
                                     jcr:primaryType="nt:unstructured"
+                                    name="./card"
                                     sling:resourceType="granite/ui/components/coral/foundation/container">
                                     <items jcr:primaryType="nt:unstructured">
                                         <fileReference
