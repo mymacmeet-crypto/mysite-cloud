@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
+    jcr:primaryType="nt:unstructured"
+    sling:resourceType="cq/gui/components/authoring/dialog">
+    <content
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/container">
+        <items jcr:primaryType="nt:unstructured">
+            <tabs
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/tabs"
+                maximized="{Boolean}true">
+                <items jcr:primaryType="nt:unstructured">
+
+                    <!-- ═══════════════════════════════════════════════════════ -->
+                    <!--  LAYOUT TAB                                            -->
+                    <!-- ═══════════════════════════════════════════════════════ -->
+                    <layoutTab
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Layout"
+                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                        <items jcr:primaryType="nt:unstructured">
+
+                            <!-- Container Variant -->
+                            <variant
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                fieldLabel="Container Variant"
+                                fieldDescription="Select the layout variant for this container."
+                                name="./variant">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <constrainedPadded
+                                        jcr:primaryType="nt:unstructured"
+                                        text="Constrained Padded (Default)"
+                                        value="constrainedPadded"
+                                        selected="{Boolean}true"/>
+                                    <narrowConstrainedPadded
+                                        jcr:primaryType="nt:unstructured"
+                                        text="Narrow Constrained Padded"
+                                        value="narrowConstrainedPadded"/>
+                                    <fullMobileConstrainedPadded
+                                        jcr:primaryType="nt:unstructured"
+                                        text="Full Mobile Constrained Padded"
+                                        value="fullMobileConstrainedPadded"/>
+                                    <breakpointPadded
+                                        jcr:primaryType="nt:unstructured"
+                                        text="Breakpoint Padded"
+                                        value="breakpointPadded"/>
+                                    <fullMobileBreakpointPadded
+                                        jcr:primaryType="nt:unstructured"
+                                        text="Full Mobile Breakpoint Padded"
+                                        value="fullMobileBreakpointPadded"/>
+                                </items>
+                            </variant>
+
+                        </items>
+                    </layoutTab>
+
+                </items>
+            </tabs>
+        </items>
+    </content>
+</jcr:root>
