@@ -13,6 +13,64 @@
                 <items jcr:primaryType="nt:unstructured">
 
                     <!-- ═══════════════════════════════════════════════════════ -->
+                    <!--  MENU ITEMS TAB                                        -->
+                    <!-- ═══════════════════════════════════════════════════════ -->
+                    <menuItemsTab
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Menu Items"
+                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                        <items jcr:primaryType="nt:unstructured">
+
+                            <infoText
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/well"
+                                text="Add sidebar navigation items. Use the + button to add items and the x button to remove them."/>
+
+                            <menuItemsMultifield
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                                composite="{Boolean}true"
+                                fieldLabel="Menu Items"
+                                fieldDescription="Add or remove sidebar navigation items.">
+                                <field
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/container"
+                                    name="./menuItem">
+                                    <items jcr:primaryType="nt:unstructured">
+
+                                        <label
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="Label"
+                                            fieldDescription="Display text for the menu item."
+                                            name="./label"
+                                            required="{Boolean}true"/>
+
+                                        <url
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="URL"
+                                            fieldDescription="Link URL or page path."
+                                            name="./url"
+                                            required="{Boolean}true"/>
+
+                                        <active
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                            fieldDescription="Mark this item as the currently active page."
+                                            name="./active"
+                                            text="Active"
+                                            value="{Boolean}true"
+                                            uncheckedValue="{Boolean}false"/>
+
+                                    </items>
+                                </field>
+                            </menuItemsMultifield>
+
+                        </items>
+                    </menuItemsTab>
+
+                    <!-- ═══════════════════════════════════════════════════════ -->
                     <!--  SIDEBAR SETTINGS TAB                                  -->
                     <!-- ═══════════════════════════════════════════════════════ -->
                     <settingsTab
@@ -21,7 +79,6 @@
                         sling:resourceType="granite/ui/components/coral/foundation/container">
                         <items jcr:primaryType="nt:unstructured">
 
-                            <!-- Sidebar Variant -->
                             <variant
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/select"
@@ -45,7 +102,6 @@
                                 </items>
                             </variant>
 
-                            <!-- Collapsible Mode -->
                             <collapsible
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/select"
@@ -58,10 +114,6 @@
                                         text="Offcanvas (Default)"
                                         value="offcanvas"
                                         selected="{Boolean}true"/>
-                                    <icon
-                                        jcr:primaryType="nt:unstructured"
-                                        text="Icon"
-                                        value="icon"/>
                                     <none
                                         jcr:primaryType="nt:unstructured"
                                         text="None"
@@ -69,7 +121,6 @@
                                 </items>
                             </collapsible>
 
-                            <!-- Default Open -->
                             <defaultOpen
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
@@ -77,7 +128,8 @@
                                 name="./defaultOpen"
                                 text="Default Open"
                                 checked="{Boolean}true"
-                                value="{Boolean}true"/>
+                                value="{Boolean}true"
+                                uncheckedValue="{Boolean}false"/>
 
                         </items>
                     </settingsTab>

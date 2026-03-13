@@ -10,29 +10,20 @@
     <div class="sidebar__header"></div>
 
     <div class="sidebar__content">
-      {{#each menuGroups}}
-      <div class="sidebar__group">
-        {{#if this.label}}
-        <span class="sidebar__group-label">{{this.label}}</span>
-        {{/if}}
-        <ul class="sidebar__menu">
-          {{#each this.items}}
-          <li class="sidebar__menu-item">
-            <a
-              href="{{this.url}}"
-              class="sidebar__menu-button{{#if this.isActive}} sidebar__menu-button--active{{/if}}"
-            >
-              <span class="sidebar__menu-icon">{{{this.icon}}}</span>
-              <span class="sidebar__menu-label">{{this.label}}</span>
-            </a>
-            {{#if this.badge}}
-            <span class="sidebar__menu-badge">{{this.badge}}</span>
-            {{/if}}
-          </li>
-          {{/each}}
-        </ul>
-      </div>
-      {{/each}}
+      {{#if items}}
+      <ul class="sidebar__menu">
+        {{#each items}}
+        <li class="sidebar__menu-item">
+          <a
+            href="{{this.url}}"
+            class="sidebar__menu-button{{#if this.isActive}} sidebar__menu-button--active{{/if}}"
+          >
+            <span class="sidebar__menu-label">{{this.label}}</span>
+          </a>
+        </li>
+        {{/each}}
+      </ul>
+      {{/if}}
     </div>
 
     <div class="sidebar__footer"></div>

@@ -1,16 +1,30 @@
 <sly data-sly-use.templates="core/wcm/components/commons/v1/templates.html" />
+<sly data-sly-use.model="com.mysite.core.models.SidebarModel" />
 
 <div class="sidebar-layout"
-     data-state="${properties.defaultOpen != 'false' ? 'expanded' : 'collapsed'}"
-     data-collapsible="${properties.collapsible || 'offcanvas'}"
-     data-variant="${properties.variant || 'sidebar'}">
+     data-state="${model.defaultOpen ? 'expanded' : 'collapsed'}"
+     data-collapsible="${model.collapsible}"
+     data-variant="${model.variant}">
 
     <div class="sidebar-layout__overlay"></div>
 
     <aside class="sidebar">
         <div class="sidebar__header"></div>
 
-        <div class="sidebar__content"></div>
+        <div class="sidebar__content">
+            <sly data-sly-test="${model.hasMenuItems}">
+                <ul class="sidebar__menu">
+                    <sly data-sly-list.item="${model.menuItems}">
+                        <li class="sidebar__menu-item">
+                            <a href="${item.url}"
+                               class="sidebar__menu-button${item.active ? ' sidebar__menu-button--active' : ''}">
+                                <span class="sidebar__menu-label">${item.label}</span>
+                            </a>
+                        </li>
+                    </sly>
+                </ul>
+            </sly>
+        </div>
 
         <div class="sidebar__footer"></div>
 
@@ -31,6 +45,6 @@
 </div>
 
 <sly data-sly-call="${templates.placeholder @
-    isEmpty = !properties.variant,
-    cq:emptyText = 'Sidebar',
+    isEmpty = !model.hasMenuItems,
+    cq:emptyText = 'Sidebar — Add menu items in the dialog',
     classAppend = 'sidebar-layout'}" />

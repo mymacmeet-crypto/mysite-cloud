@@ -1,7 +1,6 @@
 // ─── CSS Custom Properties ──────────────────────────────────
 .sidebar-layout {
   --sidebar-width: 16rem;
-  --sidebar-width-icon: 3rem;
   --sidebar-bg: #fafafa;
   --sidebar-fg: #3f3f46;
   --sidebar-border: #e4e4e7;
@@ -57,29 +56,6 @@
   padding: 8px;
 }
 
-// ─── Sidebar Group ──────────────────────────────────────────
-.sidebar__group {
-  margin-bottom: 16px;
-
-  &:last-child {
-    margin-bottom: 0;
-  }
-}
-
-.sidebar__group-label {
-  display: block;
-  font-size: 11px;
-  font-weight: 600;
-  color: #a1a1aa;
-  padding: 4px 8px;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-bottom: 4px;
-  white-space: nowrap;
-  overflow: hidden;
-  transition: opacity 0.2s ease;
-}
-
 // ─── Sidebar Menu ───────────────────────────────────────────
 .sidebar__menu {
   list-style: none;
@@ -97,9 +73,8 @@
 .sidebar__menu-button {
   display: flex;
   align-items: center;
-  gap: 8px;
   width: 100%;
-  padding: 8px;
+  padding: 8px 12px;
   border-radius: 6px;
   text-decoration: none;
   color: var(--sidebar-fg);
@@ -122,40 +97,11 @@
   }
 }
 
-.sidebar__menu-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  width: 16px;
-  height: 16px;
-
-  svg {
-    width: 16px;
-    height: 16px;
-  }
-}
-
 .sidebar__menu-label {
   flex: 1;
   overflow: hidden;
   text-overflow: ellipsis;
   transition: opacity 0.2s ease, width 0.2s ease;
-}
-
-.sidebar__menu-badge {
-  position: absolute;
-  right: 8px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 11px;
-  font-weight: 600;
-  color: var(--sidebar-fg);
-  background: var(--sidebar-border);
-  padding: 2px 6px;
-  border-radius: 10px;
-  line-height: 1;
-  transition: opacity 0.2s ease;
 }
 
 // ─── Sidebar Footer ─────────────────────────────────────────
@@ -238,49 +184,6 @@
   svg {
     width: 16px;
     height: 16px;
-  }
-}
-
-// ─── State: Collapsed + Icon mode ───────────────────────────
-.sidebar-layout[data-state="collapsed"][data-collapsible="icon"] {
-  .sidebar {
-    width: var(--sidebar-width-icon);
-  }
-
-  .sidebar__header {
-    padding: 16px 8px;
-  }
-
-  .sidebar__content {
-    padding: 8px 4px;
-  }
-
-  .sidebar__group-label {
-    opacity: 0;
-    height: 0;
-    padding: 0;
-    margin: 0;
-    overflow: hidden;
-  }
-
-  .sidebar__menu-button {
-    justify-content: center;
-    padding: 8px;
-  }
-
-  .sidebar__menu-label {
-    opacity: 0;
-    width: 0;
-    overflow: hidden;
-  }
-
-  .sidebar__menu-badge {
-    opacity: 0;
-    pointer-events: none;
-  }
-
-  .sidebar__footer {
-    padding: 12px 8px;
   }
 }
 
@@ -381,19 +284,16 @@
     }
   }
 
-  // On mobile, default to collapsed
   .sidebar-layout {
     .sidebar {
       width: var(--sidebar-width);
     }
   }
 
-  // Hide rail on mobile
   .sidebar__rail {
     display: none;
   }
 
-  // Floating/inset reset on mobile
   .sidebar-layout[data-variant="floating"],
   .sidebar-layout[data-variant="inset"] {
     .sidebar {
