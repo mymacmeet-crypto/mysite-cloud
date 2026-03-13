@@ -1,0 +1,17 @@
+<section class="mag-container {{containerWidth}} {{verticalPadding}} {{horizontalPadding}} {{#if topBorder}}mag-container-border-top{{/if}} {{#if bottomBorder}}mag-container-border-bottom{{/if}}" data-background-color="{{backgroundColor}}">
+  
+  <div class="mag-container-inner">
+    
+    {{#if title}}
+      <div class="mag-container-header">
+        <h2 class="mag-container-title">{{title}}</h2>
+      </div>
+    {{/if}}
+    
+    <div class="mag-container-content">
+      {{{content}}}
+    </div>
+    
+  </div>
+
+</section>

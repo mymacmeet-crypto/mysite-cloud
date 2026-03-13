@@ -1,0 +1,260 @@
+// ─── Theme Variables ─────────────────────────────────────────────────────────
+$container-text: #252525;
+$container-border: #e0e0e0;
+$container-title: #252525;
+
+// ─── Container Root ──────────────────────────────────────────────────────────
+.mag-container {
+  position: relative;
+  width: 100%;
+  background: #ffffff;
+  font-family: "Georgia", "Times New Roman", serif;
+}
+
+// ─── Inner Wrapper ───────────────────────────────────────────────────────────
+.mag-container-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+// ─── Header ──────────────────────────────────────────────────────────────────
+.mag-container-header {
+  margin-bottom: 40px;
+}
+
+.mag-container-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: $container-title;
+  margin: 0;
+}
+
+// ─── Content Area ────────────────────────────────────────────────────────────
+.mag-container-content {
+  width: 100%;
+}
+
+// ═════════════════════════════════════════════════════════════════════════════
+//  CONTAINER WIDTH OPTIONS
+// ═════════════════════════════════════════════════════════════════════════════
+
+.mag-container-width-full {
+  .mag-container-inner {
+    max-width: 100%;
+  }
+}
+
+.mag-container-width-boxed {
+  .mag-container-inner {
+    max-width: 1400px;
+  }
+}
+
+.mag-container-width-narrow {
+  .mag-container-inner {
+    max-width: 1000px;
+  }
+}
+
+// ═════════════════════════════════════════════════════════════════════════════
+//  VERTICAL PADDING OPTIONS
+// ═════════════════════════════════════════════════════════════════════════════
+
+.mag-container-padding-none {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.mag-container-padding-small {
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.mag-container-padding-medium {
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+
+.mag-container-padding-large {
+  padding-top: 120px;
+  padding-bottom: 120px;
+}
+
+// ═════════════════════════════════════════════════════════════════════════════
+//  HORIZONTAL PADDING OPTIONS
+// ═════════════════════════════════════════════════════════════════════════════
+
+.mag-container-horizontal-none {
+  .mag-container-inner {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+.mag-container-horizontal-small {
+  .mag-container-inner {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+
+.mag-container-horizontal-medium {
+  .mag-container-inner {
+    padding-left: 48px;
+    padding-right: 48px;
+  }
+}
+
+.mag-container-horizontal-large {
+  .mag-container-inner {
+    padding-left: 80px;
+    padding-right: 80px;
+  }
+}
+
+// ═════════════════════════════════════════════════════════════════════════════
+//  BORDERS
+// ═════════════════════════════════════════════════════════════════════════════
+
+.mag-container-border-top {
+  border-top: 1px solid $container-border;
+}
+
+.mag-container-border-bottom {
+  border-bottom: 1px solid $container-border;
+}
+
+// ═════════════════════════════════════════════════════════════════════════════
+//  BACKGROUND COLORS
+// ═════════════════════════════════════════════════════════════════════════════
+
+.mag-container[data-background-color="white"] {
+  background-color: #ffffff;
+}
+
+.mag-container[data-background-color="light-gray"] {
+  background-color: #f7f7f7;
+}
+
+.mag-container[data-background-color="dark-gray"] {
+  background-color: #f0f0f0;
+}
+
+.mag-container[data-background-color="black"] {
+  background-color: #252525;
+
+  .mag-container-title {
+    color: #ffffff;
+  }
+}
+
+.mag-container[data-background-color="primary"] {
+  background-color: #343434;
+
+  .mag-container-title {
+    color: #fbfbfb;
+  }
+}
+
+// ═════════════════════════════════════════════════════════════════════════════
+//  RESPONSIVE
+// ═════════════════════════════════════════════════════════════════════════════
+
+@media (max-width: 1024px) {
+  .mag-container-title {
+    font-size: 2rem;
+  }
+
+  .mag-container-padding-small {
+    padding-top: 32px;
+    padding-bottom: 32px;
+  }
+
+  .mag-container-padding-medium {
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
+
+  .mag-container-padding-large {
+    padding-top: 100px;
+    padding-bottom: 100px;
+  }
+
+  .mag-container-horizontal-large {
+    .mag-container-inner {
+      padding-left: 60px;
+      padding-right: 60px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .mag-container-title {
+    font-size: 1.75rem;
+  }
+
+  .mag-container-header {
+    margin-bottom: 32px;
+  }
+
+  .mag-container-padding-small {
+    padding-top: 24px;
+    padding-bottom: 24px;
+  }
+
+  .mag-container-padding-medium {
+    padding-top: 48px;
+    padding-bottom: 48px;
+  }
+
+  .mag-container-padding-large {
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+
+  .mag-container-horizontal-medium {
+    .mag-container-inner {
+      padding-left: 32px;
+      padding-right: 32px;
+    }
+  }
+
+  .mag-container-horizontal-large {
+    .mag-container-inner {
+      padding-left: 40px;
+      padding-right: 40px;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .mag-container-title {
+    font-size: 1.5rem;
+  }
+
+  .mag-container-header {
+    margin-bottom: 24px;
+  }
+
+  .mag-container-horizontal-small {
+    .mag-container-inner {
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+  }
+
+  .mag-container-horizontal-medium {
+    .mag-container-inner {
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+  }
+
+  .mag-container-horizontal-large {
+    .mag-container-inner {
+      padding-left: 32px;
+      padding-right: 32px;
+    }
+  }
+}

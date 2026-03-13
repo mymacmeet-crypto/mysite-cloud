@@ -1,0 +1,21 @@
+<sly data-sly-use.templates="core/wcm/components/commons/v1/templates.html" />
+<sly data-sly-use.model="com.mysite.core.models.MagContainerModel" />
+
+<section
+  class="mag-container ${model.containerWidth} ${model.verticalPadding} ${model.horizontalPadding} ${model.topBorder ? 'mag-container-border-top' : ''} ${model.bottomBorder ? 'mag-container-border-bottom' : ''}"
+  data-background-color="${model.backgroundColor}"
+>
+  <div class="mag-container-inner">
+    <sly data-sly-test="${model.title}">
+      <div class="mag-container-header">
+        <h2 class="mag-container-title">${model.title}</h2>
+      </div>
+    </sly>
+
+    <div class="mag-container-content">
+      <sly
+        data-sly-resource="${'content' @ resourceType='wcm/foundation/components/responsivegrid'}"
+      ></sly>
+    </div>
+  </div>
+</section>

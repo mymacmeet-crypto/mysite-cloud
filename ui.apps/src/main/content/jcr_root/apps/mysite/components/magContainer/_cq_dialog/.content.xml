@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
+    jcr:primaryType="nt:unstructured"
+    sling:resourceType="cq/gui/components/authoring/dialog">
+    <content
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/container">
+        <items jcr:primaryType="nt:unstructured">
+            <tabs
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/tabs"
+                maximized="{Boolean}true">
+                <items jcr:primaryType="nt:unstructured">
+
+                    <!-- ═══════════════════════════════════════════════════════ -->
+                    <!--  PROPERTIES TAB                                          -->
+                    <!-- ═══════════════════════════════════════════════════════ -->
+                    <propertiesTab
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Properties"
+                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                        <items jcr:primaryType="nt:unstructured">
+
+                            <!-- Title -->
+                            <title
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Section Title"
+                                fieldDescription="Optional heading displayed at the top of the container."
+                                name="./title"/>
+
+                        </items>
+                    </propertiesTab>
+
+                    <!-- ═══════════════════════════════════════════════════════ -->
+                    <!--  LAYOUT TAB                                              -->
+                    <!-- ═══════════════════════════════════════════════════════ -->
+                    <layoutTab
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Layout"
+                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                        <items jcr:primaryType="nt:unstructured">
+
+                            <!-- Container Width -->
+                            <containerWidth
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                fieldLabel="Container Width"
+                                fieldDescription="Maximum width of the content area."
+                                name="./containerWidth">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <boxed
+                                        jcr:primaryType="nt:unstructured"
+                                        text="Boxed (1400px)"
+                                        value="mag-container-width-boxed"
+                                        selected="{Boolean}true"/>
+                                    <full
+                                        jcr:primaryType="nt:unstructured"
+                                        text="Full Width"
+                                        value="mag-container-width-full"/>
+                                    <narrow
+                                        jcr:primaryType="nt:unstructured"
+                                        text="Narrow (1000px)"
+                                        value="mag-container-width-narrow"/>
+                                </items>
+                            </containerWidth>
+
+                            <!-- Vertical Padding -->
+                            <verticalPadding
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                fieldLabel="Vertical Padding"
+                                fieldDescription="Top and bottom padding of the container."
+                                name="./verticalPadding">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <none
+                                        jcr:primaryType="nt:unstructured"
+                                        text="None"
+                                        value="mag-container-padding-none"/>
+                                    <small
+                                        jcr:primaryType="nt:unstructured"
+                                        text="Small (40px)"
+                                        value="mag-container-padding-small"/>
+                                    <medium
+                                        jcr:primaryType="nt:unstructured"
+                                        text="Medium (80px)"
+                                        value="mag-container-padding-medium"
+                                        selected="{Boolean}true"/>
+                                    <large
+                                        jcr:primaryType="nt:unstructured"
+                                        text="Large (120px)"
+                                        value="mag-container-padding-large"/>
+                                </items>
+                            </verticalPadding>
+
+                            <!-- Horizontal Padding -->
+                            <horizontalPadding
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                fieldLabel="Horizontal Padding"
+                                fieldDescription="Left and right padding of the content."
+                                name="./horizontalPadding">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <none
+                                        jcr:primaryType="nt:unstructured"
+                                        text="None"
+                                        value="mag-container-horizontal-none"/>
+                                    <small
+                                        jcr:primaryType="nt:unstructured"
+                                        text="Small (24px)"
+                                        value="mag-container-horizontal-small"/>
+                                    <medium
+                                        jcr:primaryType="nt:unstructured"
+                                        text="Medium (48px)"
+                                        value="mag-container-horizontal-medium"
+                                        selected="{Boolean}true"/>
+                                    <large
+                                        jcr:primaryType="nt:unstructured"
+                                        text="Large (80px)"
+                                        value="mag-container-horizontal-large"/>
+                                </items>
+                            </horizontalPadding>
+
+                        </items>
+                    </layoutTab>
+
+                    <!-- ═══════════════════════════════════════════════════════ -->
+                    <!--  STYLING TAB                                             -->
+                    <!-- ═══════════════════════════════════════════════════════ -->
+                    <stylingTab
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Styling"
+                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                        <items jcr:primaryType="nt:unstructured">
+
+                            <!-- Background Color -->
+                            <backgroundColor
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                fieldLabel="Background Color"
+                                fieldDescription="Background color of the container."
+                                name="./backgroundColor">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <white
+                                        jcr:primaryType="nt:unstructured"
+                                        text="White"
+                                        value="white"
+                                        selected="{Boolean}true"/>
+                                    <lightGray
+                                        jcr:primaryType="nt:unstructured"
+                                        text="Light Gray"
+                                        value="light-gray"/>
+                                    <darkGray
+                                        jcr:primaryType="nt:unstructured"
+                                        text="Dark Gray"
+                                        value="dark-gray"/>
+                                    <black
+                                        jcr:primaryType="nt:unstructured"
+                                        text="Black"
+                                        value="black"/>
+                                    <primary
+                                        jcr:primaryType="nt:unstructured"
+                                        text="Primary (Brand Color)"
+                                        value="primary"/>
+                                </items>
+                            </backgroundColor>
+
+                            <!-- Top Border -->
+                            <topBorder
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                fieldDescription="Add a border line at the top of the container."
+                                name="./topBorder"
+                                text="Show Top Border"
+                                value="{Boolean}true"
+                                uncheckedValue="{Boolean}false"/>
+
+                            <!-- Bottom Border -->
+                            <bottomBorder
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                fieldDescription="Add a border line at the bottom of the container."
+                                name="./bottomBorder"
+                                text="Show Bottom Border"
+                                value="{Boolean}true"
+                                uncheckedValue="{Boolean}false"/>
+
+                        </items>
+                    </stylingTab>
+
+                </items>
+            </tabs>
+        </items>
+    </content>
+</jcr:root>
