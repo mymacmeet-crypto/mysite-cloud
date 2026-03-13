@@ -1,0 +1,41 @@
+<sly data-sly-use.templates="core/wcm/components/commons/v1/templates.html" />
+<sly data-sly-use.model="com.mysite.core.models.StickyContentModel" />
+
+<div class="sticky-content" data-component="stickycontent">
+    <!-- Vertical tab — always visible -->
+    <button class="sticky-content__tab" type="button" aria-expanded="false" aria-label="${model.tabText}">
+        <span class="sticky-content__tab-text">${model.tabText}</span>
+    </button>
+
+    <!-- Panel — hidden by default -->
+    <div class="sticky-content__panel" aria-hidden="true">
+        <div class="sticky-content__panel-inner">
+            <button class="sticky-content__close" type="button" aria-label="Close">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"/>
+                    <line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+            </button>
+
+            <div class="sticky-content__body">
+                <sly data-sly-test="${model.heading}">
+                    <p class="sticky-content__heading">${model.heading}</p>
+                </sly>
+                <form class="sticky-content__form">
+                    <div class="sticky-content__field">
+                        <input class="sticky-content__input"
+                               type="email"
+                               placeholder="${model.placeholderText}"
+                               required="required" />
+                    </div>
+                    <button class="sticky-content__submit" type="submit">${model.buttonText}</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<sly data-sly-call="${templates.placeholder @
+    isEmpty = model.empty,
+    cq:emptyText = 'Sticky Content',
+    classAppend = 'sticky-content'}" />

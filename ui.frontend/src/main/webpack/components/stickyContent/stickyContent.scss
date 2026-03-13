@@ -1,0 +1,176 @@
+// ─── Variables ───────────────────────────────────────────────
+$sc-red: #e53935;
+$sc-red-dark: #c62828;
+$sc-white: #ffffff;
+$sc-transition: 0.3s ease;
+
+// ─── Root ────────────────────────────────────────────────────
+.sticky-content {
+  position: fixed;
+  left: 0;
+  bottom: 80px;
+  z-index: 1000;
+  font-family: sans-serif;
+  display: flex;
+  align-items: flex-end;
+}
+
+// ─── Vertical Tab (always visible) ──────────────────────────
+.sticky-content__tab {
+  background: $sc-red;
+  color: $sc-white;
+  border: none;
+  cursor: pointer;
+  padding: 12px 8px;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition: background $sc-transition;
+  flex-shrink: 0;
+
+  &:hover {
+    background: $sc-red-dark;
+  }
+}
+
+.sticky-content__tab-text {
+  display: block;
+}
+
+// ─── Panel (hidden by default) ──────────────────────────────
+.sticky-content__panel {
+  background: $sc-red;
+  color: $sc-white;
+  width: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: width $sc-transition, opacity $sc-transition;
+  position: relative;
+
+  &--open {
+    width: 320px;
+    opacity: 1;
+  }
+}
+
+.sticky-content__panel-inner {
+  width: 320px;
+  padding: 32px 28px;
+  position: relative;
+}
+
+// ─── Close Button ────────────────────────────────────────────
+.sticky-content__close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: none;
+  border: none;
+  color: $sc-white;
+  cursor: pointer;
+  padding: 4px;
+  line-height: 1;
+  transition: opacity 0.15s ease;
+
+  &:hover {
+    opacity: 0.7;
+  }
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+// ─── Body ────────────────────────────────────────────────────
+.sticky-content__body {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.sticky-content__heading {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.4;
+  color: $sc-white;
+}
+
+// ─── Form ────────────────────────────────────────────────────
+.sticky-content__form {
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+}
+
+.sticky-content__field {
+  flex: 1;
+}
+
+.sticky-content__input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid $sc-white;
+  color: $sc-white;
+  font-size: 14px;
+  padding: 8px 0;
+  outline: none;
+  font-family: inherit;
+
+  &::placeholder {
+    color: rgba($sc-white, 0.7);
+  }
+
+  &:focus {
+    border-bottom-width: 2px;
+  }
+}
+
+.sticky-content__submit {
+  background: transparent;
+  border: none;
+  color: $sc-white;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+  padding: 8px 0;
+  white-space: nowrap;
+  font-family: inherit;
+  transition: opacity 0.15s ease;
+
+  &:hover {
+    opacity: 0.7;
+  }
+}
+
+// ─── Mobile (< 480px) ──────────────────────────────────────
+@media (max-width: 479px) {
+  .sticky-content__panel--open {
+    width: 280px;
+  }
+
+  .sticky-content__panel-inner {
+    width: 280px;
+    padding: 24px 20px;
+  }
+
+  .sticky-content__heading {
+    font-size: 14px;
+  }
+
+  .sticky-content__form {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+}
