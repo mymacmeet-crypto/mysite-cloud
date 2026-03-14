@@ -1,0 +1,267 @@
+// ─── Theme Variables ─────────────────────────────────────────────────────────
+$modal-overlay: rgba(0, 0, 0, 0.7);
+$modal-bg: #ffffff;
+$modal-text: #252525;
+$modal-border: #e0e0e0;
+$modal-close-hover: #dc2626;
+$modal-transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+// ─── Wrapper ─────────────────────────────────────────────────────────────────
+.mag-modal-wrapper {
+  display: inline-block;
+}
+
+// ─── Trigger Button ──────────────────────────────────────────────────────────
+.mag-modal-trigger {
+  display: inline-block;
+  padding: 14px 32px;
+  background: #343434;
+  color: #ffffff;
+  border: none;
+  font-family: "Arial", "Helvetica", sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: #252525;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+// ─── Modal Overlay ───────────────────────────────────────────────────────────
+.mag-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: $modal-overlay;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity $modal-transition,
+    visibility $modal-transition;
+  padding: 20px;
+  overflow-y: auto;
+
+  &.mag-modal-open {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+// ─── Modal Container ─────────────────────────────────────────────────────────
+.mag-modal {
+  position: relative;
+  background: $modal-bg;
+  border-radius: 8px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  transform: translateY(-50px);
+  transition: transform $modal-transition;
+  width: 100%;
+
+  .mag-modal-open & {
+    transform: translateY(0);
+  }
+}
+
+// ─── Modal Header ────────────────────────────────────────────────────────────
+.mag-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 32px;
+  border-bottom: 1px solid $modal-border;
+  flex-shrink: 0;
+}
+
+.mag-modal-title {
+  font-family: "Georgia", "Times New Roman", serif;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: $modal-text;
+  margin: 0;
+  padding-right: 20px;
+}
+
+.mag-modal-close {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  color: #6b7280;
+
+  &:hover {
+    background: #fee2e2;
+    color: $modal-close-hover;
+  }
+
+  svg {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+// ─── Modal Content ───────────────────────────────────────────────────────────
+.mag-modal-content {
+  overflow-y: auto;
+  flex: 1;
+}
+
+// ═════════════════════════════════════════════════════════════════════════════
+//  MODAL SIZE OPTIONS
+// ═════════════════════════════════════════════════════════════════════════════
+
+.mag-modal-size-small {
+  max-width: 500px;
+}
+
+.mag-modal-size-medium {
+  max-width: 800px;
+}
+
+.mag-modal-size-large {
+  max-width: 1200px;
+}
+
+.mag-modal-size-fullscreen {
+  max-width: 95vw;
+  max-height: 95vh;
+}
+
+// ═════════════════════════════════════════════════════════════════════════════
+//  CONTENT PADDING OPTIONS
+// ═════════════════════════════════════════════════════════════════════════════
+
+.mag-modal-padding-none {
+  .mag-modal-content {
+    padding: 0;
+  }
+}
+
+.mag-modal-padding-small {
+  .mag-modal-content {
+    padding: 16px 24px;
+  }
+}
+
+.mag-modal-padding-medium {
+  .mag-modal-content {
+    padding: 32px 32px;
+  }
+}
+
+.mag-modal-padding-large {
+  .mag-modal-content {
+    padding: 48px 48px;
+  }
+}
+
+// ═════════════════════════════════════════════════════════════════════════════
+//  BODY SCROLL LOCK
+// ═════════════════════════════════════════════════════════════════════════════
+
+body.mag-modal-active {
+  overflow: hidden;
+}
+
+// ═════════════════════════════════════════════════════════════════════════════
+//  RESPONSIVE
+// ═════════════════════════════════════════════════════════════════════════════
+
+@media (max-width: 768px) {
+  .mag-modal-overlay {
+    padding: 16px;
+    align-items: flex-start;
+  }
+
+  .mag-modal {
+    max-height: 95vh;
+    margin-top: 20px;
+  }
+
+  .mag-modal-header {
+    padding: 20px 24px;
+  }
+
+  .mag-modal-title {
+    font-size: 1.5rem;
+  }
+
+  .mag-modal-padding-small {
+    .mag-modal-content {
+      padding: 12px 20px;
+    }
+  }
+
+  .mag-modal-padding-medium {
+    .mag-modal-content {
+      padding: 24px 24px;
+    }
+  }
+
+  .mag-modal-padding-large {
+    .mag-modal-content {
+      padding: 32px 32px;
+    }
+  }
+
+  // All modals become more responsive on mobile
+  .mag-modal-size-small,
+  .mag-modal-size-medium,
+  .mag-modal-size-large {
+    max-width: 100%;
+  }
+
+  .mag-modal-size-fullscreen {
+    max-width: 100%;
+    max-height: 100vh;
+    border-radius: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .mag-modal-trigger {
+    padding: 12px 24px;
+    font-size: 0.95rem;
+  }
+
+  .mag-modal-header {
+    padding: 16px 20px;
+  }
+
+  .mag-modal-title {
+    font-size: 1.25rem;
+  }
+
+  .mag-modal-close {
+    width: 36px;
+    height: 36px;
+
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+}

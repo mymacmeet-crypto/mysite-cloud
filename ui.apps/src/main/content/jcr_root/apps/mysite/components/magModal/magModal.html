@@ -1,0 +1,51 @@
+<sly data-sly-use.templates="core/wcm/components/commons/v1/templates.html" />
+<sly data-sly-use.model="com.mysite.core.models.MagModalModel" />
+
+<div class="mag-modal-wrapper" data-component="magmodal">
+  <!-- Trigger Button -->
+  <sly data-sly-test="${model.buttonText}">
+    <button class="mag-modal-trigger" data-modal-id="${model.modalId}">
+      ${model.buttonText}
+    </button>
+  </sly>
+
+  <!-- Modal Overlay -->
+  <div class="mag-modal-overlay" data-modal-id="${model.modalId}">
+    <!-- Modal Container -->
+    <div
+      class="mag-modal ${model.modalSize} ${model.contentPadding}"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modal-title-${model.modalId}"
+    >
+      <!-- Modal Header -->
+      <div class="mag-modal-header">
+        <sly data-sly-test="${model.title}">
+          <h2 class="mag-modal-title" id="modal-title-${model.modalId}">
+            ${model.title}
+          </h2>
+        </sly>
+        <button class="mag-modal-close" aria-label="Close modal">
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Modal Content (Parsys) -->
+      <div class="mag-modal-content">
+        <sly
+          data-sly-resource="${'content' @ resourceType='wcm/foundation/components/responsivegrid'}"
+        ></sly>
+      </div>
+    </div>
+  </div>
+</div>
