@@ -1,10 +1,10 @@
 // ─── Theme Variables ─────────────────────────────────────────────────────────
-$modal-overlay: rgba(0, 0, 0, 0.7);
-$modal-bg: #ffffff;
-$modal-text: #252525;
-$modal-border: #e0e0e0;
-$modal-close-hover: #dc2626;
-$modal-transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+$modal-overlay:        rgba(0, 0, 0, 0.7);
+$modal-bg:             #ffffff;
+$modal-text:           #252525;
+$modal-border:         #e0e0e0;
+$modal-close-hover:    #dc2626;
+$modal-transition:     0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
 // ─── Wrapper ─────────────────────────────────────────────────────────────────
 .mag-modal-wrapper {
@@ -49,9 +49,7 @@ $modal-transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 9999;
   opacity: 0;
   visibility: hidden;
-  transition:
-    opacity $modal-transition,
-    visibility $modal-transition;
+  transition: opacity $modal-transition, visibility $modal-transition;
   padding: 20px;
   overflow-y: auto;
 
@@ -179,11 +177,142 @@ $modal-transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 // ═════════════════════════════════════════════════════════════════════════════
+//  AEM AUTHOR MODE
+// ═════════════════════════════════════════════════════════════════════════════
+
+// Hide the overlay completely in AEM Author/Edit mode
+.cq-Overlay-placeholder ~ .mag-modal-overlay,
+.cq-Editable-dom ~ .mag-modal-overlay,
+body.aem-AuthorLayer-Edit .mag-modal-overlay,
+body.aem-AuthorLayer-Design .mag-modal-overlay {
+  display: none !important;
+}
+
+// Author Mode Preview Section (shows below button)
+.mag-modal-author-preview {
+  margin-top: 24px;
+  padding: 20px;
+  background: #f3f4f6;
+  border: 2px dashed #d1d5db;
+  border-radius: 8px;
+}
+
+.mag-modal-author-label {
+  margin: 0 0 16px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.mag-modal-author-container {
+  background: $modal-bg;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  max-width: 100%;
+  
+  // Apply same size constraints as actual modal
+  &.mag-modal-size-small {
+    max-width: 500px;
+  }
+  
+  &.mag-modal-size-medium {
+    max-width: 800px;
+  }
+  
+  &.mag-modal-size-large {
+    max-width: 1200px;
+  }
+  
+  &.mag-modal-size-fullscreen {
+    max-width: 100%;
+  }
+  
+  // Apply same padding as actual modal
+  &.mag-modal-padding-none .mag-modal-content {
+    padding: 0;
+  }
+  
+  &.mag-modal-padding-small .mag-modal-content {
+    padding: 16px 24px;
+  }
+  
+  &.mag-modal-padding-medium .mag-modal-content {
+    padding: 32px 32px;
+  }
+  
+  &.mag-modal-padding-large .mag-modal-content {
+    padding: 48px 48px;
+  }
+}
+
+.mag-modal-close-preview {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f3f4f6;
+  border-radius: 4px;
+  color: #6b7280;
+  font-size: 1.5rem;
+  pointer-events: none;
+}
+
+// ═════════════════════════════════════════════════════════════════════════════
 //  BODY SCROLL LOCK
 // ═════════════════════════════════════════════════════════════════════════════
 
 body.mag-modal-active {
   overflow: hidden;
+}
+
+// ═════════════════════════════════════════════════════════════════════════════
+//  AEM AUTHOR MODE
+// ═════════════════════════════════════════════════════════════════════════════
+
+// In AEM author mode, show modal inline for easier editing
+.cq-Overlay-container,
+.cq-wcm-edit {
+  .mag-modal-overlay {
+    position: relative;
+    display: block;
+    opacity: 1;
+    visibility: visible;
+    background: transparent;
+    padding: 20px 0;
+    margin-top: 20px;
+    overflow: visible;
+    height: auto;
+    border: 2px dashed #e0e0e0;
+    border-radius: 8px;
+
+    &::before {
+      content: "Modal Content (Author View)";
+      display: block;
+      padding: 8px 16px;
+      background: #f0f0f0;
+      color: #252525;
+      font-size: 0.875rem;
+      font-weight: 600;
+      margin-bottom: 16px;
+      border-radius: 4px;
+    }
+  }
+
+  .mag-modal {
+    position: relative;
+    transform: translateY(0);
+    max-height: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
+  }
+
+  .mag-modal-close {
+    pointer-events: none;
+    opacity: 0.5;
+  }
 }
 
 // ═════════════════════════════════════════════════════════════════════════════
