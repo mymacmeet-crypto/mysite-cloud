@@ -2,7 +2,6 @@
 $sc-red: #e53935;
 $sc-red-dark: #c62828;
 $sc-white: #ffffff;
-$sc-transition: 0.3s ease;
 
 // ─── Root ────────────────────────────────────────────────────
 .sticky-content {
@@ -30,7 +29,6 @@ $sc-transition: 0.3s ease;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   white-space: nowrap;
-  transition: background $sc-transition;
   flex-shrink: 0;
 
   &:hover {
@@ -42,40 +40,43 @@ $sc-transition: 0.3s ease;
   display: block;
 }
 
-// ─── Panel (hidden by default) ──────────────────────────────
+// ─── Panel (hidden by default, shown on click) ──────────────
 .sticky-content__panel {
+  display: none;
   background: $sc-red;
   color: $sc-white;
-  width: 0;
-  overflow: hidden;
-  opacity: 0;
-  transition: width $sc-transition, opacity $sc-transition;
-  position: relative;
-
-  &--open {
-    width: 320px;
-    opacity: 1;
-  }
-}
-
-.sticky-content__panel-inner {
   width: 320px;
   padding: 32px 28px;
   position: relative;
+
+  &--open {
+    display: block;
+    animation: sc-slide-in 0.3s ease;
+  }
+}
+
+@keyframes sc-slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 // ─── Close Button ────────────────────────────────────────────
 .sticky-content__close {
   position: absolute;
-  top: 12px;
-  right: 12px;
+  top: 8px;
+  right: 8px;
   background: none;
   border: none;
   color: $sc-white;
   cursor: pointer;
   padding: 4px;
   line-height: 1;
-  transition: opacity 0.15s ease;
 
   &:hover {
     opacity: 0.7;
@@ -84,6 +85,7 @@ $sc-transition: 0.3s ease;
   svg {
     width: 20px;
     height: 20px;
+    display: block;
   }
 }
 
@@ -100,6 +102,7 @@ $sc-transition: 0.3s ease;
   font-weight: 700;
   line-height: 1.4;
   color: $sc-white;
+  padding-right: 24px;
 }
 
 // ─── Form ────────────────────────────────────────────────────
@@ -146,7 +149,6 @@ $sc-transition: 0.3s ease;
   padding: 8px 0;
   white-space: nowrap;
   font-family: inherit;
-  transition: opacity 0.15s ease;
 
   &:hover {
     opacity: 0.7;
@@ -155,12 +157,8 @@ $sc-transition: 0.3s ease;
 
 // ─── Mobile (< 480px) ──────────────────────────────────────
 @media (max-width: 479px) {
-  .sticky-content__panel--open {
-    width: 280px;
-  }
-
-  .sticky-content__panel-inner {
-    width: 280px;
+  .sticky-content__panel {
+    width: 260px;
     padding: 24px 20px;
   }
 
