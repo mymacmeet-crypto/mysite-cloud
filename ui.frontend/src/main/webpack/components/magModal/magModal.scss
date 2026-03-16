@@ -277,12 +277,10 @@ body.mag-modal-active {
 // In AEM author/edit mode, show modal inline below the button for easier editing
 // This targets when the component is being edited in AEM
 .mag-modal-wrapper {
-  // Check if we're in AEM author context by looking for common AEM classes in ancestors
+  // Only show inline preview in explicit AEM author/edit mode
   .aem-AuthorLayer-Edit &,
-  .aem-GridColumn &,
   .cq-wcm-edit &,
-  [class*="wcm-mode"] &,
-  body:not(.wcmmode-disabled) & {
+  &.mag-modal-author-mode {
     .mag-modal-overlay {
       position: static !important;
       display: block !important;
