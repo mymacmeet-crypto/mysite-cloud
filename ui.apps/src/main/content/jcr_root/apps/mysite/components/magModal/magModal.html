@@ -4,7 +4,7 @@
 <div class="mag-modal-wrapper${wcmmode.edit || wcmmode.design ? ' mag-modal-author-mode' : ''}" data-component="magmodal">
   <!-- Trigger Button -->
   <sly data-sly-test="${model.buttonText}">
-    <button class="mag-modal-trigger" data-modal-id="${model.modalId}">
+    <button class="mag-modal-trigger" data-modal-id="${model.modalId}" data-cmp-clickable>
       ${model.buttonText}
     </button>
   </sly>
