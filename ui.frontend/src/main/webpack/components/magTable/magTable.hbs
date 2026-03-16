@@ -1,0 +1,137 @@
+<div
+  class="mag-table-wrapper"
+  data-component="magTable"
+  data-cf-endpoint="{{cfEndpoint}}"
+>
+  <div class="mag-table-header">
+    <h2 class="mag-table-title">{{tableTitle}}</h2>
+    {{#if tableSubtitle}}
+      <p class="mag-table-subtitle">{{tableSubtitle}}</p>
+    {{/if}}
+  </div>
+
+  <div class="mag-table-scroll">
+    <table class="mag-table" aria-label="{{tableTitle}}">
+      <thead>
+        <tr class="mag-table-head-row">
+          {{#each columns}}
+            <th
+              class="mag-table-th"
+              data-col-key="{{key}}"
+              scope="col"
+            >
+              <div class="mag-th-inner">
+                <span class="mag-col-label">{{label}}</span>
+                <button
+                  class="mag-col-menu-btn"
+                  aria-label="Column options for {{label}}"
+                  aria-expanded="false"
+                >
+                  <svg width="12" height="8" viewBox="0 0 12 8" fill="none">
+                    <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </button>
+              </div>
+            </th>
+          {{/each}}
+        </tr>
+      </thead>
+      <tbody class="mag-table-body">
+        {{#each rows}}
+          <tr class="mag-table-row">
+            {{#each cells}}
+              <td class="mag-table-td">
+                {{#if badges}}
+                  {{#each badges}}
+                    <span class="mag-badge">{{this}}</span>
+                  {{/each}}
+                {{else if icon}}
+                  <span class="mag-cell-with-icon">
+                    <span class="mag-cell-icon">{{{icon}}}</span>
+                    <span class="mag-cell-text">{{text}}</span>
+                  </span>
+                {{else}}
+                  {{value}}
+                {{/if}}
+              </td>
+            {{/each}}
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+
+  {{!-- Global dropdown portal — lives OUTSIDE the scroll container to avoid overflow clipping --}}
+  <div class="mag-col-dropdown" role="menu" aria-hidden="true">
+    <button class="mag-dropdown-item" data-action="sort-asc" role="menuitem">
+      <svg class="mag-dropdown-icon" width="14" height="14" viewBox="0 0 14 14" fill="none">
+        <path d="M7 11V3M7 3L3.5 6.5M7 3L10.5 6.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span>Asc</span>
+    </button>
+    <button class="mag-dropdown-item" data-action="sort-desc" role="menuitem">
+      <svg class="mag-dropdown-icon" width="14" height="14" viewBox="0 0 14 14" fill="none">
+        <path d="M7 3V11M7 11L3.5 7.5M7 11L10.5 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span>Desc</span>
+    </button>
+
+    <div class="mag-dropdown-separator" role="separator"></div>
+
+    <button class="mag-dropdown-item" data-action="pin-left" role="menuitem">
+      <svg class="mag-dropdown-icon" width="14" height="14" viewBox="0 0 14 14" fill="none">
+        <path d="M9 2H5L5 6L3 8H11L9 6V2Z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/>
+        <line x1="7" y1="8" x2="7" y2="12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+      <span>Pin to left</span>
+    </button>
+    <button class="mag-dropdown-item" data-action="pin-right" role="menuitem">
+      <svg class="mag-dropdown-icon" width="14" height="14" viewBox="0 0 14 14" fill="none">
+        <path d="M9 2H5L5 6L3 8H11L9 6V2Z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/>
+        <line x1="7" y1="8" x2="7" y2="12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+      <span>Pin to right</span>
+    </button>
+
+    <div class="mag-dropdown-separator" role="separator"></div>
+
+    <button class="mag-dropdown-item" data-action="move-left" role="menuitem">
+      <svg class="mag-dropdown-icon" width="14" height="14" viewBox="0 0 14 14" fill="none">
+        <path d="M9.5 11L4.5 7L9.5 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span>Move to Left</span>
+    </button>
+    <button class="mag-dropdown-item" data-action="move-right" role="menuitem">
+      <svg class="mag-dropdown-icon" width="14" height="14" viewBox="0 0 14 14" fill="none">
+        <path d="M4.5 3L9.5 7L4.5 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span>Move to Right</span>
+    </button>
+
+    <div class="mag-dropdown-separator" role="separator"></div>
+
+    <button class="mag-dropdown-item mag-has-submenu" data-action="columns" role="menuitem" aria-haspopup="true">
+      <svg class="mag-dropdown-icon" width="14" height="14" viewBox="0 0 14 14" fill="none">
+        <rect x="1" y="2" width="3.5" height="10" rx="0.5" stroke="currentColor" stroke-width="1.2"/>
+        <rect x="5.25" y="2" width="3.5" height="10" rx="0.5" stroke="currentColor" stroke-width="1.2"/>
+        <rect x="9.5" y="2" width="3.5" height="10" rx="0.5" stroke="currentColor" stroke-width="1.2"/>
+      </svg>
+      <span>Columns</span>
+      <svg class="mag-submenu-arrow" width="10" height="10" viewBox="0 0 10 10" fill="none">
+        <path d="M3 2L7 5L3 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <div class="mag-submenu" role="menu" aria-hidden="true">
+        {{!-- Populated by JS --}}
+      </div>
+    </button>
+
+    <button class="mag-dropdown-item" data-action="hide" role="menuitem">
+      <svg class="mag-dropdown-icon" width="14" height="14" viewBox="0 0 14 14" fill="none">
+        <path d="M2 7C2 7 3.5 4 7 4C10.5 4 12 7 12 7C12 7 10.5 10 7 10C3.5 10 2 7 2 7Z" stroke="currentColor" stroke-width="1.2"/>
+        <circle cx="7" cy="7" r="1.5" stroke="currentColor" stroke-width="1.2"/>
+        <line x1="2.5" y1="2.5" x2="11.5" y2="11.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+      <span>Hide column</span>
+    </button>
+  </div>
+</div>
