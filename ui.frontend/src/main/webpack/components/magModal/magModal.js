@@ -6,6 +6,21 @@ export function initMagModal(root) {
     return;
   }
 
+  // Check if we're in AEM author/edit mode
+  const isAuthorMode =
+    document.body.classList.contains("aem-AuthorLayer-Edit") ||
+    document.querySelector(".cq-wcm-edit") !== null ||
+    document.querySelector('[class*="wcm-mode"]') !== null ||
+    (window.location.search.includes("wcmmode=disabled") === false &&
+      (window.Granite || window.CQ));
+
+  // In author mode, don't initialize modal behavior - just show content inline
+  if (isAuthorMode) {
+    // Add author mode class for styling
+    root.classList.add("mag-modal-author-mode");
+    return;
+  }
+
   const trigger = root.querySelector(".mag-modal-trigger");
   const overlay = root.querySelector(".mag-modal-overlay");
   const modal = root.querySelector(".mag-modal");
