@@ -1,0 +1,56 @@
+<sly data-sly-use.templates="core/wcm/components/commons/v1/templates.html" />
+
+<div
+  class="mag-table-wrapper"
+  data-component="magTable"
+  data-cf-endpoint="${properties.cfEndpoint @ context='uri'}"
+>
+  <div class="mag-table-header">
+    <h2 class="mag-table-title">${properties.tableTitle}</h2>
+    <sly data-sly-test="${properties.tableSubtitle}">
+      <p class="mag-table-subtitle">${properties.tableSubtitle}</p>
+    </sly>
+  </div>
+
+  <div class="mag-table-scroll">
+    <table class="mag-table" aria-label="${properties.tableTitle}">
+      <thead>
+        <tr class="mag-table-head-row">
+          <sly data-sly-list.col="${properties.columns}">
+            <th class="mag-table-th" data-col-key="${col.key}" scope="col">
+              <div class="mag-th-inner">
+                <span class="mag-col-label">${col.label}</span>
+                <button
+                  class="mag-col-menu-btn"
+                  aria-label="Column options"
+                  aria-expanded="false"
+                >
+                  <svg width="12" height="8" viewBox="0 0 12 8" fill="none">
+                    <path
+                      d="M1 1.5L6 6.5L11 1.5"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </button>
+              </div>
+              <!--/* Column dropdown injected by magTable.js */-->
+            </th>
+          </sly>
+        </tr>
+      </thead>
+      <tbody class="mag-table-body">
+        <!--/* Table rows are loaded dynamically via Content Fragment GraphQL API */-->
+      </tbody>
+    </table>
+  </div>
+
+  <sly
+    data-sly-call="${templates.placeholder @
+      isEmpty = !properties.cfEndpoint,
+      cq:emptyText = 'Mag Table — configure a Content Fragment endpoint in the dialog',
+      classAppend = 'mag-table-placeholder'}"
+  />
+</div>
