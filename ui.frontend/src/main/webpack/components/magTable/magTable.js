@@ -363,7 +363,7 @@ export function initMagTable(root) {
     fetch(cfEndpoint)
       .then((res) => res.json())
       .then((res) => {
-        const items = res?.data?.tableItemList?.items || [];
+        const items = res?.data?.tableitemlistList?.items || [];
         if (items.length) {
           renderCfData(items);
         }
