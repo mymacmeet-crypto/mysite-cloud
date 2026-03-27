@@ -1,0 +1,46 @@
+<sly data-sly-use.templates="core/wcm/components/commons/v1/templates.html" />
+<sly data-sly-use.model="com.mysite.core.models.MagWelcomeModel" />
+
+<section class="mag-welcome" data-component="magwelcome">
+  <div class="mag-welcome-container">
+
+    <!-- Background Image -->
+    <sly data-sly-test="${model.backgroundImage}">
+      <div class="mag-welcome-bg"
+           style="background-image: url('${model.backgroundImage @ context='uri'}');"></div>
+    </sly>
+
+    <div class="mag-welcome-content">
+
+      <!-- Title -->
+      <sly data-sly-test="${model.title}">
+        <h1 class="mag-welcome-title">${model.title @ context='html'}</h1>
+      </sly>
+
+      <!-- Subtitle -->
+      <sly data-sly-test="${model.subtitle}">
+        <p class="mag-welcome-subtitle">${model.subtitle @ context='html'}</p>
+      </sly>
+
+      <!-- Description -->
+      <sly data-sly-test="${model.description}">
+        <p class="mag-welcome-description">${model.description @ context='html'}</p>
+      </sly>
+
+      <!-- CTA Button -->
+      <sly data-sly-test="${model.ctaLabel}">
+        <a href="${model.ctaLink @ context='uri'}" class="mag-welcome-cta">${model.ctaLabel @ context='html'}</a>
+      </sly>
+
+    </div>
+
+  </div>
+
+  <sly
+    data-sly-call="${templates.placeholder @
+      isEmpty = !model.title,
+      cq:emptyText = 'Mag Welcome',
+      classAppend='mag-welcome'}"
+  />
+
+</section>

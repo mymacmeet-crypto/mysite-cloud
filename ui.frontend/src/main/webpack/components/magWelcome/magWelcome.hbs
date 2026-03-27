@@ -1,0 +1,29 @@
+<section class="mag-welcome" data-component="magwelcome">
+  <div class="mag-welcome-container">
+
+    {{#if backgroundImage}}
+      <div class="mag-welcome-bg" style="background-image: url('{{backgroundImage}}');"></div>
+    {{/if}}
+
+    <div class="mag-welcome-content">
+
+      {{#if title}}
+        <h1 class="mag-welcome-title">{{title}}</h1>
+      {{/if}}
+
+      {{#if subtitle}}
+        <p class="mag-welcome-subtitle">{{subtitle}}</p>
+      {{/if}}
+
+      {{#if description}}
+        <p class="mag-welcome-description">{{description}}</p>
+      {{/if}}
+
+      {{#if ctaLabel}}
+        <a href="{{ctaLink}}" class="mag-welcome-cta">{{ctaLabel}}</a>
+      {{/if}}
+
+    </div>
+
+  </div>
+</section>

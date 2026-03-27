@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
+    jcr:primaryType="nt:unstructured"
+    sling:resourceType="cq/gui/components/authoring/dialog">
+    <content
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/container">
+        <items jcr:primaryType="nt:unstructured">
+            <tabs
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/tabs"
+                maximized="{Boolean}true">
+                <items jcr:primaryType="nt:unstructured">
+
+                    <!-- ═══════════════════════════════════════════════════════ -->
+                    <!--  CONTENT TAB                                           -->
+                    <!-- ═══════════════════════════════════════════════════════ -->
+                    <contentTab
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Content"
+                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                        <items jcr:primaryType="nt:unstructured">
+
+                            <!-- Title -->
+                            <title
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Title"
+                                fieldDescription="Main welcome heading text."
+                                name="./title"
+                                required="{Boolean}true"
+                                value="Welcome to Pearl Magazine"/>
+
+                            <!-- Subtitle -->
+                            <subtitle
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Subtitle"
+                                fieldDescription="Short subtitle displayed above the description."
+                                name="./subtitle"
+                                value="Your Daily Source of Inspiration"/>
+
+                            <!-- Description -->
+                            <description
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textarea"
+                                fieldLabel="Description"
+                                fieldDescription="Welcome description or introductory paragraph."
+                                name="./description"
+                                value="Discover the latest stories, insights, and trends from around the world. We bring you curated content that matters."/>
+
+                        </items>
+                    </contentTab>
+
+                    <!-- ═══════════════════════════════════════════════════════ -->
+                    <!--  MEDIA TAB                                             -->
+                    <!-- ═══════════════════════════════════════════════════════ -->
+                    <mediaTab
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Media"
+                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                        <items jcr:primaryType="nt:unstructured">
+
+                            <!-- Background Image -->
+                            <backgroundImage
+                                granite:class="cmp-image__editor-file-upload"
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="cq/gui/components/authoring/dialog/fileupload"
+                                fieldLabel="Background Image"
+                                fieldDescription="Upload a background image for the welcome section."
+                                fileNameParameter="./backgroundImageFileName"
+                                fileReferenceParameter="./backgroundImage"
+                                mimeTypes="[image/gif,image/jpeg,image/png,image/webp]"
+                                name="./backgroundImageFile"
+                                rootPath="/content/dam/mysite"/>
+
+                        </items>
+                    </mediaTab>
+
+                    <!-- ═══════════════════════════════════════════════════════ -->
+                    <!--  CTA TAB                                               -->
+                    <!-- ═══════════════════════════════════════════════════════ -->
+                    <ctaTab
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Call to Action"
+                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                        <items jcr:primaryType="nt:unstructured">
+
+                            <!-- CTA Label -->
+                            <ctaLabel
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Button Label"
+                                fieldDescription="Text for the call-to-action button (e.g. 'EXPLORE NOW')."
+                                name="./ctaLabel"
+                                value="EXPLORE NOW"/>
+
+                            <!-- CTA Link -->
+                            <ctaLink
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                fieldLabel="Button Link"
+                                fieldDescription="URL or page path the button links to."
+                                name="./ctaLink"
+                                rootPath="/content"
+                                value="/content/mysite/us/en"/>
+
+                        </items>
+                    </ctaTab>
+
+                </items>
+            </tabs>
+        </items>
+    </content>
+</jcr:root>

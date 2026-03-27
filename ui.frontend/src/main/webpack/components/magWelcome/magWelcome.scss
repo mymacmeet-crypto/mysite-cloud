@@ -1,0 +1,167 @@
+// ─── Theme Variables ─────────────────────────────────────────────────────────
+$mag-welcome-bg: #ffffff;
+$mag-welcome-overlay: rgba(0, 0, 0, 0.45);
+$mag-welcome-text: #1a1a1a;
+$mag-welcome-text-light: #ffffff;
+$mag-welcome-subtitle-color: #666666;
+$mag-welcome-accent: #0066cc;
+$mag-welcome-transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+// ─── Welcome Root ───────────────────────────────────────────────────────────
+.mag-welcome {
+  position: relative;
+  overflow: hidden;
+  background: $mag-welcome-bg;
+  font-family: "Georgia", "Times New Roman", serif;
+}
+
+// ─── Container ──────────────────────────────────────────────────────────────
+.mag-welcome-container {
+  position: relative;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 80px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+}
+
+// ─── Background Image ───────────────────────────────────────────────────────
+.mag-welcome-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 0;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: $mag-welcome-overlay;
+  }
+}
+
+// ─── Content ────────────────────────────────────────────────────────────────
+.mag-welcome-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  max-width: 800px;
+}
+
+// Text turns white when background image is present
+.mag-welcome-bg ~ .mag-welcome-content {
+  .mag-welcome-title,
+  .mag-welcome-subtitle,
+  .mag-welcome-description {
+    color: $mag-welcome-text-light;
+  }
+}
+
+// ─── Title ──────────────────────────────────────────────────────────────────
+.mag-welcome-title {
+  margin: 0 0 16px;
+  font-size: 2.8rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: $mag-welcome-text;
+  letter-spacing: -0.02em;
+}
+
+// ─── Subtitle ───────────────────────────────────────────────────────────────
+.mag-welcome-subtitle {
+  margin: 0 0 20px;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: $mag-welcome-subtitle-color;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+// ─── Description ────────────────────────────────────────────────────────────
+.mag-welcome-description {
+  margin: 0 0 32px;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: $mag-welcome-text;
+}
+
+// ─── CTA Button ─────────────────────────────────────────────────────────────
+.mag-welcome-cta {
+  display: inline-block;
+  padding: 14px 36px;
+  background: $mag-welcome-accent;
+  color: $mag-welcome-text-light;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 2px solid $mag-welcome-accent;
+  transition: all $mag-welcome-transition;
+
+  &:hover {
+    background: transparent;
+    color: $mag-welcome-accent;
+  }
+}
+
+// Background image variant: CTA with white border
+.mag-welcome-bg ~ .mag-welcome-content .mag-welcome-cta {
+  background: transparent;
+  border-color: $mag-welcome-text-light;
+  color: $mag-welcome-text-light;
+
+  &:hover {
+    background: $mag-welcome-text-light;
+    color: $mag-welcome-text;
+  }
+}
+
+// ═════════════════════════════════════════════════════════════════════════════
+//  RESPONSIVE
+// ═════════════════════════════════════════════════════════════════════════════
+
+@media (max-width: 1024px) {
+  .mag-welcome-container {
+    padding: 60px 24px;
+    min-height: 320px;
+  }
+
+  .mag-welcome-title {
+    font-size: 2.2rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .mag-welcome-container {
+    padding: 48px 20px;
+    min-height: 260px;
+  }
+
+  .mag-welcome-title {
+    font-size: 1.8rem;
+  }
+
+  .mag-welcome-subtitle {
+    font-size: 1rem;
+  }
+
+  .mag-welcome-description {
+    font-size: 0.95rem;
+  }
+
+  .mag-welcome-cta {
+    padding: 12px 28px;
+    font-size: 0.8rem;
+  }
+}
