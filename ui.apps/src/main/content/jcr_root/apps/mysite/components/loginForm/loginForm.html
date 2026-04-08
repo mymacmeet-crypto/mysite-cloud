@@ -1,0 +1,38 @@
+<sly data-sly-use.clientlib="core/wcm/components/commons/v1/templates/clientlib.html"/>
+<sly data-sly-call="${clientlib.all @ categories='mysite.loginForm'}"/>
+
+<sly data-sly-use.templates="core/wcm/components/commons/v1/templates.html"/>
+<sly data-sly-call="${templates.placeholder @ isEmpty=!properties.redirectPath, classAppend='cmp-loginForm'}"/>
+
+<sly data-sly-use.model="com.mysite.core.models.LoginFormModel"/>
+
+<div class="cmp-loginForm" data-sly-test="${properties.redirectPath}">
+    <h2 class="cmp-loginForm__title" data-sly-test="${properties.formTitle}">
+        ${properties.formTitle}
+    </h2>
+
+    <div class="cmp-loginForm__error" data-sly-test="${model.hasError}">
+        ${properties.errorMessage || 'Invalid username or password.'}
+    </div>
+
+    <form method="POST" action="/j_security_check" class="cmp-loginForm__form" id="loginForm">
+        <input type="hidden" name="resource" value="${properties.redirectPath @ context='uri'}"/>
+        <input type="hidden" name="j_validate" value="true"/>
+
+        <div class="cmp-loginForm__field">
+            <label for="j_username" class="cmp-loginForm__label">Username</label>
+            <input type="text" name="j_username" id="j_username"
+                   class="cmp-loginForm__input" required autocomplete="username"/>
+        </div>
+
+        <div class="cmp-loginForm__field">
+            <label for="j_password" class="cmp-loginForm__label">Password</label>
+            <input type="password" name="j_password" id="j_password"
+                   class="cmp-loginForm__input" required autocomplete="current-password"/>
+        </div>
+
+        <button type="submit" class="cmp-loginForm__submit">
+            Sign In
+        </button>
+    </form>
+</div>
